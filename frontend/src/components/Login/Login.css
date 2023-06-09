@@ -1,0 +1,15 @@
+.welcomeContainer{
+    justify-content: center;
+}
+
+.welcomeLogoContainer{
+    width: 20%;
+    max-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.welcomeLogoContainer img {
+    width: 100%;
+    height: auto;
+}

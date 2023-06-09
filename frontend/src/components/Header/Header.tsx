@@ -6,8 +6,9 @@ function Header(props:any) {
     return (
         <div>
             <div className={"logoHeader"}>
-                <img src={UrbanPilotLogo} alt={"UrbanPilotLogo"} style={{width: '20%'}}/>
-                <h3>Here comes a Topbar</h3>
+                <div className={"logoContainer"}>
+                    <img src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
+                </div>
             </div>
         </div>
     );
