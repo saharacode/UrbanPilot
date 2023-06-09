@@ -2,15 +2,18 @@ import React from 'react';
 import './App.css';
 import HelloWorldComponent from "./components/helloWorldComponent/HelloWorldComponent";
 import UrbanPilotLogo from './images/UrbanPilotLogo.png';
+import Header from "./components/Header/Header";
+import {Route, Routes} from "react-router-dom";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
     <div className="App">
-        <div>
-            <img src={UrbanPilotLogo} alt={"UrbanPilotLogo"} style={{width: '10%'}}/>
-            <h3>Discover. Share. Conquer the urban jungle.</h3>
-            <HelloWorldComponent/>
-        </div>
+        <Header/>
+        <Routes>
+            <Route path="/" element={<Login/>}/>
+            <Route path="/hello" element={<HelloWorldComponent/>}/>
+        </Routes>
 
     </div>
   );
