@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
 import HelloWorldComponent from "./components/helloWorldComponent/HelloWorldComponent";
-import UrbanPilotLogo from './images/UrbanPilotLogo.png';
-import Header from "./components/Header/Header";
 import {Route, Routes} from "react-router-dom";
 import Login from "./components/Login/Login";
 
