@@ -14,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+    /*
     @Bean
     public InMemoryUserDetailsManager userDetailsService(){
         return new InMemoryUserDetailsManager(
@@ -23,6 +24,8 @@ public class SecurityConfig {
                         .build()
         );
     }
+
+     */
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -35,8 +38,10 @@ public class SecurityConfig {
                 .csrf().disable()
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests()
-                .requestMatchers("user/login").permitAll()
                 .anyRequest().authenticated()
+                .and()
+                .formLogin()
                 .and().build();
+        //.requestMatchers("user/login").permitAll()
     }
 }
