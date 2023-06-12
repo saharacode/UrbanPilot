@@ -1,5 +1,6 @@
 package de.neuefische.backend.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("user")
 public class UserController {
     @PostMapping("/login")
-    String login(){
-        return "test";//SecurityContextHolder.
+    public String login(){
+        return SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
     }
 }

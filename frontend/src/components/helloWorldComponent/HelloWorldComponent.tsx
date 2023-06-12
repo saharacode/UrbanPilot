@@ -4,7 +4,7 @@ import axios from "axios";
 function HelloWorldComponent() {
     const [helloString, setHelloString] = useState<string>("emptyString")
 
-    useEffect(loadHelloWorldString,[])
+    //useEffect(loadHelloWorldString,[])
 
     function loadHelloWorldString(){
         axios.get("/api/hello").then(response =>{
@@ -15,6 +15,7 @@ function HelloWorldComponent() {
     return (
         <div>
             <div>
+                <button onClick={loadHelloWorldString}>loadString</button>
                 <h2>This Testpage welcomes you with a warm</h2>
                 <h1>{helloString}</h1>
             </div>

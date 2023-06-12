@@ -9,7 +9,7 @@ function Login(props:any) {
 
     function loginInputHandler(event:FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        axios.post("user/login",undefined,{auth:{username,password}})
+        axios.post("/user/login",undefined,{auth:{username,password}})
             .then(response => console.log(response.data));
     }
 
@@ -28,7 +28,7 @@ function Login(props:any) {
                 <form onSubmit={loginInputHandler}>
                     <input type={"text"} placeholder={"Username..."} onChange={event => setUsername(event.target.value)}/>
                     <input type={"password"} placeholder={"Password..."} onChange={event => setPassword(event.target.value)}/>
-                    <button>Login</button>
+                    <button type={"submit"}>Login</button>
                 </form>
                 <h4>New here?</h4>
                 <button>Sign up</button>
