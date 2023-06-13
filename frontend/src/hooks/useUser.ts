@@ -1,11 +1,12 @@
 import axios from "axios";
+import {useState} from "react";
 
 export default function UseUser() {
-
+    const [user, setUser] = useState<string>();
     function postLogin(username:string,password:string){
         return axios.post("/user/login",undefined,{auth:{username,password}})
-            .then(response => console.log(response.data));
+            .then(response => setUser(response.data));
     }
 
-    return {postLogin}
+    return {postLogin, user}
 }

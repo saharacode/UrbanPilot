@@ -4,16 +4,19 @@ import HelloWorldComponent from "./components/helloWorldComponent/HelloWorldComp
 import {Route, Routes, useNavigate} from "react-router-dom";
 import Login from "./components/Login/Login";
 import useUser from "./hooks/useUser";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
-    const {postLogin} = useUser();
+    const {postLogin, user} = useUser();
 
     return (
     <div className="App">
 
         <Routes>
             <Route path="/" element={<Login postLogin={postLogin}/>}/>
-            <Route path="/hello" element={<HelloWorldComponent/>}/>
+            <Route element={<ProtectedRoutes user={user}/>}>
+                <Route path="/hello" element={<HelloWorldComponent/>}/>
+            </Route>
         </Routes>
 
     </div>
