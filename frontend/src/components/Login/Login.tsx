@@ -3,14 +3,17 @@ import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
 import './Login.css';
 import axios from "axios";
 
-function Login(props:any) {
+type Props = {
+    postLogin: (username:string,password:string) => void;
+}
+
+function Login(props:Props) {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
     function loginInputHandler(event:FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        axios.post("/user/login",undefined,{auth:{username,password}})
-            .then(response => console.log(response.data));
+        props.postLogin(username,password);
     }
 
     return (
