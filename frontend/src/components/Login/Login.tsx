@@ -2,18 +2,22 @@ import React, {FormEvent, useState} from 'react';
 import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
 import './Login.css';
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 type Props = {
-    postLogin: (username:string,password:string) => void;
+    postLogin: (username:string,password:string) => Promise<void>;
 }
 
 function Login(props:Props) {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const nav = useNavigate();
 
     function loginInputHandler(event:FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        props.postLogin(username,password);
+        props.postLogin(username,password)
+            .then(()=> nav("/hello")
+            );
     }
 
     return (
