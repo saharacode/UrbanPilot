@@ -14,18 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-    /*
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService(){
-        return new InMemoryUserDetailsManager(
-                User.builder()
-                        .username("johann")
-                        .password("123")
-                        .build()
-        );
-    }
-
-     */
 
     @Bean
     public PasswordEncoder passwordEncoder(){
