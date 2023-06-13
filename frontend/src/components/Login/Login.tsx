@@ -16,7 +16,7 @@ function Login(props:Props) {
     function loginInputHandler(event:FormEvent<HTMLFormElement>) {
         event.preventDefault();
         props.postLogin(username,password)
-            .then(()=> nav("/hello")
+            .then(()=> nav("/mainpage")
             );
     }
 

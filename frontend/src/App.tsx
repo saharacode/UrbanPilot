@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import HelloWorldComponent from "./components/helloWorldComponent/HelloWorldComponent";
+import Mainpage from "./components/Mainpage/Mainpage";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import Login from "./components/Login/Login";
 import useUser from "./hooks/useUser";
@@ -17,7 +17,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Login postLogin={postLogin}/>}/>
             <Route element={<ProtectedRoutes user={user}/>}>
-                <Route path="/hello" element={<HelloWorldComponent postLogout={postLogout}/>}/>
+                <Route path="/mainpage" element={<Mainpage postLogout={postLogout}/>}/>
             </Route>
         </Routes>
 
