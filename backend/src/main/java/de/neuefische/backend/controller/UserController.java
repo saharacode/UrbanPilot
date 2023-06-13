@@ -23,6 +23,6 @@ public class UserController {
     String logout(HttpSession httpSession) {
         httpSession.invalidate();
         SecurityContextHolder.clearContext();
-        return "logged out";
+        return "Logout successful";
     }
 }
