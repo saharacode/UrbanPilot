@@ -1,11 +1,12 @@
 import React, {FormEvent, useState} from 'react';
 import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
 import './Login.css';
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
 type Props = {
     postLogin: (username:string,password:string) => Promise<void>;
+    userExists: boolean;
+    errormessage: string;
 }
 
 function Login(props:Props) {
@@ -30,6 +31,9 @@ function Login(props:Props) {
             </div>
             <div>
                 <h1>Please login:</h1>
+            </div>
+            <div>
+                {props.userExists ? <></> : <h5>{props.errormessage}</h5>}
             </div>
             <div>
                 <form onSubmit={loginInputHandler}>

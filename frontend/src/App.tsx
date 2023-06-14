@@ -9,7 +9,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import LandingPage from "./components/LandingPage/LandingPage";
 
 function App() {
-    const {postLogin, user} = useUser();
+    const {postLogin, user, userExists, errorMessage} = useUser();
     const {postLogout, logoutConfirmation} = useUserLogout();
 
     return (
@@ -17,7 +17,7 @@ function App() {
 
         <Routes>
             <Route path="/" element={<LandingPage/>}/>
-            <Route path="/login" element={<Login postLogin={postLogin}/>}/>
+            <Route path="/login" element={<Login postLogin={postLogin} userExists={userExists} errormessage={errorMessage}/>}/>
             <Route element={<ProtectedRoutes user={user}/>}>
                 <Route path="/mainpage" element={<Mainpage postLogout={postLogout}/>}/>
             </Route>
