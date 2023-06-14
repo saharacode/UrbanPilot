@@ -21,6 +21,10 @@ function Login(props:Props) {
             );
     }
 
+    function goToSignUpButtonHandler() {
+        nav("/register")
+    }
+
     return (
         <div>
             <div className={"welcomeContainer"}>
@@ -36,13 +40,15 @@ function Login(props:Props) {
                 {props.userExists ? <></> : <h5>{props.errormessage}</h5>}
             </div>
             <div>
-                <form onSubmit={loginInputHandler}>
+                <form onSubmit={loginInputHandler} className="loginForm">
                     <input type={"text"} placeholder={"Username..."} onChange={event => setUsername(event.target.value)}/>
                     <input type={"password"} placeholder={"Password..."} onChange={event => setPassword(event.target.value)}/>
                     <button type={"submit"}>Login</button>
                 </form>
+            </div>
+            <div>
                 <h4>New here?</h4>
-                <button>Sign up</button>
+                <button onClick={goToSignUpButtonHandler}>Sign up</button>
             </div>
         </div>
     );
