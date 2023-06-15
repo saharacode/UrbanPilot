@@ -17,4 +17,11 @@ public class MongoUser {
     private String fullname;
     private String email;
     private String homecity;
+
+    public MongoUser(String username, String fullname, String email, String homecity) {
+        this.username = username;
+        this.fullname = fullname;
+        this.email = email;
+        this.homecity = homecity;
+    }
 }

@@ -30,7 +30,7 @@ public class MongoUserService implements UserDetailsService {
         String newUUID = generateUUIDService.generateUUID();
         String hashedPassword = encoder.encode(newUserWithoutId.getPassword());
         MongoUser newUser = new MongoUser(newUUID,newUserWithoutId.getUsername(), hashedPassword, newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity());
-
-        return mongoUserRepo.save(newUser);
+        mongoUserRepo.save(newUser);
+        return new MongoUser(newUserWithoutId.getUsername(), newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity());
     }
 }
