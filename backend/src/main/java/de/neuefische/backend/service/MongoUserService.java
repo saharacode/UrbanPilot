@@ -15,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MongoUserService implements UserDetailsService {
     private final MongoUserRepo mongoUserRepo;
+    private final GenerateUUIDService generateUUIDService;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MongoUser mongoUser = mongoUserRepo.findMongoUserByUsername(username)
@@ -22,7 +23,9 @@ public class MongoUserService implements UserDetailsService {
         return new User(mongoUser.getUsername(), mongoUser.getPassword(), List.of());
     }
 
-    public MongoUser registerUser(MongoUser newUser) {
+    public MongoUser registerUser(MongoUser newUserWithoutId) {
+        MongoUser newUser = new MongoUser(generateUUIDService.generateUUID(),newUserWithoutId.getUsername(), newUserWithoutId.getPassword(), newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity());
+
         return mongoUserRepo.save(newUser);
     }
 }
