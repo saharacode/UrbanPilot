@@ -19,6 +19,7 @@ public class MongoUser {
     private String email;
     private String homecity;
     private Map<String, UserCity> userCityCollection;
+    private Map<String, Friend> friendCollection;
 
     public MongoUser(String username, String fullname, String email, String homecity) {
         this.username = username;
