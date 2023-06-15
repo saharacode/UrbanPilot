@@ -1,9 +1,10 @@
 import React, {FormEvent, useState} from 'react';
 import './Register.css';
 import {useNavigate} from "react-router-dom";
+import {User} from "../../model/User";
 
 type Props = {
-    postRegistration: (username:string,password:string,fullname:string,email:string,homecity:string) => Promise<void>;
+    postRegistration: (newUser:User) => Promise<void>;
 }
 
 function Register(props:Props) {
@@ -17,7 +18,14 @@ function Register(props:Props) {
 
     function registerInputHandler(event:FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        props.postRegistration(username,password,fullname,email,homecity)
+        const newUser:User = {
+            username: username,
+            password: password,
+            fullname: fullname,
+            email: email,
+            homecity: homecity
+        };
+        props.postRegistration(newUser)
             .then(()=> nav("/login")
             );
     }

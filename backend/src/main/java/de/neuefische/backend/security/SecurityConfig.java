@@ -30,15 +30,19 @@ public class SecurityConfig {
         requestHandler.setCsrfRequestAttributeName(null);
 
         return http
-                .csrf(csrf -> csrf
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        .csrfTokenRequestHandler(requestHandler))
+                .csrf().disable()
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests()
+                .requestMatchers("user/register").permitAll()
                 .anyRequest().authenticated()
                 .and().build();
         //.csrf().disable()
         //.requestMatchers("user/login").permitAll()
+        /*
+        .csrf(csrf -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRequestHandler(requestHandler))
+         */
     }
 }

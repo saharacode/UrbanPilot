@@ -1,13 +1,14 @@
 import axios from "axios";
 import {useState} from "react";
+import {User} from "../model/User";
 
 export default function UseRegisterUser() {
-    const [user, setUser] = useState<string>();
+    const [userObject, setUserObject] = useState<User>();
 
-    function postRegistration(username:string,password:string,fullname:string,email:string,homecity:string){
-        return axios.post("/user/login",undefined,{auth:{username,password}})
+    function postRegistration(newUser:User){
+        return axios.post("/user/register",newUser)
             .then(response => {
-                setUser(response.data)
+                setUserObject(response.data);
             });
     }
 

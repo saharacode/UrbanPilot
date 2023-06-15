@@ -21,4 +21,8 @@ public class MongoUserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("The user '" + username + "' could not be found."));
         return new User(mongoUser.getUsername(), mongoUser.getPassword(), List.of());
     }
+
+    public MongoUser registerUser(MongoUser newUser) {
+        return mongoUserRepo.save(newUser);
+    }
 }
