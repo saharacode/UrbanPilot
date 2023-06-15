@@ -9,7 +9,7 @@ export default function UseRegisterUser() {
         return axios.post("/user/register",newUser)
             .then(response => {
                 setUserObject(response.data);
-            });
+            }); // then can be probably deleted because information not used further
     }
 
     return {postRegistration}

@@ -14,10 +14,15 @@ function Mainpage(props:Props) {
         nav("/");
     }
 
+    function profileButtonHandler() {
+        nav("/profile");
+    }
+
     return (
         <div>
             <div>
                 <h2>Welcome to the mainpage</h2>
+                <button onClick={profileButtonHandler}>Profile</button>
                 <button onClick={logoutButtonHandler}>Logout</button>
             </div>
         </div>

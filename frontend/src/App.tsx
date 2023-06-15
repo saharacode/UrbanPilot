@@ -9,10 +9,11 @@ import useRegisterUser from "./hooks/useRegisterUser";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Register from "./components/Register/Register";
+import Profilepage from "./components/Profilepage/Profilepage";
 
 function App() {
     const {postLogin, user, userExists, errorMessage} = useUser();
-    const {postLogout, logoutConfirmation} = useUserLogout(); // confirmation with toastify open
+    const {postLogout} = useUserLogout(); // confirmation with toastify open
     const {postRegistration} = useRegisterUser();
 
     return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/register" element={<Register postRegistration={postRegistration}/>}/>
             <Route element={<ProtectedRoutes user={user}/>}>
                 <Route path="/mainpage" element={<Mainpage postLogout={postLogout}/>}/>
+                <Route path={"/profile"} element={<Profilepage user={user}/>}/>
             </Route>
         </Routes>
 
