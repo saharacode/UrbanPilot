@@ -34,4 +34,9 @@ public class UserController {
     public MongoUser registerUser(@RequestBody MongoUser newUserWithoutId){
         return mongoUserService.registerUser(newUserWithoutId);
     }
+
+    @GetMapping("/details/{username}")
+    public MongoUser getProfileDetails(@PathVariable String username){
+        return mongoUserService.getProfileDetails(username);
+    }
 }

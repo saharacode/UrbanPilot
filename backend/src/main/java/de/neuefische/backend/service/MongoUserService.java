@@ -1,7 +1,6 @@
 package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.Friend;
-import de.neuefische.backend.model.Location;
 import de.neuefische.backend.model.MongoUser;
 import de.neuefische.backend.model.UserCity;
 import de.neuefische.backend.repository.MongoUserRepo;
@@ -42,5 +41,12 @@ public class MongoUserService implements UserDetailsService {
         MongoUser newUser = new MongoUser(newUUID,newUserWithoutId.getUsername(), hashedPassword, newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity(), newUserCityCollection, newEmptyFriendCollection);
         mongoUserRepo.save(newUser);
         return new MongoUser(newUserWithoutId.getUsername(), newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity());
+    }
+
+
+    public MongoUser getProfileDetails(String username) {
+        MongoUser mongoUserComplete = mongoUserRepo.findMongoUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("The user '" + username + "' could not be found."));
+        return new MongoUser(mongoUserComplete.getUsername(),mongoUserComplete.getFullname(),mongoUserComplete.getEmail(),mongoUserComplete.getHomecity());
     }
 }

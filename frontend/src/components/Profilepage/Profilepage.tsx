@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {User} from "../../model/User";
 
 type Props = {
     user?: string;
+    userDetails?: User;
 }
 
 function Profilepage(props:Props) {
@@ -18,7 +18,8 @@ function Profilepage(props:Props) {
         <div>
             <div>
                 <h2>Profile</h2>
-                <h3>Hello {props.user}</h3>
+                <h3>Hello {props.userDetails?.username}</h3>
+                <h2>Homecity: {props.userDetails?.homecity}</h2>
                 <button onClick={backButtonHandler}>Back</button>
             </div>
         </div>
