@@ -19,7 +19,11 @@ function Profilepage(props:Props) {
             <div>
                 <h2>Profile</h2>
                 <h3>Hello {props.userDetails?.username}</h3>
-                <h2>Homecity: {props.userDetails?.homecity}</h2>
+                <div>
+                    <h6>Full name: {props.userDetails?.fullname}</h6>
+                    <h6>E-Mail: {props.userDetails?.email}</h6>
+                    <h6>Homecity: {props.userDetails?.homecity}</h6>
+                </div>
                 <button onClick={backButtonHandler}>Back</button>
             </div>
         </div>
