@@ -17,8 +17,10 @@ function Mainpage(props:Props) {
     }
 
     function profileButtonHandler() {
-        props.getUserDetails("johann");
-        nav("/profile");
+        if (props.user !== undefined){
+            props.getUserDetails(props.user);
+            nav("/profile");
+        }
     }
 
     return (
