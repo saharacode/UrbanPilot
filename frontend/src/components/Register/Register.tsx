@@ -15,21 +15,32 @@ function Register(props:Props) {
     const [email, setEmail] = useState<string>("");
     const [homecity, setHomecity] = useState<string>("");
     const nav = useNavigate();
+    const [passwordConfirmationStatus, setPasswordConfirmationStatus] = useState<boolean>(false);
 
     function registerInputHandler(event:FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const newUser:User = {
-            username: username,
-            password: password,
-            fullname: fullname,
-            email: email,
-            homecity: homecity
-        };
-        props.postRegistration(newUser)
-            .then(()=> nav("/login")
-            );
+        comparePasswordInputs();
+        if (passwordConfirmationStatus){
+            const newUser:User = {
+                username: username,
+                password: password,
+                fullname: fullname,
+                email: email,
+                homecity: homecity
+            };
+            props.postRegistration(newUser)
+                .then(()=> nav("/login")
+                );
+        }
+
+        setPasswordConfirmationStatus(false);
     }
 
+    function comparePasswordInputs(){
+        if(password === passwordRepeat){
+            setPasswordConfirmationStatus(true);
+        }
+    }
 
     function goToLoginButtonHandler() {
         nav("/login");
