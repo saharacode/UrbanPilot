@@ -1,10 +1,11 @@
-import React, {FormEvent, useState} from 'react';
+import React, {Dispatch, FormEvent, SetStateAction, useState} from 'react';
 import './Register.css';
 import {useNavigate} from "react-router-dom";
 import {User} from "../../model/User";
 
 type Props = {
     postRegistration: (newUser:User) => Promise<void>;
+    setUserExists: Dispatch<SetStateAction<boolean>>;
 }
 
 function Register(props:Props) {
@@ -31,6 +32,7 @@ function Register(props:Props) {
             props.postRegistration(newUser)
                 .then(() => nav("/login")
                 );
+            props.setUserExists(true);
         }
     }
 

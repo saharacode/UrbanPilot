@@ -13,7 +13,7 @@ import Register from "./components/Register/Register";
 import Profilepage from "./components/Profilepage/Profilepage";
 
 function App() {
-    const {postLogin, user, userExists, errorMessage} = useUser();
+    const {postLogin, user, userExists, setUserExists, errorMessage} = useUser();
     const {postLogout} = useUserLogout(); // confirmation with toastify open
     const {postRegistration} = useRegisterUser();
     const {getUserDetails, userDetails} = useUserDetails();
@@ -24,7 +24,7 @@ function App() {
         <Routes>
             <Route path="/" element={<LandingPage/>}/>
             <Route path="/login" element={<Login postLogin={postLogin} userExists={userExists} errormessage={errorMessage}/>}/>
-            <Route path="/register" element={<Register postRegistration={postRegistration}/>}/>
+            <Route path="/register" element={<Register postRegistration={postRegistration} setUserExists={setUserExists}/>}/>
             <Route element={<ProtectedRoutes user={user}/>}>
                 <Route path="/mainpage" element={<Mainpage postLogout={postLogout} getUserDetails={getUserDetails} user={user}/>}/>
                 <Route path="/profile" element={<Profilepage user={user} userDetails={userDetails}/>}/>
