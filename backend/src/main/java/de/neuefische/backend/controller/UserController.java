@@ -4,7 +4,6 @@ import de.neuefische.backend.model.MongoUser;
 import de.neuefische.backend.service.MongoUserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
