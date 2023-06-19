@@ -1,7 +1,8 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.model.MongoUser;
-import de.neuefische.backend.model.NewMongoUserDTO;
+import de.neuefische.backend.model.ImportMongoUserDTO;
+import de.neuefische.backend.model.ReturnMongoUserDTO;
 import de.neuefische.backend.service.MongoUserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -31,12 +32,12 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public MongoUser registerUser(@RequestBody NewMongoUserDTO newUserWithoutId){
+    public ReturnMongoUserDTO registerUser(@RequestBody ImportMongoUserDTO newUserWithoutId){
         return mongoUserService.registerUser(newUserWithoutId);
     }
 
     @GetMapping("/details/{username}")
-    public MongoUser getProfileDetails(@PathVariable String username){
+    public ReturnMongoUserDTO getProfileDetails(@PathVariable String username){
         return mongoUserService.getProfileDetails(username);
     }
 }
