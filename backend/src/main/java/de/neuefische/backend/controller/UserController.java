@@ -1,6 +1,7 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.model.MongoUser;
+import de.neuefische.backend.model.NewMongoUserDTO;
 import de.neuefische.backend.service.MongoUserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public MongoUser registerUser(@RequestBody MongoUser newUserWithoutId){
+    public MongoUser registerUser(@RequestBody NewMongoUserDTO newUserWithoutId){
         return mongoUserService.registerUser(newUserWithoutId);
     }
 

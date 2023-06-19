@@ -2,6 +2,7 @@ package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.Friend;
 import de.neuefische.backend.model.MongoUser;
+import de.neuefische.backend.model.NewMongoUserDTO;
 import de.neuefische.backend.model.UserCity;
 import de.neuefische.backend.repository.MongoUserRepo;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class MongoUserService implements UserDetailsService {
         return new User(mongoUser.getUsername(), mongoUser.getPassword(), List.of());
     }
 
-    public MongoUser registerUser(MongoUser newUserWithoutId) {
+    public MongoUser registerUser(NewMongoUserDTO newUserWithoutId) {
         String newUUID = generateUUIDService.generateUUID();
         String hashedPassword = encoder.encode(newUserWithoutId.getPassword());
         Map<String,UserCity> newUserCityCollection = generateDefaultUserCityCollectionService.generateDefaultUserCityCollection(newUserWithoutId);
