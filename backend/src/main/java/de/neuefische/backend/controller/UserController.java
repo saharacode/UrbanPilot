@@ -1,6 +1,5 @@
 package de.neuefische.backend.controller;
 
-import de.neuefische.backend.model.MongoUser;
 import de.neuefische.backend.model.ImportMongoUserDTO;
 import de.neuefische.backend.model.ReturnMongoUserDTO;
 import de.neuefische.backend.service.MongoUserService;
