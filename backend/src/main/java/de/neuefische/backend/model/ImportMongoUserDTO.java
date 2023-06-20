@@ -1,14 +1,15 @@
 package de.neuefische.backend.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ImportMongoUserDTO extends ReturnMongoUserDTO{
+@Builder
+public class ImportMongoUserDTO{
+    private String username;
+    private String fullname;
+    private String email;
+    private String homecity;
     private String password;
 }
