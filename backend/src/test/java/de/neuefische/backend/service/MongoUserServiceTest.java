@@ -3,12 +3,15 @@ package de.neuefische.backend.service;
 import de.neuefische.backend.model.*;
 import de.neuefische.backend.repository.MongoUserRepo;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,7 +27,22 @@ class MongoUserServiceTest {
 
     @DirtiesContext
     @Test
-    void loadUserByUsername_() {
+    void loadUserByUsername_returnUser() {
+        // given
+        String testUsername = "testuser";
+        String testPassword = "testpassword";
+        MongoUser testMongoUser = MongoUser.builder()
+                .username(testUsername)
+                .password(testPassword)
+                .build();
+        when(mongoUserRepo.findMongoUserByUsername(testUsername)).thenReturn(Optional.ofNullable(testMongoUser));
+
+        UserDetails expectedUserDetails = new User(testUsername,testPassword, List.of());
+
+        // when/then
+        UserDetails actualUserDetails = mongoUserService.loadUserByUsername(testUsername);
+        assertEquals(expectedUserDetails, actualUserDetails);
+        verify(mongoUserRepo).findMongoUserByUsername(testUsername);
     }
 
     @DirtiesContext
