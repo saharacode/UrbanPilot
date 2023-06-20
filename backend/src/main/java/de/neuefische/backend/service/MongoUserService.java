@@ -7,8 +7,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -21,8 +19,8 @@ public class MongoUserService implements UserDetailsService {
     private final MongoUserRepo mongoUserRepo;
     private final GenerateUUIDService generateUUIDService;
     private final GenerateDefaultUserCityCollectionService generateDefaultUserCityCollectionService;
+    private final GenerateEncodedPasswordService generateEncodedPasswordService;
 
-    PasswordEncoder encoder = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MongoUser mongoUser = mongoUserRepo.findMongoUserByUsername(username)
@@ -32,7 +30,7 @@ public class MongoUserService implements UserDetailsService {
 
     public ReturnMongoUserDTO registerUser(ImportMongoUserDTO newUserWithoutId) {
         String newUUID = generateUUIDService.generateUUID();
-        String hashedPassword = encoder.encode(newUserWithoutId.getPassword());
+        String hashedPassword = generateEncodedPasswordService.generateEncodedPassword(newUserWithoutId);
         Map<String,UserCity> newUserCityCollection = generateDefaultUserCityCollectionService.generateDefaultUserCityCollection(newUserWithoutId);
         Map<String, Friend> newEmptyFriendCollection = new HashMap<>();
 
