@@ -47,6 +47,19 @@ class MongoUserServiceTest {
 
     @DirtiesContext
     @Test
+    void loadUserByUsername_throwsUsernameNotFoundException() {
+        // given
+        String testUsername = "unexpectedUser";
+
+        when(mongoUserRepo.findMongoUserByUsername(testUsername)).thenReturn(Optional.empty());
+
+        // when/then
+        assertThrows(UsernameNotFoundException.class,() -> mongoUserService.loadUserByUsername(testUsername));
+        verify(mongoUserRepo).findMongoUserByUsername(testUsername);
+    }
+
+    @DirtiesContext
+    @Test
     void registerUser_returnNewUser() {
         // given
         String testUsername = "testuser";
