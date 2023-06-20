@@ -4,6 +4,7 @@ import de.neuefische.backend.model.MongoUser;
 import de.neuefische.backend.model.ReturnMongoUserDTO;
 import de.neuefische.backend.repository.MongoUserRepo;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.Optional;
@@ -46,6 +47,19 @@ class MongoUserServiceTest {
 
         // then
         assertEquals(expectedUser,actualUser);
+        verify(mongoUserRepo).findMongoUserByUsername(testUsername);
+
+    }
+
+    @DirtiesContext
+    @Test
+    void getProfileDetails_throwsUsernameNotFoundException() {
+        // given
+        String testUsername = "unknownUser";
+        when(mongoUserRepo.findMongoUserByUsername(testUsername)).thenReturn(Optional.empty());
+
+        // when/then
+        assertThrows(UsernameNotFoundException.class,() -> mongoUserService.getProfileDetails(testUsername));
         verify(mongoUserRepo).findMongoUserByUsername(testUsername);
 
     }
