@@ -1,5 +1,7 @@
 package de.neuefische.backend.controller;
 
+import de.neuefische.backend.model.ReturnMongoUserDTO;
+import de.neuefische.backend.service.MongoUserService;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterAll;
@@ -8,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -15,6 +18,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,6 +30,10 @@ class IntegrationTestForUserController {
     @Autowired
     MockMvc mvc;
 
+    @MockBean
+    private MongoUserService mongoUserService;
+
+    /*
     private static MockWebServer mockWebServer;
 
     @DynamicPropertySource
@@ -44,6 +52,8 @@ class IntegrationTestForUserController {
         mockWebServer.shutdown();
     }
 
+     */
+
     @Test
     void login() {
     }
@@ -57,6 +67,32 @@ class IntegrationTestForUserController {
     }
 
     @Test
+    @DirtiesContext
+    @WithMockUser(username = "testuser", password = "testpassword")
+    void getProfileDetails_thenReturnProfileDetailsAsDTO() throws Exception {
+        ReturnMongoUserDTO testuser = ReturnMongoUserDTO.builder()
+                .username("testuser")
+                .fullname("testuser")
+                .email("test@mail.de")
+                .homecity("Berlin")
+                .build();
+
+        when(mongoUserService.getProfileDetails("testuser")).thenReturn(testuser);
+
+        mvc.perform(MockMvcRequestBuilders.get("/user/details/testuser"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                    {
+                        "username": "testuser",
+                        "fullname": "testuser",
+                        "email": "test@mail.de",
+                        "homecity": "Berlin"
+                    }
+                """));
+    }
+
+    /*
+     @Test
     @DirtiesContext
     @WithMockUser(username = "testuser", password = "testpassword")
     void getProfileDetails_thenReturnProfileDetailsAsDTO() throws Exception {
@@ -84,4 +120,5 @@ class IntegrationTestForUserController {
                     }
                 """));
     }
+     */
 }
