@@ -24,17 +24,14 @@ class UserControllerTest {
     @Autowired
     MockMvc mvc;
 
-    /*
     @Test
     @DirtiesContext
-    void login() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.post("/user/login"))
-                //.with(csrf()))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("testuser"));
+    void login_thenReturnStatus200() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/user/login")
+                .with(csrf()))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+                //.andExpect(MockMvcResultMatchers.content().string("testuser"));
     }
-
-     */
 
     @Test
     @DirtiesContext
