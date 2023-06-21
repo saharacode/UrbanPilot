@@ -12,5 +12,5 @@ export default function UseRegisterUser() {
             }); // then can be probably deleted because information not used further
     }
 
-    return {postRegistration}
+    return {userObject,postRegistration}
 }
