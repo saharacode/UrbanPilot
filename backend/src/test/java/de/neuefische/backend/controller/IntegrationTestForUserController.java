@@ -1,5 +1,7 @@
 package de.neuefische.backend.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import de.neuefische.backend.model.ImportMongoUserDTO;
 import de.neuefische.backend.model.ReturnMongoUserDTO;
 import de.neuefische.backend.service.MongoUserService;
 import okhttp3.mockwebserver.MockResponse;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
@@ -18,6 +21,7 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -34,42 +38,59 @@ class IntegrationTestForUserController {
     @MockBean
     private MongoUserService mongoUserService;
 
-    /*
-    private static MockWebServer mockWebServer;
-
-    @DynamicPropertySource
-    static void setProperties(DynamicPropertyRegistry registry) {
-        registry.add("MONGO_URI",() -> mockWebServer.url("/").toString());
-    }
-
-    @BeforeAll
-    static void startMockServer() throws Exception {
-        mockWebServer = new MockWebServer();
-        mockWebServer.start();
-    }
-
-    @AfterAll
-    static void stopMockServer() throws Exception {
-        mockWebServer.shutdown();
-    }
-
-     */
-
     @Test
-    void login() {
-    }
-
-    @Test
-    void logout() {
+    @DirtiesContext
+    void login() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/user/login"))
+                        //.with(csrf()))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("testuser"));
     }
 
     @Test
     @DirtiesContext
+    @WithMockUser(username = "testuser", password = "testpassword")
+    void logout_thenReturnLogoutSuccessfulString() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/user/logout")
+                        .with(csrf()))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("Logout successful"));
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "testuser", password = "testpassword")
     void registerUser() throws Exception {
+        ImportMongoUserDTO newUserWithoutId = ImportMongoUserDTO.builder()
+                .username("testuser2")
+                .fullname("testuser")
+                .password("testpassword")
+                .email("test@mail.de")
+                .homecity("Berlin")
+                .build();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonRequestBody = objectMapper.writeValueAsString(newUserWithoutId);
 
         mvc.perform(MockMvcRequestBuilders.post("/user/register")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
+                        .content(jsonRequestBody)
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json("""
+    {"username":"testuser","fullname":"testuser","email":"test@mail.de","homecity":"Berlin"}
+    """));
+
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "testuser", password = "testpassword")
+    void getProfileDetails_thenReturnProfileDetailsAsDTO() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/user/register")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
                             {
                                 "username": "testuser",
                                 "password": "testpassword",
@@ -77,7 +98,11 @@ class IntegrationTestForUserController {
                                 "email": "test@mail.de",
                                 "homecity": "Berlin"
                             }
-                        """))
+                        """)
+                .with(csrf()));
+
+        mvc.perform(MockMvcRequestBuilders.get("/user/details/testuser")
+                        .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                     {
@@ -89,6 +114,7 @@ class IntegrationTestForUserController {
                 """));
     }
 
+    /*
     @Test
     @DirtiesContext
     @WithMockUser(username = "testuser", password = "testpassword")
@@ -114,6 +140,8 @@ class IntegrationTestForUserController {
                 """));
     }
 
+
+     */
     /*
      @Test
     @DirtiesContext
