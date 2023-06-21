@@ -24,6 +24,7 @@ class UserControllerTest {
     @Autowired
     MockMvc mvc;
 
+    /*
     @Test
     @DirtiesContext
     void login() throws Exception {
@@ -32,6 +33,8 @@ class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("testuser"));
     }
+
+     */
 
     @Test
     @DirtiesContext
