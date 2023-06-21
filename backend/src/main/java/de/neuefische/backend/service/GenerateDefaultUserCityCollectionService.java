@@ -12,7 +12,7 @@ import java.util.Map;
 public class GenerateDefaultUserCityCollectionService {
     public Map<String, UserCity> generateDefaultUserCityCollection(ImportMongoUserDTO newUserWithoutId){
         Map<String, Location> newEmptyLocationCollection = new HashMap<>();
-        // TODO: get cityid/coordinates/country from city-api/database
+        // get cityid/coordinates/country from city-api/database
         UserCity defaultUserCity = new UserCity("defaultCityId",newUserWithoutId.getHomecity(),"defaultCityCoordinates","defaultCityCountry",newEmptyLocationCollection);
         Map<String, UserCity> newUserCityCollection = new HashMap<>();
         newUserCityCollection.put(defaultUserCity.getCityId(),defaultUserCity);
