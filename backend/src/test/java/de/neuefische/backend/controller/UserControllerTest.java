@@ -19,21 +19,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class IntegrationTestForUserController {
+class UserControllerTest {
 
     @Autowired
     MockMvc mvc;
-    /*
+
     @Test
     @DirtiesContext
     void login() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/user/login"))
-                        //.with(csrf()))
+                //.with(csrf()))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("testuser"));
     }
-
-     */
 
     @Test
     @DirtiesContext
