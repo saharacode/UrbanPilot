@@ -5,6 +5,7 @@ import de.neuefische.backend.model.ReturnMongoUserDTO;
 import de.neuefische.backend.service.MongoUserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
     public ReturnMongoUserDTO registerUser(@RequestBody ImportMongoUserDTO newUserWithoutId){
         return mongoUserService.registerUser(newUserWithoutId);
     }
