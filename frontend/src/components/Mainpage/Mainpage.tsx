@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import React from 'react';
 import {useNavigate} from "react-router-dom";
 
 type Props = {
@@ -12,12 +11,15 @@ function Mainpage(props:Props) {
     const nav = useNavigate();
 
     function logoutButtonHandler() {
+        // eslint-disable-next-line
         props.postLogout();
         nav("/");
     }
 
     function profileButtonHandler() {
         if (props.user !== undefined){
+            // eslint-disable-next-line
+
             props.getUserDetails(props.user);
             nav("/profile");
         }

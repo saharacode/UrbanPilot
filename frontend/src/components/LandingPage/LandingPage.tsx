@@ -1,7 +1,7 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 
-function LandingPage(props:any) {
+function LandingPage() {
     const nav = useNavigate();
 
     function goTologinButtonHandler() {
