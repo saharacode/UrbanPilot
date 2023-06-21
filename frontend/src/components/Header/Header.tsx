@@ -2,7 +2,7 @@ import React from 'react';
 import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
 import './Header.css';
 
-function Header(props:any) {
+function Header() {
     return (
         <div>
             <div className={"logoHeader"}>
