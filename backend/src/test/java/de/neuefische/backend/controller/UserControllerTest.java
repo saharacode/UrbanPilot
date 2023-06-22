@@ -2,17 +2,21 @@ package de.neuefische.backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.neuefische.backend.model.ImportMongoUserDTO;
+import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -39,11 +43,18 @@ class UserControllerTest {
     @Test
     @DirtiesContext
     @WithMockUser(username = "testuser", password = "testpassword")
-    void logout_thenReturnStatus200_andLogoutSuccessfulString() throws Exception {
+    void logout_thenReturnStatus200_andLogoutSuccessfulString_andExpectInvalidSession_andExpectEmptySecContHolder() throws Exception {
+        MockHttpSession mockHttpSession = new MockHttpSession();
+        assertEquals("testuser",SecurityContextHolder.getContext().getAuthentication().getName());
+
         mvc.perform(MockMvcRequestBuilders.post("/user/logout")
-                        .with(csrf()))
+                        .with(csrf())
+                        .session(mockHttpSession))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("Logout successful"));
+
+        assertTrue(mockHttpSession.isInvalid());
+        assertNull(SecurityContextHolder.getContext().getAuthentication());
     }
 
     @Test
