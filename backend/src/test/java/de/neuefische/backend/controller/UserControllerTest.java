@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,11 +27,13 @@ class UserControllerTest {
 
     @Test
     @DirtiesContext
-    void login_thenReturnStatus200() throws Exception {
+    @WithMockUser(username = "testuser", password = "testpassword")
+    void login_thenReturnStatus200_andUsernameString() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/user/login")
-                .with(csrf()))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-                //.andExpect(MockMvcResultMatchers.content().string("testuser"));
+                        .with(httpBasic("testuser", "testpassword"))
+                        .with(csrf()))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("testuser"));
     }
 
     @Test
