@@ -2,7 +2,6 @@ package de.neuefische.backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.neuefische.backend.model.ImportMongoUserDTO;
-import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
