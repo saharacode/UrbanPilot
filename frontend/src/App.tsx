@@ -1,16 +1,37 @@
 import React from 'react';
 import './App.css';
-import HelloWorldComponent from "./components/helloWorldComponent/HelloWorldComponent";
-import UrbanPilotLogo from './images/UrbanPilotLogo.png';
+import Mainpage from "./components/Mainpage/Mainpage";
+import {Route, Routes} from "react-router-dom";
+import Login from "./components/Login/Login";
+import useUser from "./hooks/useUser";
+import useUserDetails from "./hooks/useUserDetails";
+import useUserLogout from "./hooks/useUserLogout";
+import useRegisterUser from "./hooks/useRegisterUser";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import LandingPage from "./components/LandingPage/LandingPage";
+import Register from "./components/Register/Register";
+import Profilepage from "./components/Profilepage/Profilepage";
+import Header from "./components/Header/Header";
 
 function App() {
-  return (
+    const {postLogin, user, userExists, setUserExists, errorMessage} = useUser();
+    const {postLogout} = useUserLogout(); // confirmation with toastify open
+    const {postRegistration} = useRegisterUser();
+    const {getUserDetails, userDetails} = useUserDetails();
+
+    return (
     <div className="App">
-        <div>
-            <img src={UrbanPilotLogo} alt={"UrbanPilotLogo"} style={{width: '10%'}}/>
-            <h3>Discover. Share. Conquer the urban jungle.</h3>
-            <HelloWorldComponent/>
-        </div>
+
+        <Routes>
+            <Route path="/" element={<LandingPage/>}/>
+            <Route path="/" element={<Header/>}/>
+            <Route path="/login" element={<Login postLogin={postLogin} userExists={userExists} errormessage={errorMessage}/>}/>
+            <Route path="/register" element={<Register postRegistration={postRegistration} setUserExists={setUserExists}/>}/>
+            <Route element={<ProtectedRoutes user={user}/>}>
+                <Route path="/mainpage" element={<Mainpage postLogout={postLogout} getUserDetails={getUserDetails} user={user}/>}/>
+                <Route path="/profile" element={<Profilepage user={user} userDetails={userDetails}/>}/>
+            </Route>
+        </Routes>
 
     </div>
   );

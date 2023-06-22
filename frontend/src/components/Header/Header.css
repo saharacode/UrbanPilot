@@ -1,0 +1,14 @@
+.logoHeader {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logoContainer{
+    width: 20%;
+    max-width: 150px;
+}
+
+.logoContainer img {
+    width: 100%;
+    height: auto;
+}
