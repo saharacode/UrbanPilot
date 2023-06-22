@@ -33,7 +33,6 @@ class UserControllerTest {
     @WithMockUser(username = "testuser", password = "testpassword")
     void login_thenReturnStatus200_andUsernameString() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/user/login")
-                        .with(httpBasic("testuser", "testpassword"))
                         .with(csrf()))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("testuser"));
@@ -45,6 +44,7 @@ class UserControllerTest {
     void logout_thenReturnStatus200_andLogoutSuccessfulString_andExpectInvalidSession_andExpectEmptySecContHolder() throws Exception {
         MockHttpSession mockHttpSession = new MockHttpSession();
         assertEquals("testuser",SecurityContextHolder.getContext().getAuthentication().getName());
+        assertFalse(mockHttpSession.isInvalid());
 
         mvc.perform(MockMvcRequestBuilders.post("/user/logout")
                         .with(csrf())
