@@ -12,6 +12,5 @@ export default function UseLocations() {
             });
 
     }
-
     return {getAllLocationsForUser, locations}
 }

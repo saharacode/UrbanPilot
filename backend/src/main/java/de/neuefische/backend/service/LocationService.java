@@ -18,10 +18,8 @@ public class LocationService {
         MongoUser mongoUserComplete = mongoUserRepo.findMongoUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("The user '" + username + "' could not be found."));
 
-        List<Location> locations = mongoUserComplete.getUserCityCollection().values().stream()
+        return mongoUserComplete.getUserCityCollection().values().stream()
                 .flatMap(city -> city.getLocationCollection().values().stream())
                 .collect(Collectors.toList());
-
-        return locations;
     }
 }
