@@ -30,7 +30,7 @@ function App() {
             <Route path="/login" element={<Login postLogin={postLogin} userExists={userExists} errormessage={errorMessage}/>}/>
             <Route path="/register" element={<Register postRegistration={postRegistration} setUserExists={setUserExists}/>}/>
             <Route element={<ProtectedRoutes user={user}/>}>
-                <Route path="/mainpage" element={<Mainpage postLogout={postLogout} getUserDetails={getUserDetails} user={user} locations={locations}/>}/>
+                <Route path="/mainpage" element={<Mainpage postLogout={postLogout} getUserDetails={getUserDetails} user={user} locations={locations} getAllLocationsForUser={getAllLocationsForUser}/>}/>
                 <Route path="/profile" element={<Profilepage user={user} userDetails={userDetails}/>}/>
             </Route>
         </Routes>
