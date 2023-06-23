@@ -6,7 +6,11 @@ import "leaflet/dist/leaflet.css";
 import {LocationInfo} from "../../model/LocationInfo";
 import LocationPopUp from "./Location/LocationPopUp";
 
-function Map() {
+type Props = {
+    locations?: LocationInfo;
+}
+
+function Map(props:Props) {
     const defaultCoordinates: L.LatLngLiteral = { lat: 52.520008, lng: 13.404954 };
     const locations:LocationInfo[] = [
         {

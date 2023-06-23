@@ -1,11 +1,13 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import Map from "../Map/Map";
+import {LocationInfo} from "../../model/LocationInfo";
 
 type Props = {
     postLogout: () => Promise<void>;
     getUserDetails: (username:string) => Promise<void>;
     user?: string;
+    locations?: LocationInfo;
 }
 
 function Mainpage(props:Props) {
@@ -33,7 +35,7 @@ function Mainpage(props:Props) {
                 <button onClick={profileButtonHandler}>Profile</button>
                 <button onClick={logoutButtonHandler}>Logout</button>
             </div>
-            <Map/>
+            <Map locations={props.locations}/>
         </div>
     );
 }
