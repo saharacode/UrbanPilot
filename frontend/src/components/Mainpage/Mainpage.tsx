@@ -1,5 +1,6 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
+import Map from "../Map/Map";
 
 type Props = {
     postLogout: () => Promise<void>;
@@ -32,6 +33,7 @@ function Mainpage(props:Props) {
                 <button onClick={profileButtonHandler}>Profile</button>
                 <button onClick={logoutButtonHandler}>Logout</button>
             </div>
+            <Map/>
         </div>
     );
 }
