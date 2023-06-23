@@ -57,7 +57,7 @@ function Map(props:Props) {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     {props.locations.map(location =>{
-                        return <Marker position={location.locationCoordinates} icon={customIcon}>
+                        return <Marker position={{ lat: location.locationLatCoordinate, lng: location.locationLngCoordinate }} icon={customIcon}>
                             <LocationPopUp locationDetails={location}/>
                         </Marker>
                     })}

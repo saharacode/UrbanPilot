@@ -10,6 +10,7 @@ export default function UseLocations() {
             .then(response => {
                 setLocations(response.data)
             });
+
     }
 
     return {getAllLocationsForUser, locations}
