@@ -7,7 +7,7 @@ type Props = {
     postLogout: () => Promise<void>;
     getUserDetails: (username:string) => Promise<void>;
     user?: string;
-    locations?: LocationInfo;
+    locations?: LocationInfo[];
 }
 
 function Mainpage(props:Props) {

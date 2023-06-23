@@ -7,7 +7,7 @@ import {LocationInfo} from "../../model/LocationInfo";
 import LocationPopUp from "./Location/LocationPopUp";
 
 type Props = {
-    locations?: LocationInfo;
+    locations?: LocationInfo[];
 }
 
 function Map(props:Props) {
@@ -31,7 +31,7 @@ function Map(props:Props) {
             locationCoordinates: { lat: 52.6008, lng: 13.4954 },
             locationType: "Restaurant",
         }
-    ]
+    ];
     const customIcon = new Icon({
         iconUrl: require("../../images/markers/marker_standard.png"),
         iconSize: [38,38]
@@ -42,17 +42,27 @@ function Map(props:Props) {
             <div>
                 <h4>Here comes the map.</h4>
             </div>
-            <MapContainer center={defaultCoordinates} zoom={13}>
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {locations.map(location =>{
-                    return <Marker position={location.locationCoordinates} icon={customIcon}>
-                        <LocationPopUp locationDetails={location}/>
-                    </Marker>
-                })}
-            </MapContainer>
+            {props.locations === undefined ?
+                <MapContainer center={defaultCoordinates} zoom={13}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                </MapContainer> :
+                <MapContainer center={defaultCoordinates} zoom={13}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    {props.locations.map(location =>{
+                        return <Marker position={location.locationCoordinates} icon={customIcon}>
+                            <LocationPopUp locationDetails={location}/>
+                        </Marker>
+                    })}
+                </MapContainer>
+            }
+
+
 
         </div>
     );
