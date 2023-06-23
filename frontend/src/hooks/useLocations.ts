@@ -1,6 +1,5 @@
 import axios from "axios";
 import {useState} from "react";
-import {User} from "../model/User";
 import {LocationInfo} from "../model/LocationInfo";
 
 export default function UseLocations() {

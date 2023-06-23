@@ -12,7 +12,7 @@ type Props = {
 
 function Map(props:Props) {
     const defaultCoordinates: L.LatLngLiteral = { lat: 52.520008, lng: 13.404954 };
-    const locations:LocationInfo[] = [
+    /*const locations:LocationInfo[] = [
         {
             locationName: "Location 1 ",
             locationCity: "Default city",
@@ -32,6 +32,8 @@ function Map(props:Props) {
             locationType: "Restaurant",
         }
     ];
+
+     */
     const customIcon = new Icon({
         iconUrl: require("../../images/markers/marker_standard.png"),
         iconSize: [38,38]
