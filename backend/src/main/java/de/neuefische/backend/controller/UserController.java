@@ -1,7 +1,7 @@
 package de.neuefische.backend.controller;
 
-import de.neuefische.backend.model.ImportMongoUserDTO;
-import de.neuefische.backend.model.ReturnMongoUserDTO;
+import de.neuefische.backend.model.user.ImportMongoUserDTO;
+import de.neuefische.backend.model.user.ReturnMongoUserDTO;
 import de.neuefische.backend.service.MongoUserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

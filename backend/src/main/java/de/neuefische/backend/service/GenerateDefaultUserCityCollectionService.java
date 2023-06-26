@@ -1,8 +1,8 @@
 package de.neuefische.backend.service;
 
-import de.neuefische.backend.model.Location;
-import de.neuefische.backend.model.ImportMongoUserDTO;
-import de.neuefische.backend.model.UserCity;
+import de.neuefische.backend.model.locationCollection.Location;
+import de.neuefische.backend.model.user.ImportMongoUserDTO;
+import de.neuefische.backend.model.cityCollection.UserCity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

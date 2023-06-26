@@ -1,6 +1,10 @@
 package de.neuefische.backend.service;
 
-import de.neuefische.backend.model.*;
+import de.neuefische.backend.model.cityCollection.UserCity;
+import de.neuefische.backend.model.friendCollection.Friend;
+import de.neuefische.backend.model.user.ImportMongoUserDTO;
+import de.neuefische.backend.model.user.MongoUser;
+import de.neuefische.backend.model.user.ReturnMongoUserDTO;
 import de.neuefische.backend.repository.MongoUserRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.userdetails.User;

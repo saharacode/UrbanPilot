@@ -1,5 +1,6 @@
-package de.neuefische.backend.model;
+package de.neuefische.backend.model.cityCollection;
 
+import de.neuefische.backend.model.locationCollection.Location;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

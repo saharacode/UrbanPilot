@@ -1,6 +1,10 @@
 package de.neuefische.backend.service;
 
-import de.neuefische.backend.model.*;
+import de.neuefische.backend.model.cityCollection.UserCity;
+import de.neuefische.backend.model.friendCollection.Friend;
+import de.neuefische.backend.model.user.ImportMongoUserDTO;
+import de.neuefische.backend.model.user.MongoUser;
+import de.neuefische.backend.model.user.ReturnMongoUserDTO;
 import de.neuefische.backend.repository.MongoUserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
@@ -31,7 +35,7 @@ public class MongoUserService implements UserDetailsService {
     public ReturnMongoUserDTO registerUser(ImportMongoUserDTO newUserWithoutId) {
         String newUUID = generateUUIDService.generateUUID();
         String hashedPassword = generateEncodedPasswordService.generateEncodedPassword(newUserWithoutId);
-        Map<String,UserCity> newUserCityCollection = generateDefaultUserCityCollectionService.generateDefaultUserCityCollection(newUserWithoutId);
+        Map<String, UserCity> newUserCityCollection = generateDefaultUserCityCollectionService.generateDefaultUserCityCollection(newUserWithoutId);
         Map<String, Friend> newEmptyFriendCollection = new HashMap<>();
 
         MongoUser newUser = new MongoUser(newUUID,newUserWithoutId.getUsername(), hashedPassword, newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity(), newUserCityCollection, newEmptyFriendCollection);
