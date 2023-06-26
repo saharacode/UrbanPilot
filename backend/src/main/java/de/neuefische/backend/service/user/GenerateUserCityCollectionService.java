@@ -23,7 +23,7 @@ public class GenerateUserCityCollectionService {
         String newUUID = generateUUIDService.generateUUID();
         String newUUIDforUnknownCity = generateUUIDService.generateUUID();
         UserCity defaultUserCity = citiesRepo.findUserCityByCityName(newUserWithoutId.getHomecity())
-                .orElse(new UserCity(newUUIDforUnknownCity, "unknown City", "unknownCoordinates"));
+                .orElse(new UserCity(newUUIDforUnknownCity, "unknown City", 52.4, 13.29));
         Map<String, UserCity> newUserCityMap = new HashMap<>();
         newUserCityMap.put(defaultUserCity.getCityId(), defaultUserCity);
         UserCityCollection newUserCityCollection =new UserCityCollection(newUUID,newUserCityMap);

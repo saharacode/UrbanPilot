@@ -12,5 +12,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UserCity {
     private String cityId;
     private String cityName;
-    private String cityCoordinates;
+    private double cityLatCoordinate;
+    private double cityLngCoordinate;
 }
