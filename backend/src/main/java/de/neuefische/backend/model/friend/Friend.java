@@ -1,4 +1,4 @@
-package de.neuefische.backend.model.friendCollection;
+package de.neuefische.backend.model.friend;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

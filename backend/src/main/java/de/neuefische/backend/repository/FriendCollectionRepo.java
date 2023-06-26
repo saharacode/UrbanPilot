@@ -1,6 +1,6 @@
 package de.neuefische.backend.repository;
 
-import de.neuefische.backend.model.friendCollection.UserFriendCollection;
+import de.neuefische.backend.model.friend.UserFriendCollection;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

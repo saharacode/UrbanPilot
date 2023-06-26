@@ -1,4 +1,4 @@
-package de.neuefische.backend.model.locationCollection;
+package de.neuefische.backend.model.location;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

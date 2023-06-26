@@ -1,7 +1,7 @@
 package de.neuefische.backend.service.user;
 
-import de.neuefische.backend.model.cityCollection.UserCity;
-import de.neuefische.backend.model.cityCollection.UserCityCollection;
+import de.neuefische.backend.model.city.UserCity;
+import de.neuefische.backend.model.city.UserCityCollection;
 import de.neuefische.backend.model.user.ImportMongoUserDTO;
 import de.neuefische.backend.repository.CitiesRepo;
 import de.neuefische.backend.repository.CityCollectionRepo;

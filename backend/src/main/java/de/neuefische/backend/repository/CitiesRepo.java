@@ -1,6 +1,6 @@
 package de.neuefische.backend.repository;
 
-import de.neuefische.backend.model.cityCollection.UserCity;
+import de.neuefische.backend.model.city.UserCity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

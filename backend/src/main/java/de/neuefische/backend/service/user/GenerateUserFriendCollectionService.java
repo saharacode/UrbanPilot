@@ -1,7 +1,7 @@
 package de.neuefische.backend.service.user;
 
-import de.neuefische.backend.model.friendCollection.Friend;
-import de.neuefische.backend.model.friendCollection.UserFriendCollection;
+import de.neuefische.backend.model.friend.Friend;
+import de.neuefische.backend.model.friend.UserFriendCollection;
 import de.neuefische.backend.repository.FriendCollectionRepo;
 import de.neuefische.backend.service.GenerateUUIDService;
 import lombok.RequiredArgsConstructor;

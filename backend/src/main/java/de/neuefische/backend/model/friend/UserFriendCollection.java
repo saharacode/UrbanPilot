@@ -1,4 +1,4 @@
-package de.neuefische.backend.model.cityCollection;
+package de.neuefische.backend.model.friend;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,9 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("UserCityCollection")
+@Document("UserFriendCollection")
 @Builder
-public class UserCityCollection {
+public class UserFriendCollection {
     private String id;
-    private Map<String, UserCity> userCityMap;
+    private Map<String, Friend> userFriendMap;
 }
