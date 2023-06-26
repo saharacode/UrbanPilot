@@ -6,6 +6,8 @@ import de.neuefische.backend.model.user.ImportMongoUserDTO;
 import de.neuefische.backend.model.user.MongoUser;
 import de.neuefische.backend.model.user.ReturnMongoUserDTO;
 import de.neuefische.backend.repository.MongoUserRepo;
+import de.neuefische.backend.service.user.GenerateEncodedPasswordService;
+import de.neuefische.backend.service.user.MongoUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
