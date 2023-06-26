@@ -1,8 +1,9 @@
-package de.neuefische.backend.service;
+package de.neuefische.backend.service.user;
 
 import de.neuefische.backend.model.friendCollection.Friend;
 import de.neuefische.backend.model.friendCollection.UserFriendCollection;
 import de.neuefische.backend.repository.FriendCollectionRepo;
+import de.neuefische.backend.service.GenerateUUIDService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

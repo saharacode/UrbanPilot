@@ -1,8 +1,9 @@
-package de.neuefische.backend.service;
+package de.neuefische.backend.service.user;
 
 import de.neuefische.backend.model.locationCollection.Location;
 import de.neuefische.backend.model.locationCollection.UserLocationCollection;
 import de.neuefische.backend.repository.LocationCollectionRepo;
+import de.neuefische.backend.service.GenerateUUIDService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

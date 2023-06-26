@@ -1,9 +1,14 @@
-package de.neuefische.backend.service;
+package de.neuefische.backend.service.user;
 
 import de.neuefische.backend.model.user.ImportMongoUserDTO;
 import de.neuefische.backend.model.user.MongoUser;
 import de.neuefische.backend.model.user.ReturnMongoUserDTO;
 import de.neuefische.backend.repository.MongoUserRepo;
+import de.neuefische.backend.service.GenerateUUIDService;
+import de.neuefische.backend.service.user.GenerateEncodedPasswordService;
+import de.neuefische.backend.service.user.GenerateUserCityCollectionService;
+import de.neuefische.backend.service.user.GenerateUserFriendCollectionService;
+import de.neuefische.backend.service.user.GenerateUserLocationCollectionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

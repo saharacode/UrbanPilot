@@ -1,9 +1,10 @@
-package de.neuefische.backend.service;
+package de.neuefische.backend.service.user;
 
 import de.neuefische.backend.model.cityCollection.UserCity;
 import de.neuefische.backend.model.cityCollection.UserCityCollection;
 import de.neuefische.backend.model.user.ImportMongoUserDTO;
 import de.neuefische.backend.repository.CityCollectionRepo;
+import de.neuefische.backend.service.GenerateUUIDService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
