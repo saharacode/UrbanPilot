@@ -15,5 +15,5 @@ import java.util.Map;
 @Builder
 public class UserFriendCollection {
     private String id;
-    private Map<String, Friend> userFriendCollection;
+    private Map<String, Friend> userFriendMap;
 }
