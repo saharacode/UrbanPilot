@@ -15,5 +15,5 @@ import java.util.Map;
 @Builder
 public class UserLocationCollection {
     private String id;
-    private Map<String, Location> userLocationCollection;
+    private Map<String, Location> userLocationMap;
 }

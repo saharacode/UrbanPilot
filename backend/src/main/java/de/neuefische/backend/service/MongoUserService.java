@@ -5,6 +5,8 @@ import de.neuefische.backend.model.friendCollection.Friend;
 import de.neuefische.backend.model.user.ImportMongoUserDTO;
 import de.neuefische.backend.model.user.MongoUser;
 import de.neuefische.backend.model.user.ReturnMongoUserDTO;
+import de.neuefische.backend.repository.CityCollectionRepo;
+import de.neuefische.backend.repository.FriendCollectionRepo;
 import de.neuefische.backend.repository.MongoUserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
@@ -22,6 +24,7 @@ import java.util.Map;
 public class MongoUserService implements UserDetailsService {
     private final MongoUserRepo mongoUserRepo;
     private final GenerateUUIDService generateUUIDService;
+    private final GenerateUserLocationCollectionService generateUserLocationCollectionService;
     private final GenerateDefaultUserCityCollectionService generateDefaultUserCityCollectionService;
     private final GenerateEncodedPasswordService generateEncodedPasswordService;
 
@@ -36,9 +39,9 @@ public class MongoUserService implements UserDetailsService {
         String newUUID = generateUUIDService.generateUUID();
         String hashedPassword = generateEncodedPasswordService.generateEncodedPassword(newUserWithoutId);
         Map<String, UserCity> newUserCityCollection = generateDefaultUserCityCollectionService.generateDefaultUserCityCollection(newUserWithoutId);
-        Map<String, Friend> newEmptyFriendCollection = new HashMap<>();
+        String locationCollectionId = generateUserLocationCollectionService.generateUserLocationCollection();
 
-        MongoUser newUser = new MongoUser(newUUID,newUserWithoutId.getUsername(), hashedPassword, newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity(), newUserCityCollection, newEmptyFriendCollection);
+        MongoUser newUser = new MongoUser(newUUID,newUserWithoutId.getUsername(), hashedPassword, newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity(), newUserCityCollection, locationCollectionId);
         mongoUserRepo.save(newUser);
         return new ReturnMongoUserDTO(newUserWithoutId.getUsername(), newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity());
     }
