@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface CitiesRepo extends MongoRepository<UserCity,String> {
-    Optional<UserCity> findUserCityByCityId(String cityId);
+    Optional<UserCity> findUserCityByCityName(String cityname);
 }
