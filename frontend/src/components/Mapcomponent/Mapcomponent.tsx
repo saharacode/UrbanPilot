@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Map.css";
+import "./Mapcomponent.css";
 import {MapContainer, TileLayer, Marker} from "react-leaflet";
 import L, {Icon} from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -10,30 +10,9 @@ type Props = {
     locations?: LocationInfo[];
 }
 
-function Map(props:Props) {
+function Mapcomponent(props:Props) {
     const defaultCoordinates: L.LatLngLiteral = { lat: 52.520008, lng: 13.404954 };
-    /*const locations:LocationInfo[] = [
-        {
-            locationName: "Location 1 ",
-            locationCity: "Default city",
-            locationCoordinates: { lat: 52.520008, lng: 13.404954 },
-            locationType: "Other",
-        },
-        {
-            locationName: "Location 2",
-            locationCity: "Default city",
-            locationCoordinates: { lat: 52.53008, lng: 13.424954 },
-            locationType: "Other",
-        },
-        {
-            locationName: "Location 3",
-            locationCity: "Default city",
-            locationCoordinates: { lat: 52.6008, lng: 13.4954 },
-            locationType: "Restaurant",
-        }
-    ];
 
-     */
     const customIcon = new Icon({
         iconUrl: require("../../images/markers/marker_standard.png"),
         iconSize: [38,38]
@@ -70,4 +49,4 @@ function Map(props:Props) {
     );
 }
 
-export default Map;
+export default Mapcomponent;

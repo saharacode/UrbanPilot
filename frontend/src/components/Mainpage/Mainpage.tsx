@@ -1,6 +1,6 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {useNavigate} from "react-router-dom";
-import Map from "../Map/Map";
+import Mapcomponent from "../Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
 
@@ -52,7 +52,7 @@ function Mainpage(props:Props) {
                 <button onClick={logoutButtonHandler}>Logout</button>
                 <button onClick={getLocationsButtonHandler}>Get locations</button>
             </div>
-            <Map locations={props.locations}/>
+            <Mapcomponent locations={props.locations}/>
         </div>
     );
 }

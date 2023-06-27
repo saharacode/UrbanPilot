@@ -9,7 +9,7 @@ this city.
 ## Features
 - Register and Login with an account
 - Show User Details
-- Map with locations (not available yet)
+- Mapcomponent with locations (not available yet)
 - Possibility to add and remove new locations (not available yet)
 - Possibility to add and remove new cities (not available yet)
 - Connect with other users and exchange cities (not available yet)
