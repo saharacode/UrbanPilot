@@ -19,7 +19,7 @@ function App() {
     const {postLogout} = useUserLogout(); // confirmation with toastify open
     const {postRegistration} = useRegisterUser();
     const {getUserDetails, userDetails, setUserDetails, emptyUser} = useUserDetails();
-    const {getAllLocationsForUser, locations} = useLocations();
+    const {getAllLocationsForUser, locations, setLocations} = useLocations();
 
     return (
     <div className="App">
@@ -39,7 +39,8 @@ function App() {
                                                            setUser={setUser}
                                                            locations={locations}
                                                            getAllLocationsForUser={getAllLocationsForUser}
-                                                           setUserDetails={setUserDetails} emptyUser={emptyUser}/>}/>
+                                                           setUserDetails={setUserDetails} emptyUser={emptyUser}
+                                                           setLocations={setLocations}/>}/>
                 <Route path="/profile" element={<Profilepage user={user}
                                                              userDetails={userDetails}/>}/>
             </Route>

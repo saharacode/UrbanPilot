@@ -10,6 +10,7 @@ type Props = {
     user?: string;
     setUser: Dispatch<SetStateAction<string | undefined>>;
     locations?: LocationInfo[];
+    setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
     getAllLocationsForUser: (username:string) => Promise<void>;
     setUserDetails: Dispatch<SetStateAction<User>>;
     emptyUser: User;
@@ -23,6 +24,7 @@ function Mainpage(props:Props) {
         props.postLogout();
         props.setUserDetails(props.emptyUser);
         props.setUser(undefined);
+        props.setLocations([]);
         nav("/");
     }
 

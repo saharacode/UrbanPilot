@@ -3,7 +3,7 @@ import {useState} from "react";
 import {LocationInfo} from "../model/LocationInfo";
 
 export default function UseLocations() {
-    const [locations, setLocations] = useState<LocationInfo[]>();
+    const [locations, setLocations] = useState<LocationInfo[]>([]);
 
     function getAllLocationsForUser(username:string){
         return axios.get(`/locations/all/${username}`)
@@ -12,5 +12,5 @@ export default function UseLocations() {
             });
 
     }
-    return {getAllLocationsForUser, locations}
+    return {getAllLocationsForUser, locations, setLocations}
 }
