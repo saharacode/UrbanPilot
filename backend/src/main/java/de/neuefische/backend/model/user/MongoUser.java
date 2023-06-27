@@ -1,12 +1,10 @@
-package de.neuefische.backend.model;
+package de.neuefische.backend.model.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -20,6 +18,7 @@ public class MongoUser {
     private String fullname;
     private String email;
     private String homecity;
-    private Map<String, UserCity> userCityCollection;
-    private Map<String, Friend> friendCollection;
+    private String cityCollectionId;
+    private String locationCollectionId;
+    private String friendCollectionId;
 }

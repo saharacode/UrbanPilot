@@ -1,4 +1,4 @@
-package de.neuefische.backend.model;
+package de.neuefische.backend.model.location;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +11,8 @@ public class Location {
     private String locationId;
     private String locationName;
     private String locationCity;
-    private String locationCoordinates;
+    private String locationDescription;
+    private double locationLatCoordinate;
+    private double locationLngCoordinate;
     private String locationType;
 }

@@ -1,16 +1,17 @@
 package de.neuefische.backend.service;
 
-import de.neuefische.backend.model.*;
+import de.neuefische.backend.model.user.ImportMongoUserDTO;
+import de.neuefische.backend.model.user.MongoUser;
+import de.neuefische.backend.model.user.ReturnMongoUserDTO;
 import de.neuefische.backend.repository.MongoUserRepo;
+import de.neuefische.backend.service.user.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.annotation.DirtiesContext;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,9 +20,11 @@ import static org.mockito.Mockito.*;
 class MongoUserServiceTest {
     MongoUserRepo mongoUserRepo = mock(MongoUserRepo.class);
     GenerateUUIDService generateUUIDService = mock(GenerateUUIDService.class);
-    GenerateDefaultUserCityCollectionService generateDefaultUserCityCollectionService = mock(GenerateDefaultUserCityCollectionService.class);
+    GenerateUserCityCollectionService generateUserCityCollectionService = mock(GenerateUserCityCollectionService.class);
+    GenerateUserLocationCollectionService generateUserLocationCollectionService = mock(GenerateUserLocationCollectionService.class);
+    GenerateUserFriendCollectionService generateUserFriendCollectionService = mock(GenerateUserFriendCollectionService.class);
     GenerateEncodedPasswordService generateEncodedPasswordService = mock(GenerateEncodedPasswordService.class);
-    MongoUserService mongoUserService = new MongoUserService(mongoUserRepo,generateUUIDService,generateDefaultUserCityCollectionService,generateEncodedPasswordService);
+    MongoUserService mongoUserService = new MongoUserService(mongoUserRepo,generateUUIDService,generateUserCityCollectionService,generateUserLocationCollectionService,generateUserFriendCollectionService,generateEncodedPasswordService);
 
     @DirtiesContext
     @Test
@@ -64,8 +67,9 @@ class MongoUserServiceTest {
         String testUUID = "testUUID";
         String testpassword = "testpassword";
         String encodedTestpassword = "encodedTestpassword";
-        Map<String, UserCity> testNewUserCityCollection = new HashMap<>();
-        Map<String, Friend> testNewEmptyFriendCollection = new HashMap<>();
+        String testCityCollectionId = "testCityCollectionId";
+        String testLocationCollectionId = "testLocationCollectionId";
+        String testFriendLocationId = "testFriendCollectionId";
         ImportMongoUserDTO newUserWithoutId = ImportMongoUserDTO.builder()
                 .username(testUsername)
                 .password(testpassword)
@@ -74,13 +78,16 @@ class MongoUserServiceTest {
                 .id(testUUID)
                 .username(testUsername)
                 .password(encodedTestpassword)
-                .userCityCollection(testNewUserCityCollection)
-                .friendCollection(testNewEmptyFriendCollection)
+                .cityCollectionId(testCityCollectionId)
+                .locationCollectionId(testLocationCollectionId)
+                .friendCollectionId(testFriendLocationId)
                 .build();
 
         when(generateUUIDService.generateUUID()).thenReturn(testUUID);
         when(generateEncodedPasswordService.generateEncodedPassword(newUserWithoutId)).thenReturn(encodedTestpassword);
-        when(generateDefaultUserCityCollectionService.generateDefaultUserCityCollection(newUserWithoutId)).thenReturn(testNewUserCityCollection);
+        when(generateUserCityCollectionService.generateUserCityCollection(newUserWithoutId)).thenReturn(testCityCollectionId);
+        when(generateUserLocationCollectionService.generateUserLocationCollection()).thenReturn(testLocationCollectionId);
+        when(generateUserFriendCollectionService.generateUserFriendCollection()).thenReturn(testFriendLocationId);
         when(mongoUserRepo.save(newUser)).thenReturn(newUser);
 
         ReturnMongoUserDTO expectedUser = ReturnMongoUserDTO.builder()
@@ -92,7 +99,9 @@ class MongoUserServiceTest {
         assertEquals(expectedUser,actualUser);
         verify(generateUUIDService).generateUUID();
         verify(generateEncodedPasswordService).generateEncodedPassword(newUserWithoutId);
-        verify(generateDefaultUserCityCollectionService).generateDefaultUserCityCollection(newUserWithoutId);
+        verify(generateUserCityCollectionService).generateUserCityCollection(newUserWithoutId);
+        verify(generateUserLocationCollectionService).generateUserLocationCollection();
+        verify(generateUserFriendCollectionService).generateUserFriendCollection();
         verify(mongoUserRepo).save(newUser);
 
     }

@@ -1,7 +1,14 @@
-package de.neuefische.backend.service;
+package de.neuefische.backend.service.user;
 
-import de.neuefische.backend.model.*;
+import de.neuefische.backend.model.user.ImportMongoUserDTO;
+import de.neuefische.backend.model.user.MongoUser;
+import de.neuefische.backend.model.user.ReturnMongoUserDTO;
 import de.neuefische.backend.repository.MongoUserRepo;
+import de.neuefische.backend.service.GenerateUUIDService;
+import de.neuefische.backend.service.user.GenerateEncodedPasswordService;
+import de.neuefische.backend.service.user.GenerateUserCityCollectionService;
+import de.neuefische.backend.service.user.GenerateUserFriendCollectionService;
+import de.neuefische.backend.service.user.GenerateUserLocationCollectionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,16 +16,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class MongoUserService implements UserDetailsService {
     private final MongoUserRepo mongoUserRepo;
     private final GenerateUUIDService generateUUIDService;
-    private final GenerateDefaultUserCityCollectionService generateDefaultUserCityCollectionService;
+    private final GenerateUserCityCollectionService generateUserCityCollectionService;
+    private final GenerateUserLocationCollectionService generateUserLocationCollectionService;
+    private final GenerateUserFriendCollectionService generateUserFriendCollectionService;
     private final GenerateEncodedPasswordService generateEncodedPasswordService;
 
     @Override
@@ -31,10 +38,11 @@ public class MongoUserService implements UserDetailsService {
     public ReturnMongoUserDTO registerUser(ImportMongoUserDTO newUserWithoutId) {
         String newUUID = generateUUIDService.generateUUID();
         String hashedPassword = generateEncodedPasswordService.generateEncodedPassword(newUserWithoutId);
-        Map<String,UserCity> newUserCityCollection = generateDefaultUserCityCollectionService.generateDefaultUserCityCollection(newUserWithoutId);
-        Map<String, Friend> newEmptyFriendCollection = new HashMap<>();
+        String cityCollectionId = generateUserCityCollectionService.generateUserCityCollection(newUserWithoutId);
+        String locationCollectionId = generateUserLocationCollectionService.generateUserLocationCollection();
+        String friendCollectionId = generateUserFriendCollectionService.generateUserFriendCollection();
 
-        MongoUser newUser = new MongoUser(newUUID,newUserWithoutId.getUsername(), hashedPassword, newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity(), newUserCityCollection, newEmptyFriendCollection);
+        MongoUser newUser = new MongoUser(newUUID,newUserWithoutId.getUsername(), hashedPassword, newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity(), cityCollectionId, locationCollectionId, friendCollectionId);
         mongoUserRepo.save(newUser);
         return new ReturnMongoUserDTO(newUserWithoutId.getUsername(), newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity());
     }
