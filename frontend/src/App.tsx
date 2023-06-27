@@ -15,7 +15,7 @@ import Profilepage from "./components/Profilepage/Profilepage";
 import Header from "./components/Header/Header";
 
 function App() {
-    const {postLogin, user, userExists, setUserExists, errorMessage} = useUser();
+    const {postLogin, user, setUser, userExists, setUserExists, errorMessage} = useUser();
     const {postLogout} = useUserLogout(); // confirmation with toastify open
     const {postRegistration} = useRegisterUser();
     const {getUserDetails, userDetails, setUserDetails, emptyUser} = useUserDetails();
@@ -36,6 +36,7 @@ function App() {
                 <Route path="/mainpage" element={<Mainpage postLogout={postLogout}
                                                            getUserDetails={getUserDetails}
                                                            user={user}
+                                                           setUser={setUser}
                                                            locations={locations}
                                                            getAllLocationsForUser={getAllLocationsForUser}
                                                            setUserDetails={setUserDetails} emptyUser={emptyUser}/>}/>

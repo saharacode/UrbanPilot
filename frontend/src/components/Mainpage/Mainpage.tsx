@@ -8,6 +8,7 @@ type Props = {
     postLogout: () => Promise<void>;
     getUserDetails: (username:string) => Promise<void>;
     user?: string;
+    setUser: Dispatch<SetStateAction<string | undefined>>;
     locations?: LocationInfo[];
     getAllLocationsForUser: (username:string) => Promise<void>;
     setUserDetails: Dispatch<SetStateAction<User>>;
@@ -21,6 +22,7 @@ function Mainpage(props:Props) {
         // eslint-disable-next-line
         props.postLogout();
         props.setUserDetails(props.emptyUser);
+        props.setUser(undefined);
         nav("/");
     }
 
