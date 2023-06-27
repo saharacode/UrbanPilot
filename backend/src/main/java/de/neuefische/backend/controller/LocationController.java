@@ -1,7 +1,7 @@
 package de.neuefische.backend.controller;
 
-import de.neuefische.backend.model.Location;
-import de.neuefische.backend.service.LocationService;
+import de.neuefische.backend.model.location.Location;
+import de.neuefische.backend.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
