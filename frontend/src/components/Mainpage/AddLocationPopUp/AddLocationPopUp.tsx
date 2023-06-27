@@ -1,5 +1,6 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
+import './Popup.css';
 
 type Props = {
 }
@@ -8,7 +9,7 @@ function AddLocationPopUp(props:Props) {
     return (
         <div>
             <Popup trigger={<button>Add location</button>}>
-                <div>
+                <div className="popupStyle">
                     <h3>Add a new Location</h3>
                     <div>
                         <form>
