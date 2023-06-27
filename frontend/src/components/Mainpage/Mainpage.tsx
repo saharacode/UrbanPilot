@@ -1,8 +1,9 @@
-import React, {Dispatch, SetStateAction, useState} from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import {useNavigate} from "react-router-dom";
 import Mapcomponent from "../Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
+import AddLocationPopUp from "./AddLocationPopUp";
 
 type Props = {
     postLogout: () => Promise<void>;
@@ -18,7 +19,6 @@ type Props = {
 
 function Mainpage(props:Props) {
     const nav = useNavigate();
-    const [enableAddLocation, setEnableAddLocation] = useState(false);
 
     function logoutButtonHandler() {
         // eslint-disable-next-line
@@ -45,10 +45,6 @@ function Mainpage(props:Props) {
         }
     }
 
-    function addLocationButtonHandler() {
-        setEnableAddLocation(true);
-    }
-
     return (
         <div>
             <div>
@@ -56,12 +52,11 @@ function Mainpage(props:Props) {
                 <button onClick={profileButtonHandler}>Profile</button>
                 <button onClick={logoutButtonHandler}>Logout</button>
                 <button onClick={getLocationsButtonHandler}>Get locations</button>
-                <button onClick={addLocationButtonHandler}>Add location</button>
             </div>
-            <Mapcomponent
-                locations={props.locations}
-                enableAddLocation={enableAddLocation}
-                setEnableAddLocation={setEnableAddLocation}/>
+            <div>
+                <AddLocationPopUp/>
+            </div>
+            <Mapcomponent locations={props.locations}/>
         </div>
     );
 }
