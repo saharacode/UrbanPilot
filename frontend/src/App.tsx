@@ -18,7 +18,7 @@ function App() {
     const {postLogin, user, userExists, setUserExists, errorMessage} = useUser();
     const {postLogout} = useUserLogout(); // confirmation with toastify open
     const {postRegistration} = useRegisterUser();
-    const {getUserDetails, userDetails} = useUserDetails();
+    const {getUserDetails, userDetails, setUserDetails, emptyUser} = useUserDetails();
     const {getAllLocationsForUser, locations} = useLocations();
 
     return (
@@ -27,11 +27,20 @@ function App() {
         <Routes>
             <Route path="/" element={<LandingPage/>}/>
             <Route path="/" element={<Header/>}/>
-            <Route path="/login" element={<Login postLogin={postLogin} userExists={userExists} errormessage={errorMessage}/>}/>
-            <Route path="/register" element={<Register postRegistration={postRegistration} setUserExists={setUserExists}/>}/>
+            <Route path="/login" element={<Login postLogin={postLogin}
+                                                 userExists={userExists}
+                                                 errormessage={errorMessage}/>}/>
+            <Route path="/register" element={<Register postRegistration={postRegistration}
+                                                       setUserExists={setUserExists}/>}/>
             <Route element={<ProtectedRoutes user={user}/>}>
-                <Route path="/mainpage" element={<Mainpage postLogout={postLogout} getUserDetails={getUserDetails} user={user} locations={locations} getAllLocationsForUser={getAllLocationsForUser}/>}/>
-                <Route path="/profile" element={<Profilepage user={user} userDetails={userDetails}/>}/>
+                <Route path="/mainpage" element={<Mainpage postLogout={postLogout}
+                                                           getUserDetails={getUserDetails}
+                                                           user={user}
+                                                           locations={locations}
+                                                           getAllLocationsForUser={getAllLocationsForUser}
+                                                           setUserDetails={setUserDetails} emptyUser={emptyUser}/>}/>
+                <Route path="/profile" element={<Profilepage user={user}
+                                                             userDetails={userDetails}/>}/>
             </Route>
         </Routes>
 

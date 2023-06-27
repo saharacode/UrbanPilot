@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import {useNavigate} from "react-router-dom";
 import Map from "../Map/Map";
 import {LocationInfo} from "../../model/LocationInfo";
+import {User} from "../../model/User";
 
 type Props = {
     postLogout: () => Promise<void>;
@@ -9,6 +10,8 @@ type Props = {
     user?: string;
     locations?: LocationInfo[];
     getAllLocationsForUser: (username:string) => Promise<void>;
+    setUserDetails: Dispatch<SetStateAction<User>>;
+    emptyUser: User;
 }
 
 function Mainpage(props:Props) {
@@ -17,6 +20,7 @@ function Mainpage(props:Props) {
     function logoutButtonHandler() {
         // eslint-disable-next-line
         props.postLogout();
+        props.setUserDetails(props.emptyUser);
         nav("/");
     }
 
