@@ -3,7 +3,14 @@ import {useState} from "react";
 import {User} from "../model/User";
 
 export default function UseUserDetails() {
-    const [userDetails, setUserDetails] = useState<User>();
+    const emptyUser: User = {
+        username: "",
+        password: "",
+        fullname: "",
+        email: "",
+        homecity: ""
+    };
+    const [userDetails, setUserDetails] = useState<User>(emptyUser);
 
     function getUserDetails(username:string){
         return axios.get(`/user/details/${username}`)
@@ -12,5 +19,5 @@ export default function UseUserDetails() {
             });
     }
 
-    return {getUserDetails, userDetails}
+    return {getUserDetails, userDetails, setUserDetails, emptyUser}
 }

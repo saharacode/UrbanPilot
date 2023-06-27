@@ -23,5 +23,5 @@ export default function UseUser() {
             });
     }
 
-    return {postLogin, user, userExists, setUserExists, errorMessage}
+    return {postLogin, user, setUser, userExists, setUserExists, errorMessage}
 }

@@ -27,6 +27,7 @@ public class SecurityConfig {
         requestHandler.setCsrfRequestAttributeName(null);
 
         return http
+                //.csrf().disable()
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(requestHandler))
@@ -42,7 +43,9 @@ public class SecurityConfig {
                             ("/user/login"), ("/user/register")).permitAll();
                     auth.requestMatchers(
                             ("/user/**")).authenticated();
-                    auth.anyRequest().permitAll();
+                    auth.requestMatchers(
+                            ("/locations/**")).authenticated();
+                    auth.anyRequest().denyAll();
                 })
                 .build();
     }
