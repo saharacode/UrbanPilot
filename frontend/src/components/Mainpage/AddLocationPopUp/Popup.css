@@ -11,3 +11,20 @@
     max-height: 600px;
     overflow: auto;
 }
+
+.registerFormContainer {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.inputAndLabel {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button[type="submit"] {
+    align-self: center;
+}
