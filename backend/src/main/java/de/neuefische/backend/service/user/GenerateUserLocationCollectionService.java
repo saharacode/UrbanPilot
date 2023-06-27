@@ -20,7 +20,6 @@ public class GenerateUserLocationCollectionService {
         String newUUID = generateUUIDService.generateUUID();
         Map<String, Location> newUserLocationMap = new HashMap<>();
         UserLocationCollection newUserLocationCollection = new UserLocationCollection(newUUID,newUserLocationMap);
-        locationCollectionRepo.save(newUserLocationCollection);
-        return newUserLocationCollection.getId();
+        return locationCollectionRepo.save(newUserLocationCollection).getId();
     }
 }

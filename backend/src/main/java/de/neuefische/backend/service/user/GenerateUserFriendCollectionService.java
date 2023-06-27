@@ -20,7 +20,6 @@ public class GenerateUserFriendCollectionService {
         String newUUID = generateUUIDService.generateUUID();
         Map<String, Friend> newUserFriendMap = new HashMap<>();
         UserFriendCollection newUserFriendCollection = new UserFriendCollection(newUUID,newUserFriendMap);
-        friendCollectionRepo.save(newUserFriendCollection);
-        return newUserFriendCollection.getId();
+        return friendCollectionRepo.save(newUserFriendCollection).getId();
     }
 }

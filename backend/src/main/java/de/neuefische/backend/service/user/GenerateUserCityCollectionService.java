@@ -27,7 +27,6 @@ public class GenerateUserCityCollectionService {
         Map<String, UserCity> newUserCityMap = new HashMap<>();
         newUserCityMap.put(defaultUserCity.getCityId(), defaultUserCity);
         UserCityCollection newUserCityCollection =new UserCityCollection(newUUID,newUserCityMap);
-        cityCollectionRepo.save(newUserCityCollection);
-        return newUserCityCollection.getId();
+        return cityCollectionRepo.save(newUserCityCollection).getId();
     }
 }
