@@ -1,18 +1,17 @@
-package de.neuefische.backend.model;
+package de.neuefische.backend.model.city;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Map;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document("Cities")
 public class UserCity {
     private String cityId;
     private String cityName;
-    private String cityCoordinates;
-    private String cityCountry;
-    private Map<String, Location> locationCollection;
+    private double cityLatCoordinate;
+    private double cityLngCoordinate;
 }
