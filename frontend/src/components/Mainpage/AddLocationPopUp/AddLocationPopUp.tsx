@@ -51,11 +51,11 @@ function AddLocationPopUp() {
                             </div>
                             <div className="inputAndLabel">
                                 <label>Lat Coordinate:</label>
-                                <input type={"number"} onChange={event => setLatCoordinate(parseFloat(event.target.value))}/>
+                                <input type={"text"} onChange={event => setLatCoordinate(parseFloat(event.target.value))}/>
                             </div>
                             <div className="inputAndLabel">
                                 <label>Lng Coordinate:</label>
-                                <input type={"number"} onChange={event => setLngCoordinate(parseFloat(event.target.value))}/>
+                                <input type={"text"} onChange={event => setLngCoordinate(parseFloat(event.target.value))}/>
                             </div>
                             <button type={"submit"}>Add</button>
                         </form>
