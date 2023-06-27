@@ -43,6 +43,8 @@ public class SecurityConfig {
                             ("/user/login"), ("/user/register")).permitAll();
                     auth.requestMatchers(
                             ("/user/**")).authenticated();
+                    auth.requestMatchers(
+                            ("/locations/**")).authenticated();
                     auth.anyRequest().permitAll();
                 })
                 .build();
