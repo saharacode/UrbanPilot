@@ -1,5 +1,6 @@
-package de.neuefische.backend.service;
+package de.neuefische.backend.service.user;
 
+import de.neuefische.backend.service.GenerateUUIDService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
