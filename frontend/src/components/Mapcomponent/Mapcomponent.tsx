@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import "./Mapcomponent.css";
 import {MapContainer, TileLayer, Marker} from "react-leaflet";
 import L, {Icon} from "leaflet";
@@ -8,6 +8,8 @@ import LocationPopUp from "./Location/LocationPopUp";
 
 type Props = {
     locations?: LocationInfo[];
+    enableAddLocation: boolean;
+    setEnableAddLocation: Dispatch<SetStateAction<boolean>>;
 }
 
 function Mapcomponent(props:Props) {
