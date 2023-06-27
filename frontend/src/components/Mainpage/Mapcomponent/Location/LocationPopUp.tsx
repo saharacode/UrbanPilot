@@ -1,6 +1,6 @@
 import React from 'react';
 import {Popup} from "react-leaflet";
-import {LocationInfo} from "../../../model/LocationInfo";
+import {LocationInfo} from "../../../../model/LocationInfo";
 
 type Props = {
     locationDetails:LocationInfo;

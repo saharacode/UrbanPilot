@@ -3,7 +3,7 @@ import "./Mapcomponent.css";
 import {MapContainer, TileLayer, Marker} from "react-leaflet";
 import L, {Icon} from "leaflet";
 import "leaflet/dist/leaflet.css";
-import {LocationInfo} from "../../model/LocationInfo";
+import {LocationInfo} from "../../../model/LocationInfo";
 import LocationPopUp from "./Location/LocationPopUp";
 
 type Props = {
@@ -14,7 +14,7 @@ function Mapcomponent(props:Props) {
     const defaultCoordinates: L.LatLngLiteral = { lat: 52.520008, lng: 13.404954 };
 
     const customIcon = new Icon({
-        iconUrl: require("../../images/markers/marker_standard.png"),
+        iconUrl: require("../../../images/markers/marker_standard.png"),
         iconSize: [38,38]
     })
 

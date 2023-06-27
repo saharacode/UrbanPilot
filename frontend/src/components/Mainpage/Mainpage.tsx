@@ -1,9 +1,9 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {useNavigate} from "react-router-dom";
-import Mapcomponent from "../Mapcomponent/Mapcomponent";
+import Mapcomponent from "./Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
-import AddLocationPopUp from "./AddLocationPopUp";
+import AddLocationPopUp from "./AddLocationPopUp/AddLocationPopUp";
 
 type Props = {
     postLogout: () => Promise<void>;
