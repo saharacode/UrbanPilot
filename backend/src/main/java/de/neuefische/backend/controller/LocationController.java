@@ -14,7 +14,12 @@ public class LocationController {
     private final LocationService locationService;
 
     @GetMapping("/all/{username}")
-    public List<Location> getProfileDetails(@PathVariable String username){
+    public List<Location> getAllLocationsForUser(@PathVariable String username){
         return locationService.getAllLocationsForUser(username);
+    }
+
+    @PostMapping("/add/{username}")
+    public Location addLocation(@PathVariable String username, @RequestBody Location newLocation){
+        return locationService.addLocation(username, newLocation);
     }
 }

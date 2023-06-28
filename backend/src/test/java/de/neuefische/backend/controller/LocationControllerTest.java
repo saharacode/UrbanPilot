@@ -25,7 +25,7 @@ class LocationControllerTest {
     @Test
     @DirtiesContext
     @WithMockUser(username = "testuser", password = "testpassword")
-    void getProfileDetails_thenReturnStatus200_andEmptyListForUserWithoutLocations() throws Exception {
+    void getAllLocationsForUser_thenReturnStatus200_andEmptyListForUserWithoutLocations() throws Exception {
         ImportMongoUserDTO newUserWithoutId = ImportMongoUserDTO.builder()
                 .username("testuser")
                 .fullname("testuser")
