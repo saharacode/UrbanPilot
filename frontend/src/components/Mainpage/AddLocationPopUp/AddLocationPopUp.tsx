@@ -3,7 +3,12 @@ import Popup from 'reactjs-popup';
 import './Popup.css';
 import {LocationInfo} from "../../../model/LocationInfo";
 
-function AddLocationPopUp() {
+type Props = {
+    postNewLocation: (username: string, newLocation: LocationInfo) => Promise<void>;
+    user?: string;
+}
+
+function AddLocationPopUp(props:Props) {
     const [locationName, setLocationName] = useState<string>("");
     const [locationCity, setLocationCity] = useState<string>("");
     const [locationDescription, setLocationDescription] = useState<string>("");
@@ -23,7 +28,11 @@ function AddLocationPopUp() {
             locationLngCoordinate: lngCoordinate,
             locationType: locationType
         };
-        console.log(newLocation);
+
+        if (props.user !== undefined){
+            // eslint-disable-next-line
+            props.postNewLocation(props.user,newLocation);
+        }
     }
 
     return (
