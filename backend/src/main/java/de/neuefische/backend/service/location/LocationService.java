@@ -1,10 +1,12 @@
 package de.neuefische.backend.service.location;
 
+import de.neuefische.backend.model.location.ImportLocationDTO;
 import de.neuefische.backend.model.location.Location;
 import de.neuefische.backend.model.location.UserLocationCollection;
 import de.neuefische.backend.model.user.MongoUser;
 import de.neuefische.backend.repository.LocationCollectionRepo;
 import de.neuefische.backend.repository.MongoUserRepo;
+import de.neuefische.backend.service.GenerateUUIDService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import java.util.List;
 public class LocationService {
     private final MongoUserRepo mongoUserRepo;
     private final LocationCollectionRepo locationCollectionRepo;
+    private final GenerateUUIDService generateUUIDService;
 
     public List<Location> getAllLocationsForUser(String username) {
         MongoUser mongoUserComplete = mongoUserRepo.findMongoUserByUsername(username)
@@ -26,5 +29,29 @@ public class LocationService {
                 .orElse(new UserLocationCollection());
 
         return new ArrayList<>(newLocationCollection.getUserLocationMap().values());
+    }
+
+    public Location addLocation(String username, ImportLocationDTO newLocationWithoutId) {
+        String newUUID = generateUUIDService.generateUUID();
+        Location newLocation = Location.builder()
+                .locationId(newUUID)
+                .locationCity(newLocationWithoutId.getLocationCity())
+                .locationDescription(newLocationWithoutId.getLocationDescription())
+                .locationName(newLocationWithoutId.getLocationName())
+                .locationType(newLocationWithoutId.getLocationType())
+                .locationLatCoordinate(newLocationWithoutId.getLocationLatCoordinate())
+                .locationLngCoordinate(newLocationWithoutId.getLocationLngCoordinate())
+                .build();
+
+        MongoUser mongoUserComplete = mongoUserRepo.findMongoUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("The user '" + username + "' could not be found."));
+
+        UserLocationCollection userLocationCollection = locationCollectionRepo.findUserLocationCollectionById(mongoUserComplete.getLocationCollectionId())
+                .orElse(new UserLocationCollection());
+
+        userLocationCollection.getUserLocationMap().put(newUUID,newLocation);
+        locationCollectionRepo.save(userLocationCollection);
+
+        return userLocationCollection.getUserLocationMap().get(newUUID);
     }
 }

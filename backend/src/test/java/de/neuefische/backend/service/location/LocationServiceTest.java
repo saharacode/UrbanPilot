@@ -5,6 +5,7 @@ import de.neuefische.backend.model.location.UserLocationCollection;
 import de.neuefische.backend.model.user.MongoUser;
 import de.neuefische.backend.repository.LocationCollectionRepo;
 import de.neuefische.backend.repository.MongoUserRepo;
+import de.neuefische.backend.service.GenerateUUIDService;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.DirtiesContext;
 
@@ -16,7 +17,8 @@ import static org.mockito.Mockito.*;
 class LocationServiceTest {
     MongoUserRepo mongoUserRepo = mock(MongoUserRepo.class);
     LocationCollectionRepo locationCollectionRepo = mock(LocationCollectionRepo.class);
-    LocationService locationService = new LocationService(mongoUserRepo,locationCollectionRepo);
+    GenerateUUIDService generateUUIDService = mock(GenerateUUIDService.class);
+    LocationService locationService = new LocationService(mongoUserRepo,locationCollectionRepo,generateUUIDService);
 
     @DirtiesContext
     @Test
