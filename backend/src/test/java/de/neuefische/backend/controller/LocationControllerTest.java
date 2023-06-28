@@ -1,6 +1,7 @@
 package de.neuefische.backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.neuefische.backend.model.location.ImportLocationDTO;
 import de.neuefische.backend.model.user.ImportMongoUserDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,54 @@ class LocationControllerTest {
                 .andExpect(content().json("""
                             [
                             ]
+                        """));
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "testuser", password = "testpassword")
+    void addLocation_thenReturnStatus200_andAddedLocation() throws Exception {
+        ImportMongoUserDTO newUserWithoutId = ImportMongoUserDTO.builder()
+                .username("testuser")
+                .fullname("testuser")
+                .password("testpassword")
+                .email("test@mail.de")
+                .homecity("Berlin")
+                .build();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonRequestBody = objectMapper.writeValueAsString(newUserWithoutId);
+
+        mvc.perform(MockMvcRequestBuilders.post("/user/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequestBody)
+                        .with(csrf()))
+                .andExpect(status().isCreated());
+
+        ImportLocationDTO testImportLocationDTO = ImportLocationDTO.builder()
+                .locationName("TestName")
+                .locationCity("TestCity")
+                .locationDescription("TestDescription")
+                .locationLatCoordinate(0.0)
+                .locationLngCoordinate(0.0)
+                .locationType("TestLocationType")
+                .build();
+        String jsonRequestBodyLocation = objectMapper.writeValueAsString(testImportLocationDTO);
+
+        mvc.perform(MockMvcRequestBuilders.post("/locations/add/testuser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequestBodyLocation)
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                            {
+                                  "locationName": "TestName",
+                                  "locationCity": "TestCity",
+                                  "locationDescription": "TestDescription",
+                                  "locationLatCoordinate": 0.0,
+                                  "locationLngCoordinate": 0.0,
+                                  "locationType": "TestLocationType"
+                            }
                         """));
     }
 }
