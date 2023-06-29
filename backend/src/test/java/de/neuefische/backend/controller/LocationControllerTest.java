@@ -14,8 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -98,6 +97,7 @@ class LocationControllerTest {
                                   "locationLngCoordinate": 0.0,
                                   "locationType": "TestLocationType"
                             }
-                        """));
+                        """))
+                .andExpect(jsonPath("$.locationId").isNotEmpty());
     }
 }
