@@ -15,7 +15,7 @@ function LocationPopUp(props:Props) {
             const response = await axios.delete(`/locations/delete/${props.user}/${props.locationDetails.locationId}`);
             props.setLocations((locations)=>{
                 return [...locations.filter((location) =>{
-                    return location.locationId !==(response.data.locationId);
+                    return location.locationId !==(response.data);
                 })]
             });
         }

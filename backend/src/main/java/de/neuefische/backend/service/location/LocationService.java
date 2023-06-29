@@ -54,4 +54,17 @@ public class LocationService {
 
         return userLocationCollection.getUserLocationMap().get(newUUID);
     }
+
+    public String deleteLocation(String username, String locationId) {
+        MongoUser mongoUserComplete = mongoUserRepo.findMongoUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("The user '" + username + "' could not be found."));
+
+        UserLocationCollection userLocationCollection = locationCollectionRepo.findUserLocationCollectionById(mongoUserComplete.getLocationCollectionId())
+                .orElse(new UserLocationCollection());
+
+        userLocationCollection.getUserLocationMap().remove(locationId);
+        locationCollectionRepo.save(userLocationCollection);
+
+        return locationId;
+    }
 }

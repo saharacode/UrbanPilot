@@ -25,7 +25,7 @@ public class LocationController {
     }
 
     @DeleteMapping("/delete/{username}/{locationId}")
-    public Location deleteLocation(@PathVariable String username, @PathVariable String locationId){
+    public String deleteLocation(@PathVariable String username, @PathVariable String locationId){
         return locationService.deleteLocation(username,locationId);
     }
 }
