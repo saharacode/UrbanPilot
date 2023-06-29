@@ -2,6 +2,7 @@ import React, {Dispatch, SetStateAction} from 'react';
 import {Popup} from "react-leaflet";
 import {LocationInfo} from "../../../../model/LocationInfo";
 import axios from "axios";
+import EditLocationPopUp from "./EditLocationPopUp";
 
 type Props = {
     locationDetails:LocationInfo;
@@ -27,6 +28,7 @@ function LocationPopUp(props:Props) {
                 <h3>{props.locationDetails.locationName}</h3>
                 <h5>Location Type: {props.locationDetails.locationType}</h5>
                 <h5>City: {props.locationDetails.locationCity}</h5>
+                <EditLocationPopUp/>
                 <button onClick={deleteButtonHandler}>Delete</button>
             </Popup>
         </div>

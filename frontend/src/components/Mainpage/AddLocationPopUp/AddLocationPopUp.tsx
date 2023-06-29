@@ -1,6 +1,5 @@
 import React, {Dispatch, FormEvent, SetStateAction, useState} from 'react';
 import Popup from 'reactjs-popup';
-import './Popup.css';
 import {LocationInfo} from "../../../model/LocationInfo";
 
 type Props = {
