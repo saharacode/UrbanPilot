@@ -60,7 +60,9 @@ function Mainpage(props:Props) {
                     user={props.user}
                     setLocations={props.setLocations}/>
             </div>
-            <Mapcomponent locations={props.locations}/>
+            <Mapcomponent locations={props.locations}
+                          setLocations={props.setLocations}
+                          user={props.user}/>
         </div>
     );
 }

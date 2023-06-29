@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import "./Mapcomponent.css";
 import {MapContainer, TileLayer, Marker} from "react-leaflet";
 import L, {Icon} from "leaflet";
@@ -8,6 +8,8 @@ import LocationPopUp from "./Location/LocationPopUp";
 
 type Props = {
     locations: LocationInfo[];
+    setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
+    user?: string;
 }
 
 function Mapcomponent(props:Props) {
@@ -30,7 +32,9 @@ function Mapcomponent(props:Props) {
                         key={location.locationId}
                         position={{ lat: location.locationLatCoordinate, lng: location.locationLngCoordinate }}
                         icon={customIcon}>
-                        <LocationPopUp locationDetails={location}/>
+                        <LocationPopUp locationDetails={location}
+                                       setLocations={props.setLocations}
+                                       user={props.user}/>
                     </Marker>
                 })}
             </MapContainer>
