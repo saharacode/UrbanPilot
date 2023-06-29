@@ -21,7 +21,7 @@ function App() {
     const {postRegistration} = useRegisterUser();
     const {getUserDetails, userDetails, setUserDetails, emptyUser} = useUserDetails();
     const {getAllLocationsForUser, locations, setLocations} = useLocations();
-    const {addedLocation, setAddedLocation, postNewLocation} = useAddLocation();
+    const {postNewLocation} = useAddLocation();
 
     return (
     <div className="App">

@@ -15,7 +15,7 @@ type Props = {
     getAllLocationsForUser: (username:string) => Promise<void>;
     setUserDetails: Dispatch<SetStateAction<User>>;
     emptyUser: User;
-    postNewLocation: (username: string, newLocation: LocationInfo) => Promise<void>;
+    postNewLocation: (username: string, newLocation: LocationInfo, setLocations: Dispatch<SetStateAction<LocationInfo[]>>) => Promise<void>;
 }
 
 function Mainpage(props:Props) {
@@ -57,7 +57,8 @@ function Mainpage(props:Props) {
             <div>
                 <AddLocationPopUp
                     postNewLocation={props.postNewLocation}
-                    user={props.user}/>
+                    user={props.user}
+                    setLocations={props.setLocations}/>
             </div>
             <Mapcomponent locations={props.locations}/>
         </div>
