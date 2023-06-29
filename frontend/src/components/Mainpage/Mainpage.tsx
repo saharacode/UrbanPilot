@@ -10,7 +10,7 @@ type Props = {
     getUserDetails: (username:string) => Promise<void>;
     user?: string;
     setUser: Dispatch<SetStateAction<string | undefined>>;
-    locations?: LocationInfo[];
+    locations: LocationInfo[];
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
     getAllLocationsForUser: (username:string) => Promise<void>;
     setUserDetails: Dispatch<SetStateAction<User>>;
