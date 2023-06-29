@@ -12,7 +12,7 @@ type Props = {
 function LocationPopUp(props:Props) {
     async function deleteButtonHandler() {
         if (props.user !== undefined){
-            const response = await axios.delete(`/locations/add/${props.user}/${props.locationDetails.locationId}`);
+            const response = await axios.delete(`/locations/delete/${props.user}/${props.locationDetails.locationId}`);
             props.setLocations((locations)=>{
                 return [...locations.filter((location) =>{
                     return location.locationId !==(response.data.locationId);
