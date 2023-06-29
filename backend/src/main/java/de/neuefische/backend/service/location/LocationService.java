@@ -21,14 +21,17 @@ public class LocationService {
     private final LocationCollectionRepo locationCollectionRepo;
     private final GenerateUUIDService generateUUIDService;
 
-    public List<Location> getAllLocationsForUser(String username) {
+    public UserLocationCollection getLocationCollectionForUser(String username){
         MongoUser mongoUserComplete = mongoUserRepo.findMongoUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("The user '" + username + "' could not be found."));
 
-        UserLocationCollection newLocationCollection = locationCollectionRepo.findUserLocationCollectionById(mongoUserComplete.getLocationCollectionId())
+        return locationCollectionRepo.findUserLocationCollectionById(mongoUserComplete.getLocationCollectionId())
                 .orElse(new UserLocationCollection());
+    }
 
-        return new ArrayList<>(newLocationCollection.getUserLocationMap().values());
+    public List<Location> getAllLocationsForUser(String username) {
+        UserLocationCollection userLocationCollection = getLocationCollectionForUser(username);
+        return new ArrayList<>(userLocationCollection.getUserLocationMap().values());
     }
 
     public Location addLocation(String username, ImportLocationDTO newLocationWithoutId) {
@@ -43,12 +46,7 @@ public class LocationService {
                 .locationLngCoordinate(newLocationWithoutId.getLocationLngCoordinate())
                 .build();
 
-        MongoUser mongoUserComplete = mongoUserRepo.findMongoUserByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("The user '" + username + "' could not be found."));
-
-        UserLocationCollection userLocationCollection = locationCollectionRepo.findUserLocationCollectionById(mongoUserComplete.getLocationCollectionId())
-                .orElse(new UserLocationCollection());
-
+        UserLocationCollection userLocationCollection = getLocationCollectionForUser(username);
         userLocationCollection.getUserLocationMap().put(newUUID,newLocation);
         locationCollectionRepo.save(userLocationCollection);
 
@@ -56,12 +54,7 @@ public class LocationService {
     }
 
     public String deleteLocation(String username, String locationId) {
-        MongoUser mongoUserComplete = mongoUserRepo.findMongoUserByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("The user '" + username + "' could not be found."));
-
-        UserLocationCollection userLocationCollection = locationCollectionRepo.findUserLocationCollectionById(mongoUserComplete.getLocationCollectionId())
-                .orElse(new UserLocationCollection());
-
+        UserLocationCollection userLocationCollection = getLocationCollectionForUser(username);
         userLocationCollection.getUserLocationMap().remove(locationId);
         locationCollectionRepo.save(userLocationCollection);
 
