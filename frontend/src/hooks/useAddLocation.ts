@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Dispatch, SetStateAction, useState} from "react";
+import {Dispatch, SetStateAction} from "react";
 import {LocationInfo} from "../model/LocationInfo";
 
 export default function UseAddLocation() {
