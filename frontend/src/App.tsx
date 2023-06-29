@@ -4,6 +4,7 @@ import Mainpage from "./components/Mainpage/Mainpage";
 import {Route, Routes} from "react-router-dom";
 import Login from "./components/Login/Login";
 import useUser from "./hooks/useUser";
+import useAddLocation from "./hooks/useAddLocation";
 import useUserDetails from "./hooks/useUserDetails";
 import useUserLogout from "./hooks/useUserLogout";
 import useRegisterUser from "./hooks/useRegisterUser";
@@ -20,6 +21,7 @@ function App() {
     const {postRegistration} = useRegisterUser();
     const {getUserDetails, userDetails, setUserDetails, emptyUser} = useUserDetails();
     const {getAllLocationsForUser, locations, setLocations} = useLocations();
+    const {postNewLocation} = useAddLocation();
 
     return (
     <div className="App">
@@ -40,7 +42,8 @@ function App() {
                                                            locations={locations}
                                                            getAllLocationsForUser={getAllLocationsForUser}
                                                            setUserDetails={setUserDetails} emptyUser={emptyUser}
-                                                           setLocations={setLocations}/>}/>
+                                                           setLocations={setLocations}
+                                                           postNewLocation={postNewLocation}/>}/>
                 <Route path="/profile" element={<Profilepage user={user}
                                                              userDetails={userDetails}/>}/>
             </Route>

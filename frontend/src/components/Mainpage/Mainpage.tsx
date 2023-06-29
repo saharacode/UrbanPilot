@@ -1,8 +1,9 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {useNavigate} from "react-router-dom";
-import Mapcomponent from "../Mapcomponent/Mapcomponent";
+import Mapcomponent from "./Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
+import AddLocationPopUp from "./AddLocationPopUp/AddLocationPopUp";
 
 type Props = {
     postLogout: () => Promise<void>;
@@ -14,6 +15,7 @@ type Props = {
     getAllLocationsForUser: (username:string) => Promise<void>;
     setUserDetails: Dispatch<SetStateAction<User>>;
     emptyUser: User;
+    postNewLocation: (username: string, newLocation: LocationInfo, setLocations: Dispatch<SetStateAction<LocationInfo[]>>) => Promise<void>;
 }
 
 function Mainpage(props:Props) {
@@ -51,6 +53,12 @@ function Mainpage(props:Props) {
                 <button onClick={profileButtonHandler}>Profile</button>
                 <button onClick={logoutButtonHandler}>Logout</button>
                 <button onClick={getLocationsButtonHandler}>Get locations</button>
+            </div>
+            <div>
+                <AddLocationPopUp
+                    postNewLocation={props.postNewLocation}
+                    user={props.user}
+                    setLocations={props.setLocations}/>
             </div>
             <Mapcomponent locations={props.locations}/>
         </div>
