@@ -15,9 +15,9 @@ import java.util.List;
 public class LocationController {
     private final LocationService locationService;
 
-    @GetMapping("/all/{username}")
-    public List<Location> getAllLocationsForUser(@PathVariable String username){
-        return locationService.getAllLocationsForUser(username);
+    @GetMapping("/all")
+    public List<Location> getAllLocationsForUser(){
+        return locationService.getAllLocationsForUser(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     @PostMapping("/add")

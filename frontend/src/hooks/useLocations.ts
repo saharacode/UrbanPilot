@@ -6,7 +6,7 @@ export default function UseLocations() {
     const [locations, setLocations] = useState<LocationInfo[]>([]);
 
     function getAllLocationsForUser(username:string){
-        return axios.get(`/locations/all/${username}`)
+        return axios.get(`/locations/all`)
             .then(response => {
                 setLocations(response.data)
             });
