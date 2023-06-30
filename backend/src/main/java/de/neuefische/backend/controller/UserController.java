@@ -36,8 +36,8 @@ public class UserController {
         return mongoUserService.registerUser(newUserWithoutId);
     }
 
-    @GetMapping("/details/{username}")
-    public ReturnMongoUserDTO getProfileDetails(@PathVariable String username){
-        return mongoUserService.getProfileDetails(username);
+    @GetMapping("/details")
+    public ReturnMongoUserDTO getProfileDetails(){
+        return mongoUserService.getProfileDetails(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 }

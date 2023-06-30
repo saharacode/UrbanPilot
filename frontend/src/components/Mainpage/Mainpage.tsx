@@ -7,7 +7,7 @@ import AddLocationPopUp from "./AddLocationPopUp/AddLocationPopUp";
 
 type Props = {
     postLogout: () => Promise<void>;
-    getUserDetails: (username:string) => Promise<void>;
+    getUserDetails: () => Promise<void>;
     user?: string;
     setUser: Dispatch<SetStateAction<string | undefined>>;
     locations: LocationInfo[];
@@ -31,11 +31,9 @@ function Mainpage(props:Props) {
     }
 
     function profileButtonHandler() {
-        if (props.user !== undefined){
-            // eslint-disable-next-line
-            props.getUserDetails(props.user);
-            nav("/profile");
-        }
+        // eslint-disable-next-line
+        props.getUserDetails();
+        nav("/profile");
     }
 
     function getLocationsButtonHandler() {
