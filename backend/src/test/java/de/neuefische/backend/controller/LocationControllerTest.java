@@ -3,6 +3,7 @@ package de.neuefische.backend.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
 import de.neuefische.backend.model.location.ImportLocationDTO;
+import de.neuefische.backend.model.location.Location;
 import de.neuefische.backend.model.user.ImportMongoUserDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -225,5 +226,76 @@ class LocationControllerTest {
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(content().string(newLocationId));
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "testuser", password = "testpassword")
+    void editLocation_thenReturnStatus200_andEditedLocation() throws Exception {
+        ImportMongoUserDTO newUserWithoutId = ImportMongoUserDTO.builder()
+                .username("testuser")
+                .fullname("testuser")
+                .password("testpassword")
+                .email("test@mail.de")
+                .homecity("Berlin")
+                .build();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonRequestBody = objectMapper.writeValueAsString(newUserWithoutId);
+
+        mvc.perform(MockMvcRequestBuilders.post("/user/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequestBody)
+                        .with(csrf()))
+                .andExpect(status().isCreated());
+
+        ImportLocationDTO testImportLocationDTO = ImportLocationDTO.builder()
+                .locationName("TestName")
+                .locationCity("TestCity")
+                .locationDescription("TestDescription")
+                .locationLatCoordinate(0.0)
+                .locationLngCoordinate(0.0)
+                .locationType("TestLocationType")
+                .build();
+        String jsonRequestBodyLocation = objectMapper.writeValueAsString(testImportLocationDTO);
+
+        MvcResult locationResult = mvc.perform(MockMvcRequestBuilders.post("/locations/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequestBodyLocation)
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                            {
+                                  "locationName": "TestName",
+                                  "locationCity": "TestCity",
+                                  "locationDescription": "TestDescription",
+                                  "locationLatCoordinate": 0.0,
+                                  "locationLngCoordinate": 0.0,
+                                  "locationType": "TestLocationType"
+                            }
+                        """))
+                .andExpect(jsonPath("$.locationId").isNotEmpty())
+                .andReturn();
+
+        String newLocationId = JsonPath.read(locationResult.getResponse().getContentAsString(), "$.locationId");
+
+        Location editedLocation = Location.builder()
+                .locationId(newLocationId)
+                .locationName("newName")
+                .locationCity("newCity")
+                .locationDescription("newDescription")
+                .locationLatCoordinate(1.0)
+                .locationLngCoordinate(1.0)
+                .locationType("newLocationType")
+                .build();
+
+        String jsonRequestBodyEditedLocation = objectMapper.writeValueAsString(editedLocation);
+
+        mvc.perform(MockMvcRequestBuilders.put("/locations/edit")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequestBodyEditedLocation)
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().json(jsonRequestBodyEditedLocation));
     }
 }
