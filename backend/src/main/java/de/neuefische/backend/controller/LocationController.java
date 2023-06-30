@@ -23,4 +23,9 @@ public class LocationController {
     public Location addLocation(@PathVariable String username, @RequestBody ImportLocationDTO newLocationWithoutId){
         return locationService.addLocation(username, newLocationWithoutId);
     }
+
+    @DeleteMapping("/delete/{username}/{locationId}")
+    public String deleteLocation(@PathVariable String username, @PathVariable String locationId){
+        return locationService.deleteLocation(username,locationId);
+    }
 }

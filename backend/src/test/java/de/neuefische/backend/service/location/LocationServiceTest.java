@@ -23,6 +23,33 @@ class LocationServiceTest {
 
     @DirtiesContext
     @Test
+    void getLocationCollectionForUser_returnEmptyCollection() {
+        //given
+        String testUsername = "testuser";
+        String testLocationCollectionId = "testLocationCollectionId";
+        MongoUser testMongoUser = MongoUser.builder()
+                .username(testUsername)
+                .locationCollectionId(testLocationCollectionId)
+                .build();
+        when(mongoUserRepo.findMongoUserByUsername(testUsername)).thenReturn(Optional.ofNullable(testMongoUser));
+
+        Map<String, Location> testUserLocationMap = new HashMap<>();
+
+        UserLocationCollection testUserLocationCollection = UserLocationCollection.builder()
+                .id(testLocationCollectionId)
+                .userLocationMap(testUserLocationMap)
+                .build();
+        when(locationCollectionRepo.findUserLocationCollectionById(testLocationCollectionId)).thenReturn(Optional.ofNullable(testUserLocationCollection));
+
+        //when/then
+        UserLocationCollection actualUserLocationCollection = locationService.getLocationCollectionForUser(testUsername);
+        assertEquals(testUserLocationCollection,actualUserLocationCollection);
+        verify(mongoUserRepo).findMongoUserByUsername(testUsername);
+        verify(locationCollectionRepo).findUserLocationCollectionById(testLocationCollectionId);
+    }
+
+    @DirtiesContext
+    @Test
     void getAllLocationsForUser_returnList() {
         //given
         String testUsername = "testuser";
@@ -93,5 +120,36 @@ class LocationServiceTest {
         verify(mongoUserRepo).findMongoUserByUsername(testUsername);
         verify(locationCollectionRepo).findUserLocationCollectionById(testLocationCollectionId);
         verify(generateUUIDService).generateUUID();
+    }
+
+    @DirtiesContext
+    @Test
+    void deleteLocation_returnLocationId(){
+        //given
+        String testUsername = "testuser";
+        String testLocationCollectionId = "testLocationCollectionId";
+        MongoUser testMongoUser = MongoUser.builder()
+                .username(testUsername)
+                .locationCollectionId(testLocationCollectionId)
+                .build();
+        when(mongoUserRepo.findMongoUserByUsername(testUsername)).thenReturn(Optional.ofNullable(testMongoUser));
+
+        String testLocationId = "testLocationId";
+        Location testlocation = Location.builder()
+                .locationId(testLocationId)
+                .build();
+        Map<String, Location> testUserLocationMap = new HashMap<>();
+        testUserLocationMap.put(testLocationId,testlocation);
+        UserLocationCollection testUserLocationCollection = UserLocationCollection.builder()
+                .id(testLocationCollectionId)
+                .userLocationMap(testUserLocationMap)
+                .build();
+        when(locationCollectionRepo.findUserLocationCollectionById(testLocationCollectionId)).thenReturn(Optional.ofNullable(testUserLocationCollection));
+
+        //when/then
+        String actualId = locationService.deleteLocation(testUsername,testLocationId);
+        assertEquals(testLocationId,actualId);
+        verify(mongoUserRepo).findMongoUserByUsername(testUsername);
+        verify(locationCollectionRepo).findUserLocationCollectionById(testLocationCollectionId);
     }
 }
