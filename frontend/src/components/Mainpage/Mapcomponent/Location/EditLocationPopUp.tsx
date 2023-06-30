@@ -2,7 +2,7 @@ import React, {Dispatch, SetStateAction} from 'react';
 import Popup from "reactjs-popup";
 import {Field, Form, Formik} from "formik";
 import {LocationInfo} from "../../../../model/LocationInfo";
-import axios from "axios/index";
+import axios from "axios";
 
 type Props = {
     locationDetails:LocationInfo;
