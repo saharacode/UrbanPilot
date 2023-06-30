@@ -7,23 +7,20 @@ import axios from "axios";
 type Props = {
     locationDetails:LocationInfo;
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
-    user?: string;
 }
 
 function EditLocationPopUp(props:Props) {
     async function saveButtonHandler(values:LocationInfo) {
-        if (props.user !== undefined){
-            const response = await axios.put(`/locations/edit`,values);
-            props.setLocations((locations)=>{
-                return [...locations.map((location) =>{
-                    if (location.locationId ===response.data.locationId){
-                        return response.data;
-                    } else {
-                        return location;
-                    }
-                })]
-            });
-        }
+        const response = await axios.put(`/locations/edit`,values);
+        props.setLocations((locations)=>{
+            return [...locations.map((location) =>{
+                if (location.locationId ===response.data.locationId){
+                    return response.data;
+                } else {
+                    return location;
+                }
+            })]
+        });
     }
 
     return (
