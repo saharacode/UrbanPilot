@@ -45,7 +45,7 @@ class LocationControllerTest {
                         .with(csrf()))
                 .andExpect(status().isCreated());
 
-        mvc.perform(MockMvcRequestBuilders.get("/locations/all/testuser")
+        mvc.perform(MockMvcRequestBuilders.get("/locations/all")
                 .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
@@ -85,7 +85,7 @@ class LocationControllerTest {
                 .build();
         String jsonRequestBodyLocation = objectMapper.writeValueAsString(testImportLocationDTO);
 
-        mvc.perform(MockMvcRequestBuilders.post("/locations/add/testuser")
+        mvc.perform(MockMvcRequestBuilders.post("/locations/add")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBodyLocation)
                         .with(csrf()))
@@ -103,7 +103,7 @@ class LocationControllerTest {
                 .andExpect(jsonPath("$.locationId").isNotEmpty());
 
 
-        mvc.perform(MockMvcRequestBuilders.get("/locations/all/testuser")
+        mvc.perform(MockMvcRequestBuilders.get("/locations/all")
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
@@ -152,7 +152,7 @@ class LocationControllerTest {
                 .build();
         String jsonRequestBodyLocation = objectMapper.writeValueAsString(testImportLocationDTO);
 
-        mvc.perform(MockMvcRequestBuilders.post("/locations/add/testuser")
+        mvc.perform(MockMvcRequestBuilders.post("/locations/add")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBodyLocation)
                         .with(csrf()))
@@ -201,7 +201,7 @@ class LocationControllerTest {
                 .build();
         String jsonRequestBodyLocation = objectMapper.writeValueAsString(testImportLocationDTO);
 
-        MvcResult locationResult = mvc.perform(MockMvcRequestBuilders.post("/locations/add/testuser")
+        MvcResult locationResult = mvc.perform(MockMvcRequestBuilders.post("/locations/add")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBodyLocation)
                         .with(csrf()))
