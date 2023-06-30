@@ -9,7 +9,6 @@ import LocationPopUp from "./Location/LocationPopUp";
 type Props = {
     locations: LocationInfo[];
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
-    user?: string;
 }
 
 function Mapcomponent(props:Props) {
@@ -34,7 +33,7 @@ function Mapcomponent(props:Props) {
                         icon={customIcon}>
                         <LocationPopUp locationDetails={location}
                                        setLocations={props.setLocations}
-                                       user={props.user}/>
+                                       />
                     </Marker>
                 })}
             </MapContainer>

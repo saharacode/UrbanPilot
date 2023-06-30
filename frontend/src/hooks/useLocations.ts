@@ -5,7 +5,7 @@ import {LocationInfo} from "../model/LocationInfo";
 export default function UseLocations() {
     const [locations, setLocations] = useState<LocationInfo[]>([]);
 
-    function getAllLocationsForUser(username:string){
+    function getAllLocationsForUser(){
         return axios.get(`/locations/all`)
             .then(response => {
                 setLocations(response.data)

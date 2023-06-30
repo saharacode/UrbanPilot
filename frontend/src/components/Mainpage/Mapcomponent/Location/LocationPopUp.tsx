@@ -7,7 +7,6 @@ import EditLocationPopUp from "./EditLocationPopUp";
 type Props = {
     locationDetails:LocationInfo;
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
-    user?: string;
 }
 
 function LocationPopUp(props:Props) {
