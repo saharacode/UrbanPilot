@@ -3,6 +3,7 @@ import Popup from "reactjs-popup";
 import {Field, Form, Formik} from "formik";
 import {LocationInfo} from "../../../../model/LocationInfo";
 import axios from "axios";
+import * as Yup from "yup"
 
 type Props = {
     locationDetails:LocationInfo;
@@ -23,6 +24,19 @@ function EditLocationPopUp(props:Props) {
         });
     }
 
+    const locationSchema = Yup.object().shape({
+        locationName: Yup.string()
+            .required('Required'),
+        locationType: Yup.string()
+            .required('Required'),
+        locationCity: Yup.string()
+            .required('Required'),
+        locationLatCoordinate: Yup.number()
+            .required('Required'),
+        locationLngCoordinate: Yup.number()
+            .required('Required')
+    });
+
     return (
         <div>
             <Popup trigger={<button>Edit</button>}>
@@ -39,35 +53,41 @@ function EditLocationPopUp(props:Props) {
                                 locationLatCoordinate: props.locationDetails.locationLatCoordinate,
                                 locationLngCoordinate: props.locationDetails.locationLngCoordinate
                             }}
+                            validationSchema={locationSchema}
                             onSubmit={(values:LocationInfo) => saveButtonHandler(values)}
                         >
-                            <Form>
-                                <div className="inputAndLabel">
-                                    <label>Name:</label>
-                                    <Field name="locationName" type="text"/>
-                                </div>
-                                <div className="inputAndLabel">
-                                    <label>Description:</label>
-                                    <Field name="locationDescription" type="text"/>
-                                </div>
-                                <div className="inputAndLabel">
-                                    <label>Type:</label>
-                                    <Field name="locationType" type="text"/>
-                                </div>
-                                <div className="inputAndLabel">
-                                    <label>City:</label>
-                                    <Field name="locationCity" type="text"/>
-                                </div>
-                                <div className="inputAndLabel">
-                                    <label>Lat Coordinate:</label>
-                                    <Field name="locationLatCoordinate" type="number"/>
-                                </div>
-                                <div className="inputAndLabel">
-                                    <label>Lng Coordinate:</label>
-                                    <Field name="locationLngCoordinate" type="number"/>
-                                </div>
-                                <button type="submit">Save</button>
-                            </Form>
+                            {({ errors }) => (
+                                <Form>
+                                    <div className="inputAndLabel">
+                                        <label>Name:</label>
+                                        <Field name="locationName" type="text"/>
+                                        {errors.locationName ? <h5>{errors.locationName}</h5> : <></>}
+                                    </div>
+                                    <div className="inputAndLabel">
+                                        <label>Description:</label>
+                                        <Field name="locationDescription" type="text"/>
+                                    </div>
+                                    <div className="inputAndLabel">
+                                        <label>Type:</label>
+                                        <Field name="locationType" type="text"/>
+                                    </div>
+                                    <div className="inputAndLabel">
+                                        <label>City:</label>
+                                        <Field name="locationCity" type="text"/>
+                                    </div>
+                                    <div className="inputAndLabel">
+                                        <label>Lat Coordinate:</label>
+                                        <Field name="locationLatCoordinate" type="number"/>
+                                    </div>
+                                    <div className="inputAndLabel">
+                                        <label>Lng Coordinate:</label>
+                                        <Field name="locationLngCoordinate" type="number"/>
+                                    </div>
+                                    <button type="submit">Save</button>
+                                </Form>
+                            )}
+
+
                         </Formik>
                     </div>
                 </div>
