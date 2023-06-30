@@ -4,6 +4,7 @@ import de.neuefische.backend.model.location.ImportLocationDTO;
 import de.neuefische.backend.model.location.Location;
 import de.neuefische.backend.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class LocationController {
         return locationService.deleteLocation(username,locationId);
     }
 
-    @PutMapping("/edit/{username}")
-    public Location editLocation(@PathVariable String username, @RequestBody Location editedLocation){
-        return locationService.editLocation(username, editedLocation);
+    @PutMapping("/edit")
+    public Location editLocation(@RequestBody Location editedLocation){
+        return locationService.editLocation(SecurityContextHolder.getContext().getAuthentication().getName(), editedLocation);
     }
 }

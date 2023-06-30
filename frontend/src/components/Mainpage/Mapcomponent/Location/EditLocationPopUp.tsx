@@ -13,7 +13,7 @@ type Props = {
 function EditLocationPopUp(props:Props) {
     async function saveButtonHandler(values:LocationInfo) {
         if (props.user !== undefined){
-            const response = await axios.put(`/locations/edit/${props.user}`,values);
+            const response = await axios.put(`/locations/edit`,values);
             props.setLocations((locations)=>{
                 return [...locations.map((location) =>{
                     if (location.locationId ===response.data.locationId){
