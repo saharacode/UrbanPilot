@@ -28,7 +28,8 @@ function LocationPopUp(props:Props) {
                 <h3>{props.locationDetails.locationName}</h3>
                 <h5>Location Type: {props.locationDetails.locationType}</h5>
                 <h5>City: {props.locationDetails.locationCity}</h5>
-                <EditLocationPopUp/>
+                <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
+                <EditLocationPopUp locationDetails={props.locationDetails}/>
                 <button onClick={deleteButtonHandler}>Delete</button>
             </Popup>
         </div>

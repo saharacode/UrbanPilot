@@ -1,8 +1,11 @@
 import React from 'react';
 import Popup from "reactjs-popup";
 import {Field, Form, Formik} from "formik";
+import {LocationInfo} from "../../../../model/LocationInfo";
 
-type Props = {}
+type Props = {
+    locationDetails:LocationInfo;
+}
 
 function EditLocationPopUp(props:Props) {
     return (
@@ -13,14 +16,15 @@ function EditLocationPopUp(props:Props) {
                     <div className="registerFormContainer">
                         <Formik
                             initialValues={{
-                                locationName: "",
-                                locationDescription: "testdescription",
-                                locationType: "",
-                                locationCity: "",
-                                locationLatCoordinate: "",
-                                locationLngCoordinate: ""
+                                locationId: props.locationDetails.locationId,
+                                locationName: props.locationDetails.locationName,
+                                locationDescription: props.locationDetails.locationDescription,
+                                locationType: props.locationDetails.locationType,
+                                locationCity: props.locationDetails.locationCity,
+                                locationLatCoordinate: props.locationDetails.locationLatCoordinate,
+                                locationLngCoordinate: props.locationDetails.locationLngCoordinate
                             }}
-                            onSubmit={async (values) => {
+                            onSubmit={async (values:LocationInfo) => {
                                 await new Promise((resolve) => setTimeout(resolve, 500));
                                 alert(JSON.stringify(values, null, 2));
                             }}
@@ -44,11 +48,11 @@ function EditLocationPopUp(props:Props) {
                                 </div>
                                 <div className="inputAndLabel">
                                     <label>Lat Coordinate:</label>
-                                    <Field name="locationLatCoordinate" type="text"/>
+                                    <Field name="locationLatCoordinate" type="number"/>
                                 </div>
                                 <div className="inputAndLabel">
                                     <label>Lng Coordinate:</label>
-                                    <Field name="locationLngCoordinate" type="text"/>
+                                    <Field name="locationLngCoordinate" type="number"/>
                                 </div>
                                 <button type="submit">Save</button>
                             </Form>
