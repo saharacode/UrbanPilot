@@ -25,9 +25,9 @@ public class LocationController {
         return locationService.addLocation(username, newLocationWithoutId);
     }
 
-    @DeleteMapping("/delete/{username}/{locationId}")
-    public String deleteLocation(@PathVariable String username, @PathVariable String locationId){
-        return locationService.deleteLocation(username,locationId);
+    @DeleteMapping("/delete/{locationId}")
+    public String deleteLocation(@PathVariable String locationId){
+        return locationService.deleteLocation(SecurityContextHolder.getContext().getAuthentication().getName(),locationId);
     }
 
     @PutMapping("/edit")

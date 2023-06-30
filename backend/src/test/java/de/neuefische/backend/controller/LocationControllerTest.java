@@ -221,7 +221,7 @@ class LocationControllerTest {
 
         String newLocationId = JsonPath.read(locationResult.getResponse().getContentAsString(), "$.locationId");
 
-        mvc.perform(MockMvcRequestBuilders.delete("/locations/delete/testuser/"+newLocationId)
+        mvc.perform(MockMvcRequestBuilders.delete("/locations/delete/"+newLocationId)
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(content().string(newLocationId));
