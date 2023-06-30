@@ -1,29 +1,15 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React from 'react';
 import Popup from "reactjs-popup";
 import {Field, Form, Formik} from "formik";
 import {LocationInfo} from "../../../../model/LocationInfo";
-import axios from "axios";
 import * as Yup from "yup"
 
 type Props = {
-    locationDetails:LocationInfo;
-    setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
+    onSubmitHandler: (values:LocationInfo) => Promise<void>;
+    initialValues: LocationInfo;
 }
 
 function EditLocationPopUp(props:Props) {
-    async function saveButtonHandler(values:LocationInfo) {
-        const response = await axios.put(`/locations/edit`,values);
-        props.setLocations((locations)=>{
-            return [...locations.map((location) =>{
-                if (location.locationId ===response.data.locationId){
-                    return response.data;
-                } else {
-                    return location;
-                }
-            })]
-        });
-    }
-
     const locationSchema = Yup.object().shape({
         locationName: Yup.string()
             .required('Required'),
@@ -44,17 +30,9 @@ function EditLocationPopUp(props:Props) {
                     <h3>Edit Location</h3>
                     <div className="registerFormContainer">
                         <Formik
-                            initialValues={{
-                                locationId: props.locationDetails.locationId,
-                                locationName: props.locationDetails.locationName,
-                                locationDescription: props.locationDetails.locationDescription,
-                                locationType: props.locationDetails.locationType,
-                                locationCity: props.locationDetails.locationCity,
-                                locationLatCoordinate: props.locationDetails.locationLatCoordinate,
-                                locationLngCoordinate: props.locationDetails.locationLngCoordinate
-                            }}
+                            initialValues={props.initialValues}
                             validationSchema={locationSchema}
-                            onSubmit={(values:LocationInfo) => saveButtonHandler(values)}
+                            onSubmit={(values:LocationInfo) => props.onSubmitHandler(values)}
                         >
                             {({ errors }) => (
                                 <Form>
@@ -100,8 +78,6 @@ function EditLocationPopUp(props:Props) {
                                     <button type="submit">Save</button>
                                 </Form>
                             )}
-
-
                         </Formik>
                     </div>
                 </div>
