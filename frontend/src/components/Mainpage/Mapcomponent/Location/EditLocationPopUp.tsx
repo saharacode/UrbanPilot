@@ -1,13 +1,31 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import Popup from "reactjs-popup";
 import {Field, Form, Formik} from "formik";
 import {LocationInfo} from "../../../../model/LocationInfo";
+import axios from "axios/index";
 
 type Props = {
     locationDetails:LocationInfo;
+    setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
+    user?: string;
 }
 
 function EditLocationPopUp(props:Props) {
+    async function saveButtonHandler(values:LocationInfo) {
+        if (props.user !== undefined){
+            const response = await axios.put(`/locations/edit/${props.user}`,values);
+            props.setLocations((locations)=>{
+                return [...locations.map((location) =>{
+                    if (location.locationId ===response.data.locationId){
+                        return response.data;
+                    } else {
+                        return location;
+                    }
+                })]
+            });
+        }
+    }
+
     return (
         <div>
             <Popup trigger={<button>Edit</button>}>
@@ -24,10 +42,7 @@ function EditLocationPopUp(props:Props) {
                                 locationLatCoordinate: props.locationDetails.locationLatCoordinate,
                                 locationLngCoordinate: props.locationDetails.locationLngCoordinate
                             }}
-                            onSubmit={async (values:LocationInfo) => {
-                                await new Promise((resolve) => setTimeout(resolve, 500));
-                                alert(JSON.stringify(values, null, 2));
-                            }}
+                            onSubmit={(values:LocationInfo) => saveButtonHandler(values)}
                         >
                             <Form>
                                 <div className="inputAndLabel">
