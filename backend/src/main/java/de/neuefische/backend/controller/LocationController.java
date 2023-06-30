@@ -28,4 +28,9 @@ public class LocationController {
     public String deleteLocation(@PathVariable String username, @PathVariable String locationId){
         return locationService.deleteLocation(username,locationId);
     }
+
+    @PutMapping("/edit/{username}")
+    public Location editLocation(@PathVariable String username, @RequestBody Location editedLocation){
+        return locationService.editLocation(username, editedLocation);
+    }
 }

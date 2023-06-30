@@ -60,4 +60,12 @@ public class LocationService {
 
         return locationId;
     }
+
+    public Location editLocation(String username, Location editedLocation) {
+        UserLocationCollection userLocationCollection = getLocationCollectionForUser(username);
+        userLocationCollection.getUserLocationMap().replace(editedLocation.getLocationId(),editedLocation);
+        locationCollectionRepo.save(userLocationCollection);
+
+        return userLocationCollection.getUserLocationMap().get(editedLocation.getLocationId());
+    }
 }
