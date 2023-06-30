@@ -20,9 +20,9 @@ public class LocationController {
         return locationService.getAllLocationsForUser(username);
     }
 
-    @PostMapping("/add/{username}")
-    public Location addLocation(@PathVariable String username, @RequestBody ImportLocationDTO newLocationWithoutId){
-        return locationService.addLocation(username, newLocationWithoutId);
+    @PostMapping("/add")
+    public Location addLocation(@RequestBody ImportLocationDTO newLocationWithoutId){
+        return locationService.addLocation(SecurityContextHolder.getContext().getAuthentication().getName(), newLocationWithoutId);
     }
 
     @DeleteMapping("/delete/{locationId}")
