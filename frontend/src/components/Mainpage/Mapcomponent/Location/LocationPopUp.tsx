@@ -51,6 +51,7 @@ function LocationPopUp(props:Props) {
                 <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
                 <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
                                    initialValues={initialValues}
+                                   submitButtonName={"Edit Location"}
                                    />
                 <button onClick={deleteButtonHandler}>Delete</button>
             </Popup>

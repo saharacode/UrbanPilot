@@ -8,6 +8,7 @@ type Props = {
     onSubmitHandler: (values:LocationInfo) => Promise<void>;
     initialValues: LocationInfo;
     setLocations?:Dispatch<SetStateAction<LocationInfo[]>>;
+    submitButtonName:string;
 }
 
 function EditLocationPopUp(props:Props) {
@@ -26,9 +27,9 @@ function EditLocationPopUp(props:Props) {
 
     return (
         <div>
-            <Popup trigger={<button>Edit</button>}>
+            <Popup trigger={<button>{props.submitButtonName}</button>}>
                 <div className="popupStyle">
-                    <h3>Edit Location</h3>
+                    <h3>{props.submitButtonName}</h3>
                     <div className="registerFormContainer">
                         <Formik
                             initialValues={props.initialValues}

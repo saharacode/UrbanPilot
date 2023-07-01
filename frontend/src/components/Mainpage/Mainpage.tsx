@@ -70,6 +70,7 @@ function Mainpage(props:Props) {
                     onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                     initialValues={initialValues}
                     setLocations={props.setLocations}
+                    submitButtonName={"Add Location 2.0"}
                 />
 
             </div>
