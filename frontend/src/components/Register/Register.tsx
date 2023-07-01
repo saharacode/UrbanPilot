@@ -28,7 +28,6 @@ function Register(props:Props) {
         password: Yup.string()
             .required('Required'),
         passwordRepeat: Yup.string()
-            .nullable()
             .required('Required')
             .test('passwords-match', 'Passwords must match', function (value) {
                 return this.parent.password === value;
