@@ -3,6 +3,7 @@ import Popup from "reactjs-popup";
 import {Field, Form, Formik} from "formik";
 import {LocationInfo} from "../../model/LocationInfo";
 import * as Yup from "yup"
+import './Popup.css';
 
 type Props = {
     onSubmitHandler: (values:LocationInfo) => Promise<void>;
