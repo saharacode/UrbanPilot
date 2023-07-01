@@ -5,7 +5,6 @@ import de.neuefische.backend.model.user.MongoUser;
 import de.neuefische.backend.model.user.ReturnMongoUserDTO;
 import de.neuefische.backend.repository.MongoUserRepo;
 import de.neuefische.backend.service.GenerateUUIDService;
-import de.neuefische.backend.service.user.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
