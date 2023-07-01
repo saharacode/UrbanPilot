@@ -4,6 +4,7 @@ import Mapcomponent from "./Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
 import AddLocationPopUp from "./AddLocationPopUp/AddLocationPopUp";
+import EditLocationPopUp from "./Mapcomponent/Location/EditLocationPopUp";
 
 type Props = {
     postLogout: () => Promise<void>;
@@ -41,6 +42,16 @@ function Mainpage(props:Props) {
         props.getAllLocationsForUser();
     }
 
+    const initialValues:LocationInfo = {
+        locationId: "",
+        locationName: "",
+        locationDescription: "",
+        locationType: "",
+        locationCity: "",
+        locationLatCoordinate: 0.0,
+        locationLngCoordinate: 0.0
+    }
+
     return (
         <div>
             <div>
@@ -53,6 +64,14 @@ function Mainpage(props:Props) {
                 <AddLocationPopUp
                     postNewLocation={props.postNewLocation}
                     setLocations={props.setLocations}/>
+            </div>
+            <div>
+                <EditLocationPopUp
+                    onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
+                    initialValues={initialValues}
+                    setLocations={props.setLocations}
+                />
+
             </div>
             <Mapcomponent locations={props.locations}
                           setLocations={props.setLocations}

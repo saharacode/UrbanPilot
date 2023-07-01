@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import Popup from "reactjs-popup";
 import {Field, Form, Formik} from "formik";
 import {LocationInfo} from "../../../../model/LocationInfo";
@@ -7,6 +7,7 @@ import * as Yup from "yup"
 type Props = {
     onSubmitHandler: (values:LocationInfo) => Promise<void>;
     initialValues: LocationInfo;
+    setLocations?:Dispatch<SetStateAction<LocationInfo[]>>;
 }
 
 function EditLocationPopUp(props:Props) {
