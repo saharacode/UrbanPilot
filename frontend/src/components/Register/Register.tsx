@@ -12,7 +12,6 @@ type Props = {
 
 function Register(props:Props) {
     const nav = useNavigate();
-    //const [passwordConfirmationStatus, setPasswordConfirmationStatus] = useState<boolean>(true);
 
     const initialValues = {
         username: "",
@@ -29,7 +28,11 @@ function Register(props:Props) {
         password: Yup.string()
             .required('Required'),
         passwordRepeat: Yup.string()
-            .required('Required'),
+            .nullable()
+            .required('Required')
+            .test('passwords-match', 'Passwords must match', function (value) {
+                return this.parent.password === value;
+            }),
         fullname: Yup.string()
             .required('Required'),
         email: Yup.string()
@@ -44,92 +47,76 @@ function Register(props:Props) {
         props.setUserExists(true);
     }
 
-        /*
-        function comparePasswordInputs() {
-            if (password === passwordRepeat) {
-                setPasswordConfirmationStatus(true);
-                return true;
-            }
-            setPasswordConfirmationStatus(false);
-            return false;
-        }
+    function goToLoginButtonHandler() {
+        nav("/login");
+    }
 
+    return (
         <div>
-                    {passwordConfirmationStatus ? <></> : <h5>Passwords are not the same.</h5>}
-                </div>
+            <h1>Register</h1>
+            <h4>Please create a new account:</h4>
 
-         */
-
-        function goToLoginButtonHandler() {
-            nav("/login");
-        }
-
-        return (
-            <div>
-                <h1>Register</h1>
-                <h4>Please create a new account:</h4>
-
-                <div className="registerFormContainer">
-                    <Formik
-                        initialValues={initialValues}
-                        validationSchema={registerSchema}
-                        onSubmit={(values:User) => registerInputHandler(values)}
-                    >
-                        {({ errors }) => (
-                            <Form>
-                                <div className="inputAndLabel">
-                                    <label>Username:</label>
-                                    <Field name="username" type="text"/>
-                                </div>
-                                <div>
-                                    {errors.username ? <h5>{errors.username}</h5> : <></>}
-                                </div>
-                                <div className="inputAndLabel">
-                                    <label>Password:</label>
-                                    <Field name="password" type="text"/>
-                                </div>
-                                <div>
-                                    {errors.password ? <h5>{errors.passwordRepeat}</h5> : <></>}
-                                </div>
-                                <div className="inputAndLabel">
-                                    <label>Repeat Password:</label>
-                                    <Field name="passwordRepeat" type="text"/>
-                                </div>
-                                <div>
-                                    {errors.passwordRepeat ? <h5>{errors.passwordRepeat}</h5> : <></>}
-                                </div>
-                                <div className="inputAndLabel">
-                                    <label>Fullname:</label>
-                                    <Field name="fullname" type="text"/>
-                                </div>
-                                <div>
-                                    {errors.fullname ? <h5>{errors.fullname}</h5> : <></>}
-                                </div>
-                                <div className="inputAndLabel">
-                                    <label>E-Mail:</label>
-                                    <Field name="email" type="text"/>
-                                </div>
-                                <div>
-                                    {errors.email ? <h5>{errors.email}</h5> : <></>}
-                                </div>
-                                <div className="inputAndLabel">
-                                    <label>Homecity:</label>
-                                    <Field name="homecity" type="text"/>
-                                </div>
-                                <div>
-                                    {errors.homecity ? <h5>{errors.homecity}</h5> : <></>}
-                                </div>
-                                <button type="submit">Submit</button>
-                            </Form>
-                        )}
-                    </Formik>
-                </div>
-                <div>
-                    <h4>Already registered?</h4>
-                    <button onClick={goToLoginButtonHandler}>Login</button>
-                </div>
+            <div className="registerFormContainer">
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={registerSchema}
+                    onSubmit={(values:User) => registerInputHandler(values)}
+                >
+                    {({ errors }) => (
+                        <Form>
+                            <div className="inputAndLabel">
+                                <label>Username:</label>
+                                <Field name="username" type="text"/>
+                            </div>
+                            <div>
+                                {errors.username ? <h5>{errors.username}</h5> : <></>}
+                            </div>
+                            <div className="inputAndLabel">
+                                <label>Password:</label>
+                                <Field name="password" type="password"/>
+                            </div>
+                            <div>
+                                {errors.password ? <h5>{errors.passwordRepeat}</h5> : <></>}
+                            </div>
+                            <div className="inputAndLabel">
+                                <label>Repeat Password:</label>
+                                <Field name="passwordRepeat" type="password"/>
+                            </div>
+                            <div>
+                                {errors.passwordRepeat ? <h5>{errors.passwordRepeat}</h5> : <></>}
+                            </div>
+                            <div className="inputAndLabel">
+                                <label>Fullname:</label>
+                                <Field name="fullname" type="text"/>
+                            </div>
+                            <div>
+                                {errors.fullname ? <h5>{errors.fullname}</h5> : <></>}
+                            </div>
+                            <div className="inputAndLabel">
+                                <label>E-Mail:</label>
+                                <Field name="email" type="email"/>
+                            </div>
+                            <div>
+                                {errors.email ? <h5>{errors.email}</h5> : <></>}
+                            </div>
+                            <div className="inputAndLabel">
+                                <label>Homecity:</label>
+                                <Field name="homecity" type="text"/>
+                            </div>
+                            <div>
+                                {errors.homecity ? <h5>{errors.homecity}</h5> : <></>}
+                            </div>
+                            <button type="submit">Submit</button>
+                        </Form>
+                    )}
+                </Formik>
             </div>
-        );
+            <div>
+                <h4>Already registered?</h4>
+                <button onClick={goToLoginButtonHandler}>Login</button>
+            </div>
+        </div>
+    );
 }
 
 export default Register;
