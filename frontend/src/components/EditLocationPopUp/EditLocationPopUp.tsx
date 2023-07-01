@@ -1,7 +1,7 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import Popup from "reactjs-popup";
 import {Field, Form, Formik} from "formik";
-import {LocationInfo} from "../../../../model/LocationInfo";
+import {LocationInfo} from "../../model/LocationInfo";
 import * as Yup from "yup"
 
 type Props = {

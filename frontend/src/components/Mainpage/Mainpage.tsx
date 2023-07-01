@@ -3,8 +3,7 @@ import {useNavigate} from "react-router-dom";
 import Mapcomponent from "./Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
-import AddLocationPopUp from "./AddLocationPopUp/AddLocationPopUp";
-import EditLocationPopUp from "./Mapcomponent/Location/EditLocationPopUp";
+import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
 
 type Props = {
     postLogout: () => Promise<void>;
@@ -17,6 +16,7 @@ type Props = {
     setUserDetails: Dispatch<SetStateAction<User>>;
     emptyUser: User;
     postNewLocation: (newLocation: LocationInfo, setLocations: Dispatch<SetStateAction<LocationInfo[]>>) => Promise<void>;
+    initialValues: LocationInfo;
 }
 
 function Mainpage(props:Props) {
@@ -42,16 +42,6 @@ function Mainpage(props:Props) {
         props.getAllLocationsForUser();
     }
 
-    const initialValues:LocationInfo = {
-        locationId: "",
-        locationName: "",
-        locationDescription: "",
-        locationType: "",
-        locationCity: "",
-        locationLatCoordinate: 0.0,
-        locationLngCoordinate: 0.0
-    }
-
     return (
         <div>
             <div>
@@ -61,16 +51,11 @@ function Mainpage(props:Props) {
                 <button onClick={getLocationsButtonHandler}>Get locations</button>
             </div>
             <div>
-                <AddLocationPopUp
-                    postNewLocation={props.postNewLocation}
-                    setLocations={props.setLocations}/>
-            </div>
-            <div>
                 <EditLocationPopUp
                     onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
-                    initialValues={initialValues}
+                    initialValues={props.initialValues}
                     setLocations={props.setLocations}
-                    submitButtonName={"Add Location 2.0"}
+                    submitButtonName={"Add Location"}
                 />
 
             </div>

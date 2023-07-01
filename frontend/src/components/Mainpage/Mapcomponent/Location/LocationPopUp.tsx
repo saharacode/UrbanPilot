@@ -2,7 +2,7 @@ import React, {Dispatch, SetStateAction} from 'react';
 import {Popup} from "react-leaflet";
 import {LocationInfo} from "../../../../model/LocationInfo";
 import axios from "axios";
-import EditLocationPopUp from "./EditLocationPopUp";
+import EditLocationPopUp from "../../../EditLocationPopUp/EditLocationPopUp";
 
 type Props = {
     locationDetails:LocationInfo;
