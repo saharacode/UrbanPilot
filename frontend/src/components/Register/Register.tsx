@@ -46,7 +46,7 @@ function Register(props:Props) {
         axios.post("/user/register",values)
             .then(() => nav("/login"))
             .catch((error) => {
-                if(error.response && error.response.status === 401){
+                if(error.response && error.response.status === 409){
                     setUsernameGiven(true);
                     console.error(usernameGivenErrorMessage);
                 } else {
