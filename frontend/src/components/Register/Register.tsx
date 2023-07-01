@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import './Register.css';
 import {useNavigate} from "react-router-dom";
 import {User} from "../../model/User";
@@ -12,6 +12,8 @@ type Props = {
 
 function Register(props:Props) {
     const nav = useNavigate();
+    const usernameGivenErrorMessage = "Username is already given";
+    const [usernameGiven, setUsernameGiven] = useState(false)
 
     const initialValues = {
         username: "",
@@ -42,8 +44,17 @@ function Register(props:Props) {
 
     function registerInputHandler(values:User) {
         axios.post("/user/register",values)
-            .then(() => nav("/login"));
+            .then(() => nav("/login"))
+            .catch((error) => {
+                if(error.response && error.response.status === 401){
+                    setUsernameGiven(true);
+                    console.error(usernameGivenErrorMessage);
+                } else {
+                    console.error(error);
+                }
+            });
         props.setUserExists(true);
+        setUsernameGiven(false);
     }
 
     function goToLoginButtonHandler() {
@@ -54,7 +65,7 @@ function Register(props:Props) {
         <div>
             <h1>Register</h1>
             <h4>Please create a new account:</h4>
-
+            {usernameGiven ? <h5>{usernameGivenErrorMessage}</h5> : <></>}
             <div className="registerFormContainer">
                 <Formik
                     initialValues={initialValues}
