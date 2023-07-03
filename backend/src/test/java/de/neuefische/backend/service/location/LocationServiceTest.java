@@ -152,4 +152,41 @@ class LocationServiceTest {
         verify(mongoUserRepo).findMongoUserByUsername(testUsername);
         verify(locationCollectionRepo).findUserLocationCollectionById(testLocationCollectionId);
     }
+
+    @DirtiesContext
+    @Test
+    void editLocation_returnAddedLocation(){
+        //given
+        String testUsername = "testuser";
+        String testLocationCollectionId = "testLocationCollectionId";
+        MongoUser testMongoUser = MongoUser.builder()
+                .username(testUsername)
+                .locationCollectionId(testLocationCollectionId)
+                .build();
+        when(mongoUserRepo.findMongoUserByUsername(testUsername)).thenReturn(Optional.ofNullable(testMongoUser));
+
+        String testLocationId = "testLocationId";
+        Location oldLocation = Location.builder()
+                .locationName("oldLocationName")
+                .locationId(testLocationId)
+                .build();
+        Map<String, Location> testUserLocationMap = new HashMap<>();
+        testUserLocationMap.put(testLocationId,oldLocation);
+        UserLocationCollection testUserLocationCollection = UserLocationCollection.builder()
+                .id(testLocationCollectionId)
+                .userLocationMap(testUserLocationMap)
+                .build();
+        when(locationCollectionRepo.findUserLocationCollectionById(testLocationCollectionId)).thenReturn(Optional.ofNullable(testUserLocationCollection));
+
+        Location newLocation = Location.builder()
+                .locationName("newLocationName")
+                .locationId(oldLocation.getLocationId())
+                .build();
+
+        //when/then
+        Location actualLocation = locationService.editLocation(testUsername,newLocation);
+        assertEquals(newLocation,actualLocation);
+        verify(mongoUserRepo).findMongoUserByUsername(testUsername);
+        verify(locationCollectionRepo).findUserLocationCollectionById(testLocationCollectionId);
+    }
 }

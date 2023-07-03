@@ -12,8 +12,8 @@ export default function UseUserDetails() {
     };
     const [userDetails, setUserDetails] = useState<User>(emptyUser);
 
-    function getUserDetails(username:string){
-        return axios.get(`/user/details/${username}`)
+    function getUserDetails(){
+        return axios.get(`/user/details`)
             .then(response => {
                 setUserDetails(response.data)
             });

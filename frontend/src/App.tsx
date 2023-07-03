@@ -44,8 +44,7 @@ function App() {
                                                            setUserDetails={setUserDetails} emptyUser={emptyUser}
                                                            setLocations={setLocations}
                                                            postNewLocation={postNewLocation}/>}/>
-                <Route path="/profile" element={<Profilepage user={user}
-                                                             userDetails={userDetails}/>}/>
+                <Route path="/profile" element={<Profilepage userDetails={userDetails}/>}/>
             </Route>
         </Routes>
 

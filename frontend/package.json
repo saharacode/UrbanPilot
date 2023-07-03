@@ -7,12 +7,13 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
+    "@types/leaflet": "^1.9.3",
     "@types/node": "^16.18.34",
     "@types/react": "^18.2.9",
     "@types/react-dom": "^18.2.4",
-    "@types/leaflet": "^1.9.3",
     "@types/react-leaflet": "^3.0.0",
     "axios": "^1.4.0",
+    "formik": "^2.4.2",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -47,7 +48,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8080",
-  "devDependencies": {
-  }
+  "proxy": "http://localhost:8080"
 }

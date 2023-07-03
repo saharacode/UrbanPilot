@@ -1,11 +1,9 @@
 import React, {Dispatch, FormEvent, SetStateAction, useState} from 'react';
 import Popup from 'reactjs-popup';
-import './Popup.css';
 import {LocationInfo} from "../../../model/LocationInfo";
 
 type Props = {
-    postNewLocation: (username: string, newLocation: LocationInfo, setLocations: React.Dispatch<React.SetStateAction<LocationInfo[]>>) => Promise<void>;
-    user?: string;
+    postNewLocation: (newLocation: LocationInfo, setLocations: React.Dispatch<React.SetStateAction<LocationInfo[]>>) => Promise<void>;
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
 }
 
@@ -30,10 +28,8 @@ function AddLocationPopUp(props:Props) {
             locationType: locationType
         };
 
-        if (props.user !== undefined) {
-            // eslint-disable-next-line
-            props.postNewLocation(props.user, newLocation, props.setLocations);
-        }
+        // eslint-disable-next-line
+        props.postNewLocation(newLocation, props.setLocations);
     }
 
     return (

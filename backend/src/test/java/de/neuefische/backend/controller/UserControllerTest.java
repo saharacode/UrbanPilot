@@ -105,7 +105,7 @@ class UserControllerTest {
                         .with(csrf()))
                 .andExpect(status().isCreated());
 
-        mvc.perform(MockMvcRequestBuilders.get("/user/details/testuser")
+        mvc.perform(MockMvcRequestBuilders.get("/user/details")
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""

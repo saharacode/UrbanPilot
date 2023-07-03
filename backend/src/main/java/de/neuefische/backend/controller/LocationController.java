@@ -4,6 +4,7 @@ import de.neuefische.backend.model.location.ImportLocationDTO;
 import de.neuefische.backend.model.location.Location;
 import de.neuefische.backend.service.location.LocationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,18 +15,23 @@ import java.util.List;
 public class LocationController {
     private final LocationService locationService;
 
-    @GetMapping("/all/{username}")
-    public List<Location> getAllLocationsForUser(@PathVariable String username){
-        return locationService.getAllLocationsForUser(username);
+    @GetMapping("/all")
+    public List<Location> getAllLocationsForUser(){
+        return locationService.getAllLocationsForUser(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
-    @PostMapping("/add/{username}")
-    public Location addLocation(@PathVariable String username, @RequestBody ImportLocationDTO newLocationWithoutId){
-        return locationService.addLocation(username, newLocationWithoutId);
+    @PostMapping("/add")
+    public Location addLocation(@RequestBody ImportLocationDTO newLocationWithoutId){
+        return locationService.addLocation(SecurityContextHolder.getContext().getAuthentication().getName(), newLocationWithoutId);
     }
 
-    @DeleteMapping("/delete/{username}/{locationId}")
-    public String deleteLocation(@PathVariable String username, @PathVariable String locationId){
-        return locationService.deleteLocation(username,locationId);
+    @DeleteMapping("/delete/{locationId}")
+    public String deleteLocation(@PathVariable String locationId){
+        return locationService.deleteLocation(SecurityContextHolder.getContext().getAuthentication().getName(),locationId);
+    }
+
+    @PutMapping("/edit")
+    public Location editLocation(@RequestBody Location editedLocation){
+        return locationService.editLocation(SecurityContextHolder.getContext().getAuthentication().getName(), editedLocation);
     }
 }

@@ -7,15 +7,15 @@ import AddLocationPopUp from "./AddLocationPopUp/AddLocationPopUp";
 
 type Props = {
     postLogout: () => Promise<void>;
-    getUserDetails: (username:string) => Promise<void>;
+    getUserDetails: () => Promise<void>;
     user?: string;
     setUser: Dispatch<SetStateAction<string | undefined>>;
     locations: LocationInfo[];
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
-    getAllLocationsForUser: (username:string) => Promise<void>;
+    getAllLocationsForUser: () => Promise<void>;
     setUserDetails: Dispatch<SetStateAction<User>>;
     emptyUser: User;
-    postNewLocation: (username: string, newLocation: LocationInfo, setLocations: Dispatch<SetStateAction<LocationInfo[]>>) => Promise<void>;
+    postNewLocation: (newLocation: LocationInfo, setLocations: Dispatch<SetStateAction<LocationInfo[]>>) => Promise<void>;
 }
 
 function Mainpage(props:Props) {
@@ -31,19 +31,14 @@ function Mainpage(props:Props) {
     }
 
     function profileButtonHandler() {
-        if (props.user !== undefined){
-            // eslint-disable-next-line
-
-            props.getUserDetails(props.user);
-            nav("/profile");
-        }
+        // eslint-disable-next-line
+        props.getUserDetails();
+        nav("/profile");
     }
 
     function getLocationsButtonHandler() {
-        if (props.user !== undefined){
-            // eslint-disable-next-line
-            props.getAllLocationsForUser(props.user);
-        }
+        // eslint-disable-next-line
+        props.getAllLocationsForUser();
     }
 
     return (
@@ -57,12 +52,11 @@ function Mainpage(props:Props) {
             <div>
                 <AddLocationPopUp
                     postNewLocation={props.postNewLocation}
-                    user={props.user}
                     setLocations={props.setLocations}/>
             </div>
             <Mapcomponent locations={props.locations}
                           setLocations={props.setLocations}
-                          user={props.user}/>
+                          />
         </div>
     );
 }
