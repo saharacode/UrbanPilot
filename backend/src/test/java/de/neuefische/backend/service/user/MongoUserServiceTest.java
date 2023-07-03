@@ -1,5 +1,6 @@
 package de.neuefische.backend.service.user;
 
+import de.neuefische.backend.exceptions.UsernameAlreadyExistsException;
 import de.neuefische.backend.model.user.ImportMongoUserDTO;
 import de.neuefische.backend.model.user.MongoUser;
 import de.neuefische.backend.model.user.ReturnMongoUserDTO;
@@ -58,6 +59,22 @@ class MongoUserServiceTest {
         assertThrows(UsernameNotFoundException.class,() -> mongoUserService.loadUserByUsername(testUsername));
         verify(mongoUserRepo).findMongoUserByUsername(testUsername);
     }
+
+    @Test
+    void registerUser_throwUsernameAlreadyExistsException() {
+        // given
+        String testUsername = "existingUser";
+        ImportMongoUserDTO newUserWithoutId = ImportMongoUserDTO.builder()
+                .username(testUsername)
+                .build();
+
+        when(mongoUserRepo.findMongoUserByUsername(newUserWithoutId.getUsername())).thenReturn(Optional.of(mock(MongoUser.class)));
+
+        // when/then
+        assertThrows(UsernameAlreadyExistsException.class, () -> mongoUserService.registerUser(newUserWithoutId));
+        verify(mongoUserRepo).findMongoUserByUsername(newUserWithoutId.getUsername());
+    }
+
 
     @DirtiesContext
     @Test
