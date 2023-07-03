@@ -2,7 +2,7 @@ import React, {Dispatch, SetStateAction} from 'react';
 import {Popup} from "react-leaflet";
 import {LocationInfo} from "../../../../model/LocationInfo";
 import axios from "axios";
-import EditLocationPopUp from "./EditLocationPopUp";
+import EditLocationPopUp from "../../../EditLocationPopUp/EditLocationPopUp";
 
 type Props = {
     locationDetails:LocationInfo;
@@ -19,6 +19,29 @@ function LocationPopUp(props:Props) {
         });
     }
 
+    async function saveButtonHandler(values:LocationInfo) {
+        const response = await axios.put(`/locations/edit`,values);
+        props.setLocations((locations)=>{
+            return [...locations.map((location) =>{
+                if (location.locationId ===response.data.locationId){
+                    return response.data;
+                } else {
+                    return location;
+                }
+            })]
+        });
+    }
+
+    const initialValues:LocationInfo = {
+        locationId: props.locationDetails.locationId,
+        locationName: props.locationDetails.locationName,
+        locationDescription: props.locationDetails.locationDescription,
+        locationType: props.locationDetails.locationType,
+        locationCity: props.locationDetails.locationCity,
+        locationLatCoordinate: props.locationDetails.locationLatCoordinate,
+        locationLngCoordinate: props.locationDetails.locationLngCoordinate
+    }
+
     return (
         <div>
             <Popup>
@@ -26,8 +49,9 @@ function LocationPopUp(props:Props) {
                 <h5>Location Type: {props.locationDetails.locationType}</h5>
                 <h5>City: {props.locationDetails.locationCity}</h5>
                 <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
-                <EditLocationPopUp locationDetails={props.locationDetails}
-                                   setLocations={props.setLocations}
+                <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
+                                   initialValues={initialValues}
+                                   submitButtonName={"Edit Location"}
                                    />
                 <button onClick={deleteButtonHandler}>Delete</button>
             </Popup>

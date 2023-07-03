@@ -21,7 +21,7 @@ function App() {
     const {postRegistration} = useRegisterUser();
     const {getUserDetails, userDetails, setUserDetails, emptyUser} = useUserDetails();
     const {getAllLocationsForUser, locations, setLocations} = useLocations();
-    const {postNewLocation} = useAddLocation();
+    const {postNewLocation, initialValues} = useAddLocation();
 
     return (
     <div className="App">
@@ -43,11 +43,11 @@ function App() {
                                                            getAllLocationsForUser={getAllLocationsForUser}
                                                            setUserDetails={setUserDetails} emptyUser={emptyUser}
                                                            setLocations={setLocations}
-                                                           postNewLocation={postNewLocation}/>}/>
+                                                           postNewLocation={postNewLocation}
+                                                           initialValues={initialValues}/>}/>
                 <Route path="/profile" element={<Profilepage userDetails={userDetails}/>}/>
             </Route>
         </Routes>
-
     </div>
   );
 }
