@@ -48,7 +48,6 @@ function App() {
                 <Route path="/profile" element={<Profilepage userDetails={userDetails}/>}/>
             </Route>
         </Routes>
-
     </div>
   );
 }
