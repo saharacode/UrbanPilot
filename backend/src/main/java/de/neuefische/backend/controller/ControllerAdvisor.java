@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ControllerAdvisor {
     @ExceptionHandler(UsernameAlreadyExistsException.class)
     private ResponseEntity<Object> handleUsernameAlreadyExistsException(UsernameAlreadyExistsException exception){
-        return new ResponseEntity<Object>(exception.getMessage(), HttpStatus.CONFLICT);
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
     }
 
 }
