@@ -47,7 +47,7 @@ public class SecurityConfig {
                             ("/locations/**")).authenticated();
                     auth.requestMatchers(
                             ("/")).permitAll();
-                    auth.anyRequest().authenticated();
+                    auth.anyRequest().permitAll();
                 })
                 .build();
     }
