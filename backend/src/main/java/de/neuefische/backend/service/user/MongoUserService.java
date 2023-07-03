@@ -1,5 +1,6 @@
 package de.neuefische.backend.service.user;
 
+import de.neuefische.backend.exceptions.UsernameAlreadyExistsException;
 import de.neuefische.backend.model.user.ImportMongoUserDTO;
 import de.neuefische.backend.model.user.MongoUser;
 import de.neuefische.backend.model.user.ReturnMongoUserDTO;
@@ -32,15 +33,21 @@ public class MongoUserService implements UserDetailsService {
     }
 
     public ReturnMongoUserDTO registerUser(ImportMongoUserDTO newUserWithoutId) {
-        String newUUID = generateUUIDService.generateUUID();
-        String hashedPassword = generateEncodedPasswordService.generateEncodedPassword(newUserWithoutId);
-        String cityCollectionId = generateUserCityCollectionService.generateUserCityCollection(newUserWithoutId);
-        String locationCollectionId = generateUserLocationCollectionService.generateUserLocationCollection();
-        String friendCollectionId = generateUserFriendCollectionService.generateUserFriendCollection();
+        boolean usernameAlreadyExists = mongoUserRepo.findMongoUserByUsername(newUserWithoutId.getUsername()).isPresent();
 
-        MongoUser newUser = new MongoUser(newUUID,newUserWithoutId.getUsername(), hashedPassword, newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity(), cityCollectionId, locationCollectionId, friendCollectionId);
-        mongoUserRepo.save(newUser);
-        return new ReturnMongoUserDTO(newUserWithoutId.getUsername(), newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity());
+        if (usernameAlreadyExists){
+            throw new UsernameAlreadyExistsException("Username already exists.");
+        } else {
+            String newUUID = generateUUIDService.generateUUID();
+            String hashedPassword = generateEncodedPasswordService.generateEncodedPassword(newUserWithoutId);
+            String cityCollectionId = generateUserCityCollectionService.generateUserCityCollection(newUserWithoutId);
+            String locationCollectionId = generateUserLocationCollectionService.generateUserLocationCollection();
+            String friendCollectionId = generateUserFriendCollectionService.generateUserFriendCollection();
+
+            MongoUser newUser = new MongoUser(newUUID,newUserWithoutId.getUsername(), hashedPassword, newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity(), cityCollectionId, locationCollectionId, friendCollectionId);
+            mongoUserRepo.save(newUser);
+            return new ReturnMongoUserDTO(newUserWithoutId.getUsername(), newUserWithoutId.getFullname(), newUserWithoutId.getEmail(), newUserWithoutId.getHomecity());
+        }
     }
 
 

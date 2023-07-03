@@ -7,7 +7,6 @@ import useUser from "./hooks/useUser";
 import useAddLocation from "./hooks/useAddLocation";
 import useUserDetails from "./hooks/useUserDetails";
 import useUserLogout from "./hooks/useUserLogout";
-import useRegisterUser from "./hooks/useRegisterUser";
 import useLocations from "./hooks/useLocations";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import LandingPage from "./components/LandingPage/LandingPage";
@@ -18,7 +17,6 @@ import Header from "./components/Header/Header";
 function App() {
     const {postLogin, user, setUser, userExists, setUserExists, errorMessage} = useUser();
     const {postLogout} = useUserLogout(); // confirmation with toastify open
-    const {postRegistration} = useRegisterUser();
     const {getUserDetails, userDetails, setUserDetails, emptyUser} = useUserDetails();
     const {getAllLocationsForUser, locations, setLocations} = useLocations();
     const {postNewLocation, initialValues} = useAddLocation();
@@ -32,8 +30,7 @@ function App() {
             <Route path="/login" element={<Login postLogin={postLogin}
                                                  userExists={userExists}
                                                  errormessage={errorMessage}/>}/>
-            <Route path="/register" element={<Register postRegistration={postRegistration}
-                                                       setUserExists={setUserExists}/>}/>
+            <Route path="/register" element={<Register setUserExists={setUserExists}/>}/>
             <Route element={<ProtectedRoutes user={user}/>}>
                 <Route path="/mainpage" element={<Mainpage postLogout={postLogout}
                                                            getUserDetails={getUserDetails}

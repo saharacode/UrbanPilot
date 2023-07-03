@@ -86,6 +86,51 @@ class UserControllerTest {
 
     @Test
     @DirtiesContext
+    void registerUser_thenReturnStatus409() throws Exception {
+        ImportMongoUserDTO firstNewUserWithoutId = ImportMongoUserDTO.builder()
+                .username("testuser")
+                .fullname("testuser")
+                .password("testpassword")
+                .email("test@mail.de")
+                .homecity("Berlin")
+                .build();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonRequestBodyFirstUser = objectMapper.writeValueAsString(firstNewUserWithoutId);
+
+        mvc.perform(MockMvcRequestBuilders.post("/user/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequestBodyFirstUser)
+                        .with(csrf()))
+                .andExpect(status().isCreated())
+                .andExpect(content().json("""
+                    {
+                        "username":"testuser",
+                        "fullname":"testuser",
+                        "email":"test@mail.de",
+                        "homecity":"Berlin"
+                    }
+                """));
+
+        ImportMongoUserDTO secondNewUserWithoutId = ImportMongoUserDTO.builder()
+                .username("testuser")
+                .fullname("testuser")
+                .password("testpassword")
+                .email("test@mail.de")
+                .homecity("Berlin")
+                .build();
+
+        String jsonRequestBodySecondUser = objectMapper.writeValueAsString(secondNewUserWithoutId);
+
+        mvc.perform(MockMvcRequestBuilders.post("/user/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequestBodySecondUser)
+                        .with(csrf()))
+                .andExpect(status().isConflict());
+    }
+
+    @Test
+    @DirtiesContext
     @WithMockUser(username = "testuser", password = "testpassword")
     void getProfileDetails_thenReturnStatus200_andProfileDetailsAsDTO() throws Exception {
         ImportMongoUserDTO newUserWithoutId = ImportMongoUserDTO.builder()
