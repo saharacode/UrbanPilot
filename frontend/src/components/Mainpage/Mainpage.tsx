@@ -4,6 +4,8 @@ import Mapcomponent from "./Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
 import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
+import Header from "../Header/Header";
+import './Mainpage.css';
 
 type Props = {
     postLogout: () => Promise<void>;
@@ -44,24 +46,28 @@ function Mainpage(props:Props) {
 
     return (
         <div>
-            <div>
-                <h2>Welcome to the mainpage</h2>
-                <button onClick={profileButtonHandler}>Profile</button>
-                <button onClick={logoutButtonHandler}>Logout</button>
-                <button onClick={getLocationsButtonHandler}>Get locations</button>
-            </div>
-            <div>
-                <EditLocationPopUp
-                    onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
-                    initialValues={props.initialValues}
-                    setLocations={props.setLocations}
-                    submitButtonName={"Add Location"}
-                />
+            <Header></Header>
+            <div className="mainpage-content">
+                <div>
+                    <h2>Welcome to the mainpage</h2>
+                    <button onClick={profileButtonHandler}>Profile</button>
+                    <button onClick={logoutButtonHandler}>Logout</button>
+                    <button onClick={getLocationsButtonHandler}>Get locations</button>
+                </div>
+                <div>
+                    <EditLocationPopUp
+                        onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
+                        initialValues={props.initialValues}
+                        setLocations={props.setLocations}
+                        submitButtonName={"Add Location"}
+                    />
 
+                </div>
+                <Mapcomponent locations={props.locations}
+                              setLocations={props.setLocations}
+                />
             </div>
-            <Mapcomponent locations={props.locations}
-                          setLocations={props.setLocations}
-                          />
+
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {User} from "../../model/User";
+import Header from "../Header/Header";
 
 type Props = {
     userDetails: User;
@@ -15,6 +16,7 @@ function Profilepage(props:Props) {
 
     return (
         <div>
+            <Header></Header>
             <div>
                 <h2>Profile</h2>
                 <h3>Hello {props.userDetails.username}</h3>
