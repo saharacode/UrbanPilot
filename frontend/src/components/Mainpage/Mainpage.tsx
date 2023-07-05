@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {Dispatch, SetStateAction, useEffect} from 'react';
 import Mapcomponent from "./Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
@@ -22,12 +22,18 @@ type Props = {
 }
 
 function Mainpage(props:Props) {
+    useEffect(loadUserInformation,[]);
+
+    function loadUserInformation() {
+        // eslint-disable-next-line
+        props.getUserDetails();
+    }
+
     return (
         <div className="general-page-frame">
             <Header
                 userDetails={props.userDetails}
                 postLogout={props.postLogout}
-                getUserDetails={props.getUserDetails}
                 setUser={props.setUser}
                 setUserDetails={props.setUserDetails}
                 emptyUser={props.emptyUser}

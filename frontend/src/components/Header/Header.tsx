@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useState} from 'react';
+import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
 import ProfileIcon from "../../images/dropdown-icons/profile.png"
 import LogoutIcon from "../../images/dropdown-icons/logout.png"
@@ -10,7 +10,6 @@ import {useNavigate} from "react-router-dom";
 type Props ={
     userDetails: User;
     postLogout: () => Promise<void>;
-    getUserDetails: () => Promise<void>;
     setUser: Dispatch<SetStateAction<string | undefined>>;
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
     setUserDetails: Dispatch<SetStateAction<User>>;
@@ -34,18 +33,11 @@ function Header(props:Props) {
         nav("/");
     }
 
-    function profileButtonHandler() {
-        // eslint-disable-next-line
-        props.getUserDetails();
-        //nav("/profile");
-    }
-
     return (
         <div>
             <nav className="nav-header">
                 <img className="logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
                 <button onClick={logoutButtonHandler}>Logout</button>
-                <button onClick={profileButtonHandler}>Profile</button>
                 <h5 className="dropdown-icon" onClick={toggleProfileDropdown}>Menu</h5>
 
                 <div className={`dropdown-wrap ${isProfileDropdownOpen ? "open-menu" : ""}`} id="profileDropdown">
