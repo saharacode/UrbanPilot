@@ -19,12 +19,12 @@ function Footer(props:Props) {
     return (
         <div>
             <nav className="nav-footer">
-                <button onClick={getLocationsButtonHandler}>Get locations</button>
+                <button className="footer-btn" onClick={getLocationsButtonHandler}>{"Get locations"}</button>
                 <EditLocationPopUp
                     onSubmitHandler={props.onSubmitHandler}
                     initialValues={props.initialValues}
                     setLocations={props.setLocations}
-                    submitButtonName={"Add Location"}
+                    submitButtonName={"Add location"}
                 />
             </nav>
         </div>

@@ -1,25 +1,8 @@
-.nav-footer{
-    background: #2D7DD2;
-    width: 100%;
-    padding: 10px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.addLocation-btn{
-    height: 90%;
-    border-style: solid;
-    border-radius: 50%;
-    padding: 10px;
-}
-
-.footer-btn {
+.delete-btn {
     padding: 15px 25px;
     border: unset;
     border-radius: 15px;
-    color: #212121;
+    color: #E03616;
     z-index: 1;
     background: #e8e8e8;
     position: relative;
@@ -31,7 +14,7 @@
     overflow: hidden;
 }
 
-.footer-btn::before {
+.delete-btn::before {
     content: "";
     position: absolute;
     top: 0;
@@ -39,17 +22,17 @@
     height: 100%;
     width: 0;
     border-radius: 15px;
-    background-color: #212121;
+    background-color: #E03616;
     z-index: -1;
     -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
     box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
     transition: all 250ms
 }
 
-.footer-btn:hover {
+.delete-btn:hover {
     color: #e8e8e8;
 }
 
-.footer-btn:hover::before {
+.delete-btn:hover::before {
     width: 100%;
 }
