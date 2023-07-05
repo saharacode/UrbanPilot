@@ -2,6 +2,7 @@ import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
 import ProfileIcon from "../../images/dropdown-icons/profile.png"
 import LogoutIcon from "../../images/dropdown-icons/logout.png"
+import MenuIcon from "../../images/dropdown-icons/menu-bar-blue.png"
 import './Header.css';
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
@@ -37,8 +38,7 @@ function Header(props:Props) {
         <div>
             <nav className="nav-header">
                 <img className="logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
-                <h5 className="dropdown-icon" onClick={toggleProfileDropdown}>Menu</h5>
-
+                <img className="menu-icon" onClick={toggleProfileDropdown} src={MenuIcon} alt={"Menu"}/>
                 <div className={`dropdown-wrap ${isProfileDropdownOpen ? "open-menu" : ""}`} id="profileDropdown">
                     <div className="dropdown">
                         <div className="userinfo">
@@ -50,7 +50,7 @@ function Header(props:Props) {
                         <hr></hr>
                         <a href="#" className="dropdown-link">
                             <img src={ProfileIcon} alt={"Profile Icon"}/>
-                            <p>Profile</p>
+                            <p>Edit User</p>
                         </a>
                         <a href="#" className="dropdown-link" onClick={logoutButtonHandler}>
                             <img src={LogoutIcon} alt={"Logout Icon"}/>
