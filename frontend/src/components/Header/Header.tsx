@@ -37,7 +37,6 @@ function Header(props:Props) {
         <div>
             <nav className="nav-header">
                 <img className="logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
-                <button onClick={logoutButtonHandler}>Logout</button>
                 <h5 className="dropdown-icon" onClick={toggleProfileDropdown}>Menu</h5>
 
                 <div className={`dropdown-wrap ${isProfileDropdownOpen ? "open-menu" : ""}`} id="profileDropdown">
@@ -53,7 +52,7 @@ function Header(props:Props) {
                             <img src={ProfileIcon} alt={"Profile Icon"}/>
                             <p>Profile</p>
                         </a>
-                        <a href="#" className="dropdown-link">
+                        <a href="#" className="dropdown-link" onClick={logoutButtonHandler}>
                             <img src={LogoutIcon} alt={"Logout Icon"}/>
                             <p>Logout</p>
                         </a>
