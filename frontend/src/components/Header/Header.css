@@ -23,7 +23,7 @@
 }
 
 .menu-icon:hover {
-    transform: rotateZ(2deg);
+    transform: rotateZ(4deg);
 }
 
 .dropdown-wrap{
@@ -44,15 +44,11 @@
 }
 
 .dropdown{
-    background: #74b9ff;
+    background: #2D7DD2;
     padding: 10px;
     margin: 10px;
     border-style: solid;
     border-color: #F3EFF5;
-}
-
-.userinfo{
-
 }
 
 .dropdown hr {
@@ -76,6 +72,7 @@
 
 .dropdown-link p {
     width: 100%;
+    color: #F3EFF5;
 }
 
 .dropdown-link img {
@@ -88,4 +85,12 @@
 
 .dropdown-link:hover p {
     font-weight: bold;
+}
+
+.dropdown-link:hover img {
+    transform: rotateZ(4deg);
+}
+
+.userinfo{
+    color: #F3EFF5;
 }
