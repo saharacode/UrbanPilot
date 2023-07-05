@@ -16,7 +16,6 @@ function Profilepage(props:Props) {
 
     return (
         <div>
-            <Header></Header>
             <div>
                 <h2>Profile</h2>
                 <h3>Hello {props.userDetails.username}</h3>

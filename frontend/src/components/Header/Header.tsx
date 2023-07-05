@@ -13,7 +13,7 @@ function Header() {
 
     return (
         <div>
-            <nav>
+            <nav className="nav-header">
                 <img className="logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
                 <h5 className="dropdown-icon" onClick={toggleProfileDropdown}>Menu</h5>
 

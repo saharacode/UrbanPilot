@@ -6,6 +6,7 @@ import {User} from "../../model/User";
 import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
 import Header from "../Header/Header";
 import './Mainpage.css';
+import Footer from "../Footer/Footer";
 
 type Props = {
     postLogout: () => Promise<void>;
@@ -45,11 +46,10 @@ function Mainpage(props:Props) {
     }
 
     return (
-        <div>
+        <div className="general-page-frame">
             <Header></Header>
             <div className="mainpage-content">
                 <div>
-                    <h2>Welcome to the mainpage</h2>
                     <button onClick={profileButtonHandler}>Profile</button>
                     <button onClick={logoutButtonHandler}>Logout</button>
                     <button onClick={getLocationsButtonHandler}>Get locations</button>
@@ -67,7 +67,7 @@ function Mainpage(props:Props) {
                               setLocations={props.setLocations}
                 />
             </div>
-
+            <Footer></Footer>
         </div>
     );
 }
