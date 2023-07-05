@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import Mapcomponent from "./Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
-import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
 import Header from "../Header/Header";
 import './Mainpage.css';
 import Footer from "../Footer/Footer";
@@ -40,11 +39,6 @@ function Mainpage(props:Props) {
         nav("/profile");
     }
 
-    function getLocationsButtonHandler() {
-        // eslint-disable-next-line
-        props.getAllLocationsForUser();
-    }
-
     return (
         <div className="general-page-frame">
             <Header></Header>
@@ -52,22 +46,17 @@ function Mainpage(props:Props) {
                 <div>
                     <button onClick={profileButtonHandler}>Profile</button>
                     <button onClick={logoutButtonHandler}>Logout</button>
-                    <button onClick={getLocationsButtonHandler}>Get locations</button>
-                </div>
-                <div>
-                    <EditLocationPopUp
-                        onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
-                        initialValues={props.initialValues}
-                        setLocations={props.setLocations}
-                        submitButtonName={"Add Location"}
-                    />
-
                 </div>
                 <Mapcomponent locations={props.locations}
                               setLocations={props.setLocations}
                 />
             </div>
-            <Footer></Footer>
+            <Footer
+                onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
+                initialValues={props.initialValues}
+                setLocations={props.setLocations}
+                getAllLocationsForUser={props.getAllLocationsForUser}
+            />
         </div>
     );
 }
