@@ -1,5 +1,4 @@
 import React, {Dispatch, SetStateAction} from 'react';
-import {useNavigate} from "react-router-dom";
 import Mapcomponent from "./Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
@@ -8,6 +7,7 @@ import './Mainpage.css';
 import Footer from "../Footer/Footer";
 
 type Props = {
+    userDetails: User;
     postLogout: () => Promise<void>;
     getUserDetails: () => Promise<void>;
     user?: string;
@@ -22,32 +22,18 @@ type Props = {
 }
 
 function Mainpage(props:Props) {
-    const nav = useNavigate();
-
-    function logoutButtonHandler() {
-        // eslint-disable-next-line
-        props.postLogout();
-        props.setUserDetails(props.emptyUser);
-        props.setUser(undefined);
-        props.setLocations([]);
-        nav("/");
-    }
-
-    function profileButtonHandler() {
-        // eslint-disable-next-line
-        props.getUserDetails();
-        nav("/profile");
-    }
-
     return (
         <div className="general-page-frame">
             <Header
-                logoutButtonHandler={logoutButtonHandler}
+                userDetails={props.userDetails}
+                postLogout={props.postLogout}
+                getUserDetails={props.getUserDetails}
+                setUser={props.setUser}
+                setUserDetails={props.setUserDetails}
+                emptyUser={props.emptyUser}
+                setLocations={props.setLocations}
             />
             <div className="mainpage-content">
-                <div>
-                    <button onClick={profileButtonHandler}>Profile</button>
-                </div>
                 <Mapcomponent locations={props.locations}
                               setLocations={props.setLocations}
                 />

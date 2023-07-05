@@ -11,7 +11,6 @@ import useLocations from "./hooks/useLocations";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Register from "./components/Register/Register";
-import Profilepage from "./components/Profilepage/Profilepage";
 
 function App() {
     const {postLogin, user, setUser, userExists, setUserExists, errorMessage} = useUser();
@@ -30,7 +29,8 @@ function App() {
                                                  errormessage={errorMessage}/>}/>
             <Route path="/register" element={<Register setUserExists={setUserExists}/>}/>
             <Route element={<ProtectedRoutes user={user}/>}>
-                <Route path="/mainpage" element={<Mainpage postLogout={postLogout}
+                <Route path="/mainpage" element={<Mainpage userDetails={userDetails}
+                                                           postLogout={postLogout}
                                                            getUserDetails={getUserDetails}
                                                            user={user}
                                                            setUser={setUser}
@@ -40,7 +40,6 @@ function App() {
                                                            setLocations={setLocations}
                                                            postNewLocation={postNewLocation}
                                                            initialValues={initialValues}/>}/>
-                <Route path="/profile" element={<Profilepage userDetails={userDetails}/>}/>
             </Route>
         </Routes>
     </div>
