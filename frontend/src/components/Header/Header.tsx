@@ -4,7 +4,11 @@ import ProfileIcon from "../../images/dropdown-icons/profile.png"
 import LogoutIcon from "../../images/dropdown-icons/logout.png"
 import './Header.css';
 
-function Header() {
+type Props ={
+    logoutButtonHandler: () => void;
+}
+
+function Header(props:Props) {
     const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
     function toggleProfileDropdown() {
@@ -15,12 +19,14 @@ function Header() {
         <div>
             <nav className="nav-header">
                 <img className="logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
+                <button onClick={props.logoutButtonHandler}>Logout</button>
                 <h5 className="dropdown-icon" onClick={toggleProfileDropdown}>Menu</h5>
 
                 <div className={`dropdown-wrap ${isProfileDropdownOpen ? "open-menu" : ""}`} id="profileDropdown">
                     <div className="dropdown">
                         <div className="userinfo">
                             <h4>Johann Dallmann</h4>
+                            <h5>test</h5>
                         </div>
                         <hr></hr>
                         <a href="#" className="dropdown-link">

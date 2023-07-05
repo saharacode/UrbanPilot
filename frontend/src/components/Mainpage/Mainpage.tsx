@@ -41,11 +41,12 @@ function Mainpage(props:Props) {
 
     return (
         <div className="general-page-frame">
-            <Header></Header>
+            <Header
+                logoutButtonHandler={logoutButtonHandler}
+            />
             <div className="mainpage-content">
                 <div>
                     <button onClick={profileButtonHandler}>Profile</button>
-                    <button onClick={logoutButtonHandler}>Logout</button>
                 </div>
                 <Mapcomponent locations={props.locations}
                               setLocations={props.setLocations}
