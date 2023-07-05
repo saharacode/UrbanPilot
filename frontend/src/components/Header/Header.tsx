@@ -1,24 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
 import ProfileIcon from "../../images/dropdown-icons/profile.png"
 import LogoutIcon from "../../images/dropdown-icons/logout.png"
 import './Header.css';
 
 function Header() {
-    let profileDropdown = document.getElementById("profileDropdown");
-    function openProfileDropdown() {
-        if(profileDropdown !== null){
-            profileDropdown.classList.toggle("open-menu");
-        }
+    const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
+
+    function toggleProfileDropdown() {
+        setProfileDropdownOpen((prevState) => !prevState);
     }
 
     return (
         <div>
             <nav>
                 <img className="logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
-                <h5 className="dropdown-icon" onClick={openProfileDropdown}>Menu</h5>
+                <h5 className="dropdown-icon" onClick={toggleProfileDropdown}>Menu</h5>
 
-                <div className="dropdown-wrap" id="profileDropdown">
+                <div className={`dropdown-wrap ${isProfileDropdownOpen ? "open-menu" : ""}`} id="profileDropdown">
                     <div className="dropdown">
                         <div className="userinfo">
                             <h4>Johann Dallmann</h4>
