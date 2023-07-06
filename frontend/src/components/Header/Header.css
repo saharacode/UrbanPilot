@@ -5,16 +5,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
+    position: fixed;
+    z-index: 1;
 }
 
 .logo{
     width: 70px;
     height: 70px;
-}
-
-.logo:hover{
-    transform: translateX(2px);
 }
 
 .menu-icon{
