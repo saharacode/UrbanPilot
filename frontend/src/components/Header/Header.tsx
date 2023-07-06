@@ -52,7 +52,7 @@ function Header(props:Props) {
             <div className={`dropdown-wrap ${isProfileDropdownOpen ? "open-menu" : ""}`} id="profileDropdown">
                 <div className="dropdown">
                     <div className="userinfo">
-                        <h5>Hello {props.userDetails.username}!</h5>
+                        <h3>Hello {props.userDetails.username}!</h3>
                         <h6>Full name: {props.userDetails.fullname}</h6>
                         <h6>E-Mail: {props.userDetails.email}</h6>
                         <h6>Homecity: {props.userDetails.homecity}</h6>
