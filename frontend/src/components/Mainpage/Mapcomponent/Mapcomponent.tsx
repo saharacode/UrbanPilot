@@ -20,7 +20,6 @@ function Mapcomponent(props:Props) {
     })
 
     return (
-        <div>
             <MapContainer center={defaultCoordinates} zoom={13}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -37,7 +36,6 @@ function Mapcomponent(props:Props) {
                     </Marker>
                 })}
             </MapContainer>
-        </div>
     );
 }
 

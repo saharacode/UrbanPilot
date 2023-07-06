@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom";
 
 type Props ={
     userDetails: User;
+    getUserDetails: () => Promise<void>;
     postLogout: () => Promise<void>;
     setUser: Dispatch<SetStateAction<string | undefined>>;
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
@@ -20,6 +21,14 @@ type Props ={
 function Header(props:Props) {
     const nav = useNavigate();
     const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(loadUserInformation,[]);
+
+    function loadUserInformation() {
+        // eslint-disable-next-line
+        props.getUserDetails();
+    }
 
     function toggleProfileDropdown() {
         setProfileDropdownOpen((prevState) => !prevState);

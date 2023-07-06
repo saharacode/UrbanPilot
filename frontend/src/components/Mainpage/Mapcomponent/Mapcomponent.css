@@ -9,5 +9,5 @@
 }
 
 .leaflet-container{
-    height: 70vh;
+    flex-grow: 1;
 }

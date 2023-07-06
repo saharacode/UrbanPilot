@@ -22,29 +22,21 @@ type Props = {
 }
 
 function Mainpage(props:Props) {
-    useEffect(loadUserInformation,[]);
-
-    function loadUserInformation() {
-        // eslint-disable-next-line
-        props.getUserDetails();
-    }
-
     return (
         <div className="general-page-frame">
             <Header
                 userDetails={props.userDetails}
+                getUserDetails={props.getUserDetails}
                 postLogout={props.postLogout}
                 setUser={props.setUser}
                 setUserDetails={props.setUserDetails}
                 emptyUser={props.emptyUser}
                 setLocations={props.setLocations}
             />
-            <div className="mainpage-content">
-                <Mapcomponent locations={props.locations}
-                              setLocations={props.setLocations}
-                />
-            </div>
-            <Footer
+            <Mapcomponent locations={props.locations}
+                          setLocations={props.setLocations}
+            />
+             <Footer
                 onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                 initialValues={props.initialValues}
                 setLocations={props.setLocations}
