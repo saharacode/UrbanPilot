@@ -13,17 +13,6 @@
     height: 70px;
 }
 
-.menu-icon{
-    width: 50px;
-    height: 50px;
-    color: #F3EFF5;
-    padding: 5px;
-}
-
-.menu-icon:hover {
-    transform: rotateZ(4deg);
-}
-
 .dropdown-wrap{
     position: fixed;
     top: 70px;
@@ -89,4 +78,14 @@
 
 .userinfo{
     color: #F3EFF5;
+}
+
+.menu-btn{
+    border: none;
+    padding: 10px;
+    background: transparent;
+}
+
+.menu-btn:hover {
+    transform: rotateZ(3deg);
 }

@@ -2,11 +2,11 @@ import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
 import ProfileIcon from "../../images/dropdown-icons/profile.png"
 import LogoutIcon from "../../images/dropdown-icons/logout.png"
-import MenuIcon from "../../images/dropdown-icons/menu-bar-blue.png"
 import './Header.css';
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
 import {useNavigate} from "react-router-dom";
+import {MenuIcon} from "../../icons/menu-icon";
 
 type Props ={
     userDetails: User;
@@ -46,7 +46,9 @@ function Header(props:Props) {
     return (
         <nav className="nav-header">
             <img className="logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
-            <img className="menu-icon" onClick={toggleProfileDropdown} src={MenuIcon} alt={"Menu"}/>
+            <button className="menu-btn" onClick={toggleProfileDropdown}>
+                <MenuIcon width={35} height={35} color={"white"}/>
+            </button>
             <div className={`dropdown-wrap ${isProfileDropdownOpen ? "open-menu" : ""}`} id="profileDropdown">
                 <div className="dropdown">
                     <div className="userinfo">
