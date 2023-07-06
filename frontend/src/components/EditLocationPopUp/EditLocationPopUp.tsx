@@ -28,7 +28,7 @@ function EditLocationPopUp(props:Props) {
     });
 
     return (
-        <Popup trigger={props.triggerButton}>
+        <Popup trigger={props.triggerButton} arrow={false}>
             <div className="popupStyle">
                 <h3>{props.submitButtonName}</h3>
                 <div className="registerFormContainer">
