@@ -5,7 +5,6 @@ import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
 import {useNavigate} from "react-router-dom";
 import {MenuIcon} from "../../icons/menu-icon";
-import {ProfileIcon} from "../../icons/profile-icon";
 import {LogoutIcon} from "../../icons/logout-icon";
 
 type Props ={
@@ -29,6 +28,7 @@ function Header(props:Props) {
     function loadUserInformation() {
         // eslint-disable-next-line
         props.getUserDetails();
+        // eslint-disable-next-line
         props.getAllLocationsForUser();
     }
 
@@ -60,14 +60,10 @@ function Header(props:Props) {
                         <h6>Homecity: {props.userDetails.homecity}</h6>
                     </div>
                     <hr></hr>
-                    <a href="#" className="dropdown-link">
-                        <ProfileIcon width={30} height={30} color={"white"}/>
-                        <p>Edit User</p>
-                    </a>
-                    <a href="#" className="dropdown-link" onClick={logoutButtonHandler}>
+                    <button className="menu-icon-btn" onClick={logoutButtonHandler}>
                         <LogoutIcon width={30} height={30} color={"white"}/>
                         <p>Logout</p>
-                    </a>
+                    </button>
                 </div>
             </div>
         </nav>
