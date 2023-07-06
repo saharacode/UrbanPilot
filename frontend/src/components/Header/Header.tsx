@@ -44,31 +44,29 @@ function Header(props:Props) {
     }
 
     return (
-        <div>
-            <nav className="nav-header">
-                <img className="logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
-                <img className="menu-icon" onClick={toggleProfileDropdown} src={MenuIcon} alt={"Menu"}/>
-                <div className={`dropdown-wrap ${isProfileDropdownOpen ? "open-menu" : ""}`} id="profileDropdown">
-                    <div className="dropdown">
-                        <div className="userinfo">
-                            <h5>Hello {props.userDetails.username}!</h5>
-                            <h6>Full name: {props.userDetails.fullname}</h6>
-                            <h6>E-Mail: {props.userDetails.email}</h6>
-                            <h6>Homecity: {props.userDetails.homecity}</h6>
-                        </div>
-                        <hr></hr>
-                        <a href="#" className="dropdown-link">
-                            <img src={ProfileIcon} alt={"Profile Icon"}/>
-                            <p>Edit User</p>
-                        </a>
-                        <a href="#" className="dropdown-link" onClick={logoutButtonHandler}>
-                            <img src={LogoutIcon} alt={"Logout Icon"}/>
-                            <p>Logout</p>
-                        </a>
+        <nav className="nav-header">
+            <img className="logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
+            <img className="menu-icon" onClick={toggleProfileDropdown} src={MenuIcon} alt={"Menu"}/>
+            <div className={`dropdown-wrap ${isProfileDropdownOpen ? "open-menu" : ""}`} id="profileDropdown">
+                <div className="dropdown">
+                    <div className="userinfo">
+                        <h5>Hello {props.userDetails.username}!</h5>
+                        <h6>Full name: {props.userDetails.fullname}</h6>
+                        <h6>E-Mail: {props.userDetails.email}</h6>
+                        <h6>Homecity: {props.userDetails.homecity}</h6>
                     </div>
+                    <hr></hr>
+                    <a href="#" className="dropdown-link">
+                        <img src={ProfileIcon} alt={"Profile Icon"}/>
+                        <p>Edit User</p>
+                    </a>
+                    <a href="#" className="dropdown-link" onClick={logoutButtonHandler}>
+                        <img src={LogoutIcon} alt={"Logout Icon"}/>
+                        <p>Logout</p>
+                    </a>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
     );
 }
 

@@ -44,19 +44,17 @@ function LocationPopUp(props:Props) {
     }
 
     return (
-        <div>
-            <Popup>
-                <h3>{props.locationDetails.locationName}</h3>
-                <h5>Location Type: {props.locationDetails.locationType}</h5>
-                <h5>City: {props.locationDetails.locationCity}</h5>
-                <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
-                <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
-                                   initialValues={initialValues}
-                                   submitButtonName={"Edit Location"}
-                                   />
-                <button onClick={deleteButtonHandler} className="delete-btn">Delete</button>
-            </Popup>
-        </div>
+        <Popup>
+            <h3>{props.locationDetails.locationName}</h3>
+            <h5>Location Type: {props.locationDetails.locationType}</h5>
+            <h5>City: {props.locationDetails.locationCity}</h5>
+            <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
+            <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
+                               initialValues={initialValues}
+                               submitButtonName={"Edit Location"}
+                               />
+            <button onClick={deleteButtonHandler} className="delete-btn">Delete</button>
+        </Popup>
     );
 }
 

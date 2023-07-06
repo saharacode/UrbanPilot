@@ -17,17 +17,15 @@ function Footer(props:Props) {
     }
 
     return (
-        <div>
-            <nav className="nav-footer">
-                <button className="footer-btn" onClick={getLocationsButtonHandler}>{"Get locations"}</button>
-                <EditLocationPopUp
-                    onSubmitHandler={props.onSubmitHandler}
-                    initialValues={props.initialValues}
-                    setLocations={props.setLocations}
-                    submitButtonName={"Add location"}
-                />
-            </nav>
-        </div>
+        <nav className="nav-footer">
+            <button className="footer-btn" onClick={getLocationsButtonHandler}>{"Get locations"}</button>
+            <EditLocationPopUp
+                onSubmitHandler={props.onSubmitHandler}
+                initialValues={props.initialValues}
+                setLocations={props.setLocations}
+                submitButtonName={"Add location"}
+            />
+        </nav>
     );
 }
 
