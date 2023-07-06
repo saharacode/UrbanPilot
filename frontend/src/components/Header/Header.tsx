@@ -1,12 +1,12 @@
 import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
-import ProfileIcon from "../../images/dropdown-icons/profile.png"
-import LogoutIcon from "../../images/dropdown-icons/logout.png"
 import './Header.css';
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
 import {useNavigate} from "react-router-dom";
 import {MenuIcon} from "../../icons/menu-icon";
+import {ProfileIcon} from "../../icons/profile-icon";
+import {LogoutIcon} from "../../icons/logout-icon";
 
 type Props ={
     userDetails: User;
@@ -59,11 +59,11 @@ function Header(props:Props) {
                     </div>
                     <hr></hr>
                     <a href="#" className="dropdown-link">
-                        <img src={ProfileIcon} alt={"Profile Icon"}/>
+                        <ProfileIcon width={30} height={30} color={"white"}/>
                         <p>Edit User</p>
                     </a>
                     <a href="#" className="dropdown-link" onClick={logoutButtonHandler}>
-                        <img src={LogoutIcon} alt={"Logout Icon"}/>
+                        <LogoutIcon width={30} height={30} color={"white"}/>
                         <p>Logout</p>
                     </a>
                 </div>
