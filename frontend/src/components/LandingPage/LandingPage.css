@@ -1,0 +1,21 @@
+.landingpage-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.landingpage-logo{
+    width: 200px;
+    height: 200px;
+}
+
+.continueToLogin-btn{
+    border: none;
+    padding: 10px;
+    background-color: white;
+}
+
+.continueToLogin-btn:hover{
+    transform: rotateZ(3deg);
+}
