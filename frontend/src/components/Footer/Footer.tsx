@@ -18,7 +18,6 @@ function Footer(props:Props) {
 
     return (
         <nav className="nav-footer">
-            <button className="footer-btn" onClick={getLocationsButtonHandler}>{"Get locations"}</button>
             <EditLocationPopUp
                 onSubmitHandler={props.onSubmitHandler}
                 initialValues={props.initialValues}

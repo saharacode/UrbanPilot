@@ -32,6 +32,7 @@ function Mainpage(props:Props) {
                 setUserDetails={props.setUserDetails}
                 emptyUser={props.emptyUser}
                 setLocations={props.setLocations}
+                getAllLocationsForUser={props.getAllLocationsForUser}
             />
             <Mapcomponent locations={props.locations}
                           setLocations={props.setLocations}

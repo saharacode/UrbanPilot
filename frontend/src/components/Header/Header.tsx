@@ -16,6 +16,7 @@ type Props ={
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
     setUserDetails: Dispatch<SetStateAction<User>>;
     emptyUser: User;
+    getAllLocationsForUser:() => Promise<void>;
 }
 
 function Header(props:Props) {
@@ -28,6 +29,7 @@ function Header(props:Props) {
     function loadUserInformation() {
         // eslint-disable-next-line
         props.getUserDetails();
+        props.getAllLocationsForUser();
     }
 
     function toggleProfileDropdown() {
