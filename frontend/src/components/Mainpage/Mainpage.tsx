@@ -41,7 +41,6 @@ function Mainpage(props:Props) {
                 onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                 initialValues={props.initialValues}
                 setLocations={props.setLocations}
-                getAllLocationsForUser={props.getAllLocationsForUser}
             />
         </div>
     );

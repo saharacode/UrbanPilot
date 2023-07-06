@@ -4,6 +4,8 @@ import {LocationInfo} from "../../../../model/LocationInfo";
 import axios from "axios";
 import EditLocationPopUp from "../../../EditLocationPopUp/EditLocationPopUp";
 import './LocationPopUp.css';
+import {EditLocationIcon} from "../../../../icons/editLocation-icon";
+import {DeleteLocationIcon} from "../../../../icons/deleteLocation-icon";
 
 type Props = {
     locationDetails:LocationInfo;
@@ -52,8 +54,13 @@ function LocationPopUp(props:Props) {
             <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
                                initialValues={initialValues}
                                submitButtonName={"Edit Location"}
+                               triggerButton={<button className={"icon-btn"}>
+                                   <EditLocationIcon width={30} height={30} color={"black"}/>
+                               </button>}
                                />
-            <button onClick={deleteButtonHandler} className="delete-btn">Delete</button>
+            <button onClick={deleteButtonHandler} className="icon-btn">
+                <DeleteLocationIcon width={30} height={30} color={"red"}/>
+            </button>
         </Popup>
     );
 }

@@ -2,20 +2,15 @@ import React, {Dispatch, SetStateAction} from 'react';
 import './Footer.css';
 import {LocationInfo} from "../../model/LocationInfo";
 import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
+import {AddLocationIcon} from "../../icons/addLocation-icon";
 
 type Props ={
     onSubmitHandler: (values:LocationInfo) => Promise<void>;
     initialValues: LocationInfo;
     setLocations?:Dispatch<SetStateAction<LocationInfo[]>>;
-    getAllLocationsForUser:() => Promise<void>;
 }
 
 function Footer(props:Props) {
-    function getLocationsButtonHandler() {
-        // eslint-disable-next-line
-        props.getAllLocationsForUser();
-    }
-
     return (
         <nav className="nav-footer">
             <EditLocationPopUp
@@ -23,6 +18,9 @@ function Footer(props:Props) {
                 initialValues={props.initialValues}
                 setLocations={props.setLocations}
                 submitButtonName={"Add location"}
+                triggerButton={<button className={"icon-btn"}>
+                    <AddLocationIcon width={30} height={30} color={"white"}/>
+                </button>}
             />
         </nav>
     );
