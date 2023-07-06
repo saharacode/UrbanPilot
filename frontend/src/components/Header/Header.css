@@ -1,7 +1,6 @@
 .nav-header{
-    background: #2D7DD2;
+    background: #2f3542c4;
     width: 100%;
-    padding: 10px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,9 +17,7 @@
     width: 50px;
     height: 50px;
     color: #F3EFF5;
-    background-color: #F3EFF5;
-    border-radius: 50%;
-    border-style: solid;
+    padding: 5px;
 }
 
 .menu-icon:hover {
@@ -45,11 +42,9 @@
 }
 
 .dropdown{
-    background: #2D7DD2;
+    background: #2f3542;
     padding: 10px;
     margin: 10px;
-    border-style: solid;
-    border-color: #F3EFF5;
 }
 
 .dropdown hr {
@@ -67,8 +62,8 @@
     color: #282c34;
     margin: 10px 0;
     padding: 6px;
-    border-style: solid;
-    border-color: #F3EFF5;
+    background-color: #57606f;
+    border-radius: 30px;
 }
 
 .dropdown-link p {
