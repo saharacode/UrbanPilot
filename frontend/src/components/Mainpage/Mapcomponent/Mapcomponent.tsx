@@ -20,24 +20,22 @@ function Mapcomponent(props:Props) {
     })
 
     return (
-        <div>
-            <MapContainer center={defaultCoordinates} zoom={13}>
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {props.locations.map(location =>{
-                    return <Marker
-                        key={location.locationId}
-                        position={{ lat: location.locationLatCoordinate, lng: location.locationLngCoordinate }}
-                        icon={customIcon}>
-                        <LocationPopUp locationDetails={location}
-                                       setLocations={props.setLocations}
-                                       />
-                    </Marker>
-                })}
-            </MapContainer>
-        </div>
+        <MapContainer center={defaultCoordinates} zoom={13}>
+            <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {props.locations.map(location =>{
+                return <Marker
+                    key={location.locationId}
+                    position={{ lat: location.locationLatCoordinate, lng: location.locationLngCoordinate }}
+                    icon={customIcon}>
+                    <LocationPopUp locationDetails={location}
+                                   setLocations={props.setLocations}
+                                   />
+                </Marker>
+            })}
+        </MapContainer>
     );
 }
 

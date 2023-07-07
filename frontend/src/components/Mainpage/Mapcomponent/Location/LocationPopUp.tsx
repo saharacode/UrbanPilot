@@ -3,6 +3,9 @@ import {Popup} from "react-leaflet";
 import {LocationInfo} from "../../../../model/LocationInfo";
 import axios from "axios";
 import EditLocationPopUp from "../../../EditLocationPopUp/EditLocationPopUp";
+import './LocationPopUp.css';
+import {EditLocationIcon} from "../../../../icons/editLocation-icon";
+import {DeleteLocationIcon} from "../../../../icons/deleteLocation-icon";
 
 type Props = {
     locationDetails:LocationInfo;
@@ -43,19 +46,22 @@ function LocationPopUp(props:Props) {
     }
 
     return (
-        <div>
-            <Popup>
-                <h3>{props.locationDetails.locationName}</h3>
-                <h5>Location Type: {props.locationDetails.locationType}</h5>
-                <h5>City: {props.locationDetails.locationCity}</h5>
-                <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
-                <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
-                                   initialValues={initialValues}
-                                   submitButtonName={"Edit Location"}
-                                   />
-                <button onClick={deleteButtonHandler}>Delete</button>
-            </Popup>
-        </div>
+        <Popup>
+            <h3>{props.locationDetails.locationName}</h3>
+            <h5>Location Type: {props.locationDetails.locationType}</h5>
+            <h5>City: {props.locationDetails.locationCity}</h5>
+            <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
+            <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
+                               initialValues={initialValues}
+                               submitButtonName={"Edit Location"}
+                               triggerButton={<button className={"icon-btn"}>
+                                   <EditLocationIcon width={30} height={30} color={"black"}/>
+                               </button>}
+                               />
+            <button onClick={deleteButtonHandler} className="icon-btn">
+                <DeleteLocationIcon width={30} height={30} color={"red"}/>
+            </button>
+        </Popup>
     );
 }
 

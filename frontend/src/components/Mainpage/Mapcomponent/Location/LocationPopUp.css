@@ -1,0 +1,9 @@
+.icon-btn{
+    border: none;
+    padding: 10px;
+    background: transparent;
+}
+
+.icon-btn:hover {
+    transform: rotateZ(3deg);
+}

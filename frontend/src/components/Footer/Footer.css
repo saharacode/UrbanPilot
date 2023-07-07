@@ -1,0 +1,12 @@
+.nav-footer{
+    background: #2f3542c4;
+    border-radius: 30px;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    max-width: 100vw;
+}
