@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    padding-top: 15vh;
+    gap: 20px;
 }
 
 .landingpage-logo{
@@ -10,12 +11,30 @@
     height: 200px;
 }
 
-.continueToLogin-btn{
-    border: none;
-    padding: 10px;
-    background-color: white;
+.landingpage-container h3 {
+    color: white;
 }
 
-.continueToLogin-btn:hover{
+.continueToLogin-btn{
+    border: solid;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin: 10px 0;
+    border-radius: 30px;
+    width: 70vw;
+    max-width: 200px;
+    color: white;
+    justify-content: center;
+    gap: 10px;
+    background: #282c34;
+}
+
+.continueToLogin-btn:hover svg {
     transform: rotateZ(3deg);
+}
+
+.continueToLogin-btn:hover p {
+    font-weight: bold;
 }

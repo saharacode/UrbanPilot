@@ -2,7 +2,7 @@ import React from 'react';
 import {useNavigate} from "react-router-dom";
 import "./LandingPage.css"
 import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
-import {LogoutIcon} from "../../icons/logout-icon";
+import {LoginIcon} from "../../icons/login-icon";
 
 function LandingPage() {
     const nav = useNavigate();
@@ -14,9 +14,10 @@ function LandingPage() {
     return (
         <div className="landingpage-container">
             <img className="landingpage-logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
+            <h3>Discover. Share. Conquer the urban jungle.</h3>
             <button className="continueToLogin-btn" onClick={goTologinButtonHandler}>
-                <p>Go to login</p>
-                <LogoutIcon width={30} height={30} color={"white"}/>
+                <LoginIcon width={30} height={30} color={"white"}/>
+                <p>Continue to login</p>
             </button>
         </div>
 

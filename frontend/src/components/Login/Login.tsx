@@ -27,10 +27,8 @@ function Login(props:Props) {
 
     return (
         <div>
-            <div className={"welcomeContainer"}>
-                <div className={"welcomeLogoContainer"}>
-                    <img src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
-                </div>
+            <div className={"landingpage-container"}>
+                <img className="landingpage-logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
                 <h3>Discover. Share. Conquer the urban jungle.</h3>
             </div>
             <div>
