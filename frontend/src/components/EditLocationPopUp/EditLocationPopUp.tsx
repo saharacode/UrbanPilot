@@ -4,6 +4,7 @@ import {Field, Form, Formik} from "formik";
 import {LocationInfo} from "../../model/LocationInfo";
 import * as Yup from "yup"
 import './Popup.css';
+import {SaveIcon} from "../../icons/save-icon";
 
 type Props = {
     onSubmitHandler: (values:LocationInfo) => Promise<void>;
@@ -80,7 +81,9 @@ function EditLocationPopUp(props:Props) {
                                     </div>
                                     <Field name="locationLngCoordinate" type="number" className={"inputFieldLocation"}/>
                                 </div>
-                                <button type="submit">Save</button>
+                                <button className="signup-btn" type={"submit"}>
+                                    <SaveIcon width={30} height={30} color={"green"}/>
+                                </button>
                             </Form>
                         )}
                     </Formik>

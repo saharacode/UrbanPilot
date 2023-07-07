@@ -34,6 +34,7 @@
     background: #2f3542c4;
     padding: 10px;
     margin: 10px;
+    border-radius: 12px;
 }
 
 .dropdown hr {
@@ -56,6 +57,7 @@
     justify-content: center;
     gap: 10px;
     background: #000000c2;
+    border-radius: 12px;
 }
 
 .menu-icon-btn:hover svg {
@@ -70,6 +72,7 @@
     color: #F3EFF5;
     background-color: #000000c2;
     padding: 6px;
+    border-radius: 12px;
 }
 
 .menu-btn{
