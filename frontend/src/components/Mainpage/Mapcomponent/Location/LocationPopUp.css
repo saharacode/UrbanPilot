@@ -7,3 +7,11 @@
 .icon-btn:hover {
     transform: rotateZ(3deg);
 }
+
+.leaflet-popup-tip {
+    display: none;
+}
+
+.leaflet-container a.leaflet-popup-close-button{
+    display: none;
+}
