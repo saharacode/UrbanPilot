@@ -3,6 +3,7 @@ import UrbanPilotLogo from "../../images/UrbanPilotLogo.png";
 import './Login.css';
 import {useNavigate} from "react-router-dom";
 import {LoginIcon} from "../../icons/login-icon";
+import {RegisterIcon} from "../../icons/register-icon";
 
 type Props = {
     postLogin: (username:string,password:string) => Promise<void>;
@@ -43,8 +44,12 @@ function Login(props:Props) {
             </div>
             <div className="register-container">
                 <h4>New here?</h4>
-                <button onClick={goToSignUpButtonHandler}>Sign up</button>
+                <button className="signup-btn" onClick={goToSignUpButtonHandler}>
+                    <RegisterIcon width={30} height={30} color={"white"}/>
+                    <p>Sign up</p>
+                </button>
             </div>
+
         </div>
 
     );

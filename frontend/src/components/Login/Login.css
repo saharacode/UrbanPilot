@@ -1,13 +1,3 @@
-.loginForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    margin: 0 auto;
-    gap: 10px;
-}
-
 .login-container{
     display: flex;
     flex-direction: column;
@@ -16,11 +6,28 @@
     border-style: solid;
     border-width: 1px;
     border-color: white;
-    padding: 20px 12px 20px 12px;
+    padding: 20px 5px 20px 5px;
+    width: 30vw;
+    min-width: 340px;
+    max-width: 500px;
 }
 
-.login-container h2 {
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
+    gap: 15px;
+}
+
+.login-container h2{
     color: white;
+}
+
+.login-container h5{
+    color: red;
 }
 
 .login-btn{
@@ -34,10 +41,10 @@
     border: 0;
     border-bottom: 2px #fff solid;
     display: block;
-    width: 20vw;
-    min-width: 200px;
-    max-width: 300px;
-    padding: 8px 0;
+    width: 30vw;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 8px;
     font-size: 16px;
     color: white;
 }
@@ -45,4 +52,32 @@
 .inputField:focus, .inputField:valid {
     outline: 0;
     border-bottom-color: lightblue;
+}
+
+.register-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-container h4 {
+    color: white;
+}
+
+.signup-btn{
+    border: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 10px;
+    background: #282c34;
+}
+
+.signup-btn:hover svg {
+    transform: rotateZ(3deg);
+}
+
+.signup-btn:hover p {
+    font-weight: bold;
 }
