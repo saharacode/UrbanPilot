@@ -28,3 +28,21 @@
     color: white;
     background: transparent;
 }
+
+.inputField{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #fff solid;
+    display: block;
+    width: 20vw;
+    min-width: 200px;
+    max-width: 300px;
+    padding: 8px 0;
+    font-size: 16px;
+    color: white;
+}
+
+.inputField:focus, .inputField:valid {
+    outline: 0;
+    border-bottom-color: lightblue;
+}

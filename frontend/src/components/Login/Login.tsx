@@ -34,8 +34,8 @@ function Login(props:Props) {
                 <h2>Please login:</h2>
                 {props.userExists ? <></> : <h5>{props.errormessage}</h5>}
                 <form onSubmit={loginInputHandler} className="loginForm">
-                    <input type={"text"} placeholder={"Username..."} onChange={event => setUsername(event.target.value)}/>
-                    <input type={"password"} placeholder={"Password..."} onChange={event => setPassword(event.target.value)}/>
+                    <input className="inputField" type={"text"} placeholder={"Username..."} onChange={event => setUsername(event.target.value)}/>
+                    <input className="inputField" type={"password"} placeholder={"Password..."} onChange={event => setPassword(event.target.value)}/>
                     <button className="login-btn" type={"submit"}>
                         <LoginIcon width={30} height={30} color={"white"}/>
                     </button>
