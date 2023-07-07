@@ -4,15 +4,12 @@
     align-items: center;
     padding-top: 15vh;
     gap: 30px;
+    color: white;
 }
 
 .landingpage-logo{
     width: 200px;
     height: 200px;
-}
-
-.landingpage-container h3 {
-    color: white;
 }
 
 .continueToLogin-btn{

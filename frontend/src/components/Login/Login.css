@@ -30,12 +30,6 @@
     color: red;
 }
 
-.login-btn{
-    border: none;
-    color: white;
-    background: transparent;
-}
-
 .inputField{
     background-color: transparent;
     border: 0;
@@ -58,10 +52,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.register-container h4 {
-    color: white;
 }
 
 .signup-btn{

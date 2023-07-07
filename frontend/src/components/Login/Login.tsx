@@ -37,8 +37,9 @@ function Login(props:Props) {
                 <form onSubmit={loginInputHandler} className="loginForm">
                     <input className="inputField" type={"text"} placeholder={"Username..."} onChange={event => setUsername(event.target.value)}/>
                     <input className="inputField" type={"password"} placeholder={"Password..."} onChange={event => setPassword(event.target.value)}/>
-                    <button className="login-btn" type={"submit"}>
+                    <button className="signup-btn" type={"submit"}>
                         <LoginIcon width={30} height={30} color={"white"}/>
+                        <p>Login</p>
                     </button>
                 </form>
             </div>
