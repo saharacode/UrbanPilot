@@ -48,19 +48,37 @@ function LocationPopUp(props:Props) {
     return (
         <Popup>
             <h3>{props.locationDetails.locationName}</h3>
-            <h5>Location Type: {props.locationDetails.locationType}</h5>
-            <h5>City: {props.locationDetails.locationCity}</h5>
-            <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
-            <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
-                               initialValues={initialValues}
-                               submitButtonName={"Edit Location"}
-                               triggerButton={<button className={"icon-btn"}>
-                                   <EditLocationIcon width={30} height={30} color={"black"}/>
-                               </button>}
-                               />
-            <button onClick={deleteButtonHandler} className="icon-btn">
-                <DeleteLocationIcon width={30} height={30} color={"red"}/>
-            </button>
+            <hr></hr>
+            <div>
+                <div className="locationDetails-wrapper">
+                    <div className="locationDetails">
+                        <h5>Location Type:</h5>
+                        <h5> {props.locationDetails.locationType}</h5>
+                    </div>
+                    <div className="locationDetails">
+                        <h5>City:</h5>
+                        <h5> {props.locationDetails.locationCity}</h5>
+                    </div>
+                    <div className="locationDetails">
+                        <h5>Description:</h5>
+                        <h5> {props.locationDetails.locationDescription}</h5>
+                    </div>
+                    <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
+                </div>
+            </div>
+            <hr></hr>
+            <div className="locationPopup-buttons">
+                <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
+                                   initialValues={initialValues}
+                                   submitButtonName={"Edit Location"}
+                                   triggerButton={<button className={"icon-btn"}>
+                                       <EditLocationIcon width={30} height={30} color={"black"}/>
+                                   </button>}
+                />
+                <button onClick={deleteButtonHandler} className="icon-btn">
+                    <DeleteLocationIcon width={30} height={30} color={"red"}/>
+                </button>
+            </div>
         </Popup>
     );
 }
