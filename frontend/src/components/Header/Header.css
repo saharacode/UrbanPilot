@@ -51,12 +51,11 @@
     align-items: center;
     text-decoration: none;
     margin: 10px 0;
-    border-radius: 30px;
     width: 100%;
     color: white;
     justify-content: center;
     gap: 10px;
-    background: #282c34;
+    background: #000000c2;
 }
 
 .menu-icon-btn:hover svg {
@@ -69,8 +68,7 @@
 
 .userinfo{
     color: #F3EFF5;
-    background-color: #282c34;
-    border-radius: 30px;
+    background-color: #000000c2;
     padding: 6px;
 }
 

@@ -15,16 +15,6 @@
     max-width: 500px;
 }
 
-.inputAndLabel {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.inputAndLabel label{
-    font-size: 10pt;
-}
-
 button[type="submit"] {
     align-self: center;
 }
@@ -46,4 +36,8 @@ button[type="submit"] {
 .error-container h6 {
     color: red;
     font-style: italic;
+}
+
+.error-container label {
+    font-size: 10pt;
 }
