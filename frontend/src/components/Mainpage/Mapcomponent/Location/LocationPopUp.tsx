@@ -48,25 +48,23 @@ function LocationPopUp(props:Props) {
     return (
         <Popup>
             <h3>{props.locationDetails.locationName}</h3>
-            <hr></hr>
-            <div>
-                <div className="locationDetails-wrapper">
-                    <div className="locationDetails">
-                        <h5>Location Type:</h5>
-                        <h5> {props.locationDetails.locationType}</h5>
-                    </div>
-                    <div className="locationDetails">
-                        <h5>City:</h5>
-                        <h5> {props.locationDetails.locationCity}</h5>
-                    </div>
-                    <div className="locationDetails">
-                        <h5>Description:</h5>
-                        <h5> {props.locationDetails.locationDescription}</h5>
-                    </div>
-                    <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
-                </div>
-            </div>
-            <hr></hr>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Type:</td>
+                    <td> {props.locationDetails.locationType}</td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td> {props.locationDetails.locationCity}</td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td> {props.locationDetails.locationDescription}</td>
+                </tr>
+                </tbody>
+            </table>
+            <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
             <div className="locationPopup-buttons">
                 <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
                                    initialValues={initialValues}
