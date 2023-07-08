@@ -27,10 +27,17 @@
 }
 
 td {
-    vertical-align: text-top;
-    width: 30px;
+    vertical-align: top;
     overflow: hidden;
     word-wrap:break-word;
+}
+
+td:nth-child(1){
+    width: 15px;
+}
+
+td:nth-child(2){
+    width: 90px;
 }
 
 .leaflet-popup-tip {

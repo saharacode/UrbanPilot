@@ -6,6 +6,9 @@ import EditLocationPopUp from "../../../EditLocationPopUp/EditLocationPopUp";
 import './LocationPopUp.css';
 import {EditLocationIcon} from "../../../../icons/editLocation-icon";
 import {DeleteLocationIcon} from "../../../../icons/deleteLocation-icon";
+import {CityIcon} from "../../../../icons/city-icon";
+import {InformationIcon} from "../../../../icons/information-icon";
+import {LocationtypeIcon} from "../../../../icons/locationtype-icon";
 
 type Props = {
     locationDetails:LocationInfo;
@@ -51,15 +54,21 @@ function LocationPopUp(props:Props) {
             <table>
                 <tbody>
                 <tr>
-                    <td>Type:</td>
+                    <td>
+                        <LocationtypeIcon width={20} height={20} color={"black"}/>
+                    </td>
                     <td> {props.locationDetails.locationType}</td>
                 </tr>
                 <tr>
-                    <td>City:</td>
+                    <td>
+                        <CityIcon width={20} height={20} color={"black"}/>
+                    </td>
                     <td> {props.locationDetails.locationCity}</td>
                 </tr>
                 <tr>
-                    <td>Description:</td>
+                    <td>
+                        <InformationIcon width={20} height={20} color={"black"}/>
+                    </td>
                     <td> {props.locationDetails.locationDescription}</td>
                 </tr>
                 </tbody>
