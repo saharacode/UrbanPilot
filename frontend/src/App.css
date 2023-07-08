@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: Cocogoose;
+  src: url("../public/fonts/Cocogoose Pro Light-trial.ttf");
+}
+
+@font-face {
+  font-family: Cocogoose-italic;
+  src: url("../public/fonts/Cocogoose Pro Light Italic-trial.ttf");
+}
+
+@font-face {
+  font-family: Cocogoose-bold;
+  src: url("../public/fonts/Cocogoose Pro-trial.ttf");
+}
+
+button{
+  font-family: Cocogoose, Cocogoose-italic, Cocogoose-bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
