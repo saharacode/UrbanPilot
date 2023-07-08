@@ -18,6 +18,10 @@
     gap: 10px;
 }
 
+.leaflet-popup-content-wrapper h3,h5 {
+    text-align: center;
+}
+
 .leaflet-popup-content table{
     text-align: left;
     margin-top: 5px;
