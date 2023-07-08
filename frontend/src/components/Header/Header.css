@@ -69,10 +69,26 @@
 }
 
 .userinfo{
+    display: flex;
+    flex-direction: column;
     color: #F3EFF5;
     background-color: #000000c2;
-    padding: 6px;
+    padding: 10px;
     border-radius: 12px;
+    gap: 10px;
+}
+
+.userinfo table {
+    text-align: left;
+    font-size: 10pt;
+}
+
+.userinfo td:nth-child(1) {
+    width: 30px;
+}
+
+.userinfo td:nth-child(2) {
+    width: 130px;
 }
 
 .menu-btn{
