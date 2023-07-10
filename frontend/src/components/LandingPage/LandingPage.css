@@ -1,0 +1,36 @@
+.landingpage-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15vh;
+    gap: 30px;
+    color: white;
+}
+
+.landingpage-logo{
+    width: 200px;
+    height: 200px;
+}
+
+.continueToLogin-btn{
+    border: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin: 10px 0;
+    width: 70vw;
+    max-width: 200px;
+    color: white;
+    justify-content: center;
+    gap: 10px;
+    background: #282c34;
+}
+
+.continueToLogin-btn:hover svg {
+    transform: rotateZ(3deg);
+}
+
+.continueToLogin-btn:hover p {
+    font-weight: bold;
+}

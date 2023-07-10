@@ -6,6 +6,9 @@ import EditLocationPopUp from "../../../EditLocationPopUp/EditLocationPopUp";
 import './LocationPopUp.css';
 import {EditLocationIcon} from "../../../../icons/editLocation-icon";
 import {DeleteLocationIcon} from "../../../../icons/deleteLocation-icon";
+import {CityIcon} from "../../../../icons/city-icon";
+import {InformationIcon} from "../../../../icons/information-icon";
+import {LocationtypeIcon} from "../../../../icons/locationtype-icon";
 
 type Props = {
     locationDetails:LocationInfo;
@@ -48,19 +51,41 @@ function LocationPopUp(props:Props) {
     return (
         <Popup>
             <h3>{props.locationDetails.locationName}</h3>
-            <h5>Location Type: {props.locationDetails.locationType}</h5>
-            <h5>City: {props.locationDetails.locationCity}</h5>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <LocationtypeIcon width={20} height={20} color={"black"}/>
+                    </td>
+                    <td> {props.locationDetails.locationType}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <CityIcon width={20} height={20} color={"black"}/>
+                    </td>
+                    <td> {props.locationDetails.locationCity}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <InformationIcon width={20} height={20} color={"black"}/>
+                    </td>
+                    <td> {props.locationDetails.locationDescription}</td>
+                </tr>
+                </tbody>
+            </table>
             <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
-            <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
-                               initialValues={initialValues}
-                               submitButtonName={"Edit Location"}
-                               triggerButton={<button className={"icon-btn"}>
-                                   <EditLocationIcon width={30} height={30} color={"black"}/>
-                               </button>}
-                               />
-            <button onClick={deleteButtonHandler} className="icon-btn">
-                <DeleteLocationIcon width={30} height={30} color={"red"}/>
-            </button>
+            <div className="locationPopup-buttons">
+                <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
+                                   initialValues={initialValues}
+                                   submitButtonName={"Edit Location"}
+                                   triggerButton={<button className={"icon-btn"}>
+                                       <EditLocationIcon width={30} height={30} color={"black"}/>
+                                   </button>}
+                />
+                <button onClick={deleteButtonHandler} className="icon-btn">
+                    <DeleteLocationIcon width={30} height={30} color={"red"}/>
+                </button>
+            </div>
         </Popup>
     );
 }

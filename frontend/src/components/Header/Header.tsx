@@ -6,6 +6,9 @@ import {User} from "../../model/User";
 import {useNavigate} from "react-router-dom";
 import {MenuIcon} from "../../icons/menu-icon";
 import {LogoutIcon} from "../../icons/logout-icon";
+import {EmailIcon} from "../../icons/email-icon";
+import {CityIcon} from "../../icons/city-icon";
+import {NameIcon} from "../../icons/name-icon";
 
 type Props ={
     userDetails: User;
@@ -55,9 +58,28 @@ function Header(props:Props) {
                 <div className="dropdown">
                     <div className="userinfo">
                         <h3>Hello {props.userDetails.username}!</h3>
-                        <h6>Full name: {props.userDetails.fullname}</h6>
-                        <h6>E-Mail: {props.userDetails.email}</h6>
-                        <h6>Homecity: {props.userDetails.homecity}</h6>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <NameIcon width={20} height={20} color={"white"}/>
+                                    </td>
+                                    <td>{props.userDetails.fullname}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <EmailIcon width={20} height={20} color={"white"}/>
+                                    </td>
+                                    <td>{props.userDetails.email}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <CityIcon width={20} height={20} color={"white"}/>
+                                    </td>
+                                    <td>{props.userDetails.homecity}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <hr></hr>
                     <button className="menu-icon-btn" onClick={logoutButtonHandler}>

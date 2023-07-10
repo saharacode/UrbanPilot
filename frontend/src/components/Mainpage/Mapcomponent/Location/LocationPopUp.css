@@ -7,3 +7,54 @@
 .icon-btn:hover {
     transform: rotateZ(3deg);
 }
+
+.leaflet-popup-content {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 220px;
+    height: 220px;
+    overflow: auto;
+    gap: 10px;
+    font-family: Quicksand, sans-serif;
+}
+
+.leaflet-popup-content-wrapper h3,h5 {
+    text-align: center;
+}
+
+.leaflet-popup-content table{
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    table-layout: fixed;
+    width: 200px;
+}
+
+td {
+    vertical-align: top;
+    overflow: hidden;
+    word-wrap:break-word;
+}
+
+td:nth-child(1){
+    width: 15px;
+}
+
+td:nth-child(2){
+    width: 90px;
+}
+
+.leaflet-popup-tip {
+    display: none;
+}
+
+.leaflet-container a.leaflet-popup-close-button{
+    display: none;
+}
+
+.locationPopup-buttons{
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+}

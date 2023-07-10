@@ -5,6 +5,8 @@ import {User} from "../../model/User";
 import * as Yup from "yup";
 import {Field, Form, Formik} from "formik";
 import axios from "axios";
+import {LoginIcon} from "../../icons/login-icon";
+import {SubmitIcon} from "../../icons/submit-icon";
 
 type Props = {
     setUserExists: Dispatch<SetStateAction<boolean>>;
@@ -62,68 +64,72 @@ function Register(props:Props) {
     }
 
     return (
-        <div>
+        <div className="landingpage-container">
             <h1>Register</h1>
             <h4>Please create a new account:</h4>
             {usernameGiven ? <h5>{usernameGivenErrorMessage}</h5> : <></>}
-            <div className="registerFormContainer">
                 <Formik
                     initialValues={initialValues}
                     validationSchema={registerSchema}
                     onSubmit={(values:User) => registerInputHandler(values)}
                 >
                     {({ errors }) => (
-                        <Form>
-                            <div className="inputAndLabel">
-                                <label>Username:</label>
-                                <Field name="username" type="text"/>
+                        <Form className={"registerForm"}>
+                            <div>
+                                <div className="error-container">
+                                    <label>Username</label>
+                                    {errors.username ? <h6>({errors.username})</h6> : <></>}
+                                </div>
+                                    <Field name="username" type="text" className={"inputField"}/>
                             </div>
                             <div>
-                                {errors.username ? <h5>{errors.username}</h5> : <></>}
-                            </div>
-                            <div className="inputAndLabel">
-                                <label>Password:</label>
-                                <Field name="password" type="password"/>
-                            </div>
-                            <div>
-                                {errors.password ? <h5>{errors.passwordRepeat}</h5> : <></>}
-                            </div>
-                            <div className="inputAndLabel">
-                                <label>Repeat Password:</label>
-                                <Field name="passwordRepeat" type="password"/>
+                                <div className="error-container">
+                                    <label>Password</label>
+                                    {errors.password ? <h6>({errors.passwordRepeat})</h6> : <></>}
+                                </div>
+                                <Field name="password" type="password" className={"inputField"}/>
                             </div>
                             <div>
-                                {errors.passwordRepeat ? <h5>{errors.passwordRepeat}</h5> : <></>}
-                            </div>
-                            <div className="inputAndLabel">
-                                <label>Fullname:</label>
-                                <Field name="fullname" type="text"/>
-                            </div>
-                            <div>
-                                {errors.fullname ? <h5>{errors.fullname}</h5> : <></>}
-                            </div>
-                            <div className="inputAndLabel">
-                                <label>E-Mail:</label>
-                                <Field name="email" type="email"/>
+                                <div className="error-container">
+                                    <label>Repeat Password</label>
+                                    {errors.passwordRepeat ? <h6>({errors.passwordRepeat})</h6> : <></>}
+                                </div>
+                                <Field name="passwordRepeat" type="password" className={"inputField"}/>
                             </div>
                             <div>
-                                {errors.email ? <h5>{errors.email}</h5> : <></>}
-                            </div>
-                            <div className="inputAndLabel">
-                                <label>Homecity:</label>
-                                <Field name="homecity" type="text"/>
+                                <div className="error-container">
+                                    <label>Fullname</label>
+                                    {errors.fullname ? <h6>({errors.fullname})</h6> : <></>}
+                                </div>
+                                <Field name="fullname" type="text" className={"inputField"}/>
                             </div>
                             <div>
-                                {errors.homecity ? <h5>{errors.homecity}</h5> : <></>}
+                                <div className="error-container">
+                                    <label>E-Mail</label>
+                                    {errors.email ? <h6>({errors.email})</h6> : <></>}
+                                </div>
+                                <Field name="email" type="email" className={"inputField"}/>
                             </div>
-                            <button type="submit">Submit</button>
+                            <div>
+                                <div className="error-container">
+                                    <label>Homecity</label>
+                                    {errors.homecity ? <h6>({errors.homecity})</h6> : <></>}
+                                </div>
+                                <Field name="homecity" type="text" className={"inputField"}/>
+                            </div>
+                            <button className="signup-btn" type={"submit"}>
+                                <SubmitIcon width={30} height={30} color={"white"}/>
+                                <p>Submit</p>
+                            </button>
                         </Form>
                     )}
                 </Formik>
-            </div>
             <div>
                 <h4>Already registered?</h4>
-                <button onClick={goToLoginButtonHandler}>Login</button>
+                <button className="signup-btn" onClick={goToLoginButtonHandler}>
+                    <LoginIcon width={30} height={30} color={"white"}/>
+                    <p>Go to login</p>
+                </button>
             </div>
         </div>
     );

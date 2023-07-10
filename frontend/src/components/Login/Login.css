@@ -1,17 +1,15 @@
-.welcomeContainer{
-    justify-content: center;
-}
-
-.welcomeLogoContainer{
-    width: 20%;
-    max-width: 150px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.welcomeLogoContainer img {
-    width: 100%;
-    height: auto;
+.login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    padding: 20px 5px 20px 5px;
+    width: 30vw;
+    min-width: 340px;
+    max-width: 500px;
 }
 
 .loginForm {
@@ -21,5 +19,55 @@
     justify-content: center;
     width: 50%;
     margin: 0 auto;
+    gap: 15px;
+}
+
+.login-container h2{
+    color: white;
+}
+
+.login-container h5{
+    color: red;
+}
+
+.inputField{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #fff solid;
+    display: block;
+    width: 30vw;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 8px;
+    font-size: 16px;
+    color: white;
+}
+
+.inputField:focus, .inputField:valid {
+    outline: 0;
+    border-bottom-color: lightblue;
+}
+
+.register-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-btn{
+    border: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    color: white;
     gap: 10px;
+    background: transparent;
+}
+
+.signup-btn:hover svg {
+    transform: rotateZ(3deg);
+}
+
+.signup-btn:hover p {
+    font-weight: bold;
 }
