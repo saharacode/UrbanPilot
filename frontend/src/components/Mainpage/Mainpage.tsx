@@ -19,6 +19,10 @@ type Props = {
     emptyUser: User;
     postNewLocation: (newLocation: LocationInfo, setLocations: Dispatch<SetStateAction<LocationInfo[]>>) => Promise<void>;
     initialValues: LocationInfo;
+    newLocationCoordinates: { lat: number; lng: number; };
+    setNewLocationCoordinates: Dispatch<SetStateAction<{ lat: number; lng: number; }>>;
+    locationOnClickActive: boolean;
+    setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
 }
 
 function Mainpage(props:Props) {
@@ -36,11 +40,15 @@ function Mainpage(props:Props) {
             />
             <Mapcomponent locations={props.locations}
                           setLocations={props.setLocations}
+                          newLocationCoordinates={props.newLocationCoordinates}
+                          setNewLocationCoordinates={props.setNewLocationCoordinates}
+                          locationOnClickActive={props.locationOnClickActive}
             />
              <Footer
                 onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                 initialValues={props.initialValues}
                 setLocations={props.setLocations}
+                setLocationOnClickActive={props.setLocationOnClickActive}
             />
         </div>
     );

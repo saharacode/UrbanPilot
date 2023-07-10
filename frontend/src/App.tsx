@@ -11,6 +11,7 @@ import useLocations from "./hooks/useLocations";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Register from "./components/Register/Register";
+import useGetPositionOnClick from "./hooks/useGetPositionOnClick";
 
 function App() {
     const {postLogin, user, setUser, userExists, setUserExists, errorMessage} = useUser();
@@ -18,6 +19,7 @@ function App() {
     const {getUserDetails, userDetails, setUserDetails, emptyUser} = useUserDetails();
     const {getAllLocationsForUser, locations, setLocations} = useLocations();
     const {postNewLocation, initialValues} = useAddLocation();
+    const {newLocationCoordinates, setNewLocationCoordinates, locationOnClickActive, setLocationOnClickActive} = useGetPositionOnClick();
 
     return (
     <div className="App">
@@ -39,7 +41,11 @@ function App() {
                                                            setUserDetails={setUserDetails} emptyUser={emptyUser}
                                                            setLocations={setLocations}
                                                            postNewLocation={postNewLocation}
-                                                           initialValues={initialValues}/>}/>
+                                                           initialValues={initialValues}
+                                                           newLocationCoordinates={newLocationCoordinates}
+                                                           setNewLocationCoordinates={setNewLocationCoordinates}
+                                                           locationOnClickActive={locationOnClickActive}
+                                                           setLocationOnClickActive={setLocationOnClickActive}/>}/>
             </Route>
         </Routes>
     </div>

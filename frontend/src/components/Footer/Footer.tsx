@@ -8,9 +8,14 @@ type Props ={
     onSubmitHandler: (values:LocationInfo) => Promise<void>;
     initialValues: LocationInfo;
     setLocations?:Dispatch<SetStateAction<LocationInfo[]>>;
+    setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
 }
 
 function Footer(props:Props) {
+    function getCoordinatesOnClick() {
+        props.setLocationOnClickActive((prevState) => !prevState);
+    }
+
     return (
         <nav className="nav-footer">
             <EditLocationPopUp
@@ -22,7 +27,7 @@ function Footer(props:Props) {
                     <AddLocationIcon width={30} height={30} color={"white"}/>
                 </button>}
             />
-            <button>Get Coordinates</button>
+            <button onClick={getCoordinatesOnClick}>Get Coordinates</button>
         </nav>
     );
 }

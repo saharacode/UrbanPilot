@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useState} from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import "./Mapcomponent.css";
 import {MapContainer, TileLayer, Marker, useMapEvents} from "react-leaflet";
 import L, {Icon} from "leaflet";
@@ -9,17 +9,19 @@ import LocationPopUp from "./Location/LocationPopUp";
 type Props = {
     locations: LocationInfo[];
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
+    newLocationCoordinates: { lat: number; lng: number; };
+    setNewLocationCoordinates: Dispatch<SetStateAction<{ lat: number; lng: number; }>>;
+    locationOnClickActive: boolean;
 }
 
 function Mapcomponent(props:Props) {
     const defaultCoordinates: L.LatLngLiteral = { lat: 52.520008, lng: 13.404954 };
-    const [newLocationCoordinates, setNewLocationCoordinates] = useState({ lat: 0.0, lng: 0.0 })
 
     const HandleClickMap = () => {
-        const map = useMapEvents({
+        useMapEvents({
             click(event) {
-                setNewLocationCoordinates(event.latlng)
-                console.log(newLocationCoordinates)
+                props.setNewLocationCoordinates(event.latlng)
+                console.log(props.newLocationCoordinates)
             }
         })
         return null;
@@ -46,7 +48,7 @@ function Mapcomponent(props:Props) {
                                    />
                 </Marker>
             })}
-            <HandleClickMap/>
+            {props.locationOnClickActive ? <HandleClickMap/> : <></>}
         </MapContainer>
     );
 }
