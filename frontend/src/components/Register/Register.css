@@ -34,8 +34,7 @@ button[type="submit"] {
 }
 
 .error-container h6 {
-    color: red;
-    font-style: italic;
+    color: #e15f41;
 }
 
 .error-container label {
