@@ -22,6 +22,7 @@ function Footer(props:Props) {
                     <AddLocationIcon width={30} height={30} color={"white"}/>
                 </button>}
             />
+            <button>Get Coordinates</button>
         </nav>
     );
 }
