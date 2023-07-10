@@ -1,6 +1,6 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import "./Mapcomponent.css";
-import {MapContainer, TileLayer, Marker} from "react-leaflet";
+import {MapContainer, TileLayer, Marker, useMapEvents} from "react-leaflet";
 import L, {Icon} from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {LocationInfo} from "../../../model/LocationInfo";
@@ -13,6 +13,17 @@ type Props = {
 
 function Mapcomponent(props:Props) {
     const defaultCoordinates: L.LatLngLiteral = { lat: 52.520008, lng: 13.404954 };
+    const [newLocationCoordinates, setNewLocationCoordinates] = useState({ lat: 0.0, lng: 0.0 })
+
+    const HandleClickMap = () => {
+        const map = useMapEvents({
+            click(event) {
+                setNewLocationCoordinates(event.latlng)
+                console.log(newLocationCoordinates)
+            }
+        })
+        return null;
+    }
 
     const customIcon = new Icon({
         iconUrl: require("../../../images/markers/marker_standard.png"),
@@ -35,6 +46,7 @@ function Mapcomponent(props:Props) {
                                    />
                 </Marker>
             })}
+            <HandleClickMap/>
         </MapContainer>
     );
 }
