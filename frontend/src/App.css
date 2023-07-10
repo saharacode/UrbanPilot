@@ -38,20 +38,10 @@
 }
 
 @font-face {
-  font-family: Cocogoose;
-  src: url("../public/fonts/Cocogoose Pro Light-trial.ttf");
-}
-
-@font-face {
-  font-family: Cocogoose-italic;
-  src: url("../public/fonts/Cocogoose Pro Light Italic-trial.ttf");
-}
-
-@font-face {
-  font-family: Cocogoose-bold;
-  src: url("../public/fonts/Cocogoose Pro-trial.ttf");
+  font-family: Quicksand;
+  src: url("../public/fonts/Quicksand-VariableFont_wght.ttf");
 }
 
 button{
-  font-family: Cocogoose, Cocogoose-italic, Cocogoose-bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: Quicksand, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }

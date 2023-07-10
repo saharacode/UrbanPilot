@@ -16,6 +16,7 @@
     height: 220px;
     overflow: auto;
     gap: 10px;
+    font-family: Quicksand, sans-serif;
 }
 
 .leaflet-popup-content-wrapper h3,h5 {
