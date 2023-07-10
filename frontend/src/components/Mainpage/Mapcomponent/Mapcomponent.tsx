@@ -12,20 +12,26 @@ type Props = {
     newLocationCoordinates: { lat: number; lng: number; };
     setNewLocationCoordinates: Dispatch<SetStateAction<{ lat: number; lng: number; }>>;
     locationOnClickActive: boolean;
+    setOpenAddLocationPopup: Dispatch<SetStateAction<boolean>>;
 }
 
 function Mapcomponent(props:Props) {
     const defaultCoordinates: L.LatLngLiteral = { lat: 52.520008, lng: 13.404954 };
 
+
     const HandleClickMap = () => {
         useMapEvents({
             click(event) {
                 props.setNewLocationCoordinates(event.latlng)
-                console.log(props.newLocationCoordinates)
+                props.setOpenAddLocationPopup((prevState) => !prevState)
             }
         })
         return null;
     }
+
+    /*
+    {openAddLocationPopup ? <LocationConfirmationWindow/> : <></>}
+     */
 
     const customIcon = new Icon({
         iconUrl: require("../../../images/markers/marker_standard.png"),
@@ -45,7 +51,7 @@ function Mapcomponent(props:Props) {
                     icon={customIcon}>
                     <LocationPopUp locationDetails={location}
                                    setLocations={props.setLocations}
-                                   />
+                    />
                 </Marker>
             })}
             {props.locationOnClickActive ? <HandleClickMap/> : <></>}

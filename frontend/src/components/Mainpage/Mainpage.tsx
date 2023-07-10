@@ -1,10 +1,11 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import Mapcomponent from "./Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
 import Header from "../Header/Header";
 import './Mainpage.css';
 import Footer from "../Footer/Footer";
+import LocationConfirmationWindow from "./Mapcomponent/LocationConfirmationWindow/LocationConfirmationWindow";
 
 type Props = {
     userDetails: User;
@@ -25,6 +26,8 @@ type Props = {
 }
 
 function Mainpage(props:Props) {
+    const [openAddLocationPopup, setOpenAddLocationPopup] = useState(false);
+
     return (
         <div className="general-page-frame">
             <Header
@@ -42,7 +45,9 @@ function Mainpage(props:Props) {
                           newLocationCoordinates={props.newLocationCoordinates}
                           setNewLocationCoordinates={props.setNewLocationCoordinates}
                           locationOnClickActive={props.locationOnClickActive}
+                          setOpenAddLocationPopup={setOpenAddLocationPopup}
             />
+            {openAddLocationPopup ? <LocationConfirmationWindow/> : <></>}
              <Footer
                 onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                 setLocations={props.setLocations}
