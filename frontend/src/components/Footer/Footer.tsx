@@ -8,6 +8,7 @@ type Props ={
     setLocations?:Dispatch<SetStateAction<LocationInfo[]>>;
     setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
     newLocationCoordinates: { lat: number; lng: number; };
+    locationOnClickActive: boolean;
 }
 
 function Footer(props:Props) {
@@ -17,9 +18,19 @@ function Footer(props:Props) {
 
     return (
         <nav className="nav-footer">
-            <button className={"icon-btn"} onClick={getCoordinatesOnClick}>
+
+            {props.locationOnClickActive?
+                <div>
+                    <button className={"icon-btn"} onClick={getCoordinatesOnClick}>
+                        <AddLocationIcon width={30} height={30} color={"white"}/>
+                    </button>
+                    <h5>Please click on the map, where you would like to create a Location!</h5>
+                </div>
+                :
+                <button className={"icon-btn"} onClick={getCoordinatesOnClick}>
                 <AddLocationIcon width={30} height={30} color={"white"}/>
-            </button>
+                </button>
+            }
         </nav>
     );
 }

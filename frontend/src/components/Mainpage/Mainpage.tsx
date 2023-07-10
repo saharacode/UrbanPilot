@@ -69,6 +69,7 @@ function Mainpage(props:Props) {
                 setLocations={props.setLocations}
                 setLocationOnClickActive={props.setLocationOnClickActive}
                 newLocationCoordinates={props.newLocationCoordinates}
+                locationOnClickActive={props.locationOnClickActive}
             />
         </div>
     );
