@@ -18,7 +18,6 @@ type Props = {
 function Mapcomponent(props:Props) {
     const defaultCoordinates: L.LatLngLiteral = { lat: 52.520008, lng: 13.404954 };
 
-
     const HandleClickMap = () => {
         useMapEvents({
             click(event) {
@@ -28,10 +27,6 @@ function Mapcomponent(props:Props) {
         })
         return null;
     }
-
-    /*
-    {openAddLocationPopup ? <LocationConfirmationWindow/> : <></>}
-     */
 
     const customIcon = new Icon({
         iconUrl: require("../../../images/markers/marker_standard.png"),

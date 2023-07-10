@@ -28,6 +28,16 @@ type Props = {
 function Mainpage(props:Props) {
     const [openAddLocationPopup, setOpenAddLocationPopup] = useState(false);
 
+    const initialValues:LocationInfo = {
+        locationId: "",
+        locationName: "",
+        locationDescription: "",
+        locationType: "",
+        locationCity: "",
+        locationLatCoordinate: props.newLocationCoordinates.lat,
+        locationLngCoordinate: props.newLocationCoordinates.lng
+    }
+
     return (
         <div className="general-page-frame">
             <Header
@@ -47,7 +57,13 @@ function Mainpage(props:Props) {
                           locationOnClickActive={props.locationOnClickActive}
                           setOpenAddLocationPopup={setOpenAddLocationPopup}
             />
-            {openAddLocationPopup ? <LocationConfirmationWindow/> : <></>}
+            {openAddLocationPopup ?
+                <LocationConfirmationWindow
+                    setLocations={props.setLocations}
+                    onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
+                    initialValues={initialValues}
+                    newLocationCoordinates={props.newLocationCoordinates}/>
+                : <></>}
              <Footer
                 onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                 setLocations={props.setLocations}
