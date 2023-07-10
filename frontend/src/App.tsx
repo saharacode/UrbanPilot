@@ -18,7 +18,7 @@ function App() {
     const {postLogout} = useUserLogout(); // confirmation with toastify open
     const {getUserDetails, userDetails, setUserDetails, emptyUser} = useUserDetails();
     const {getAllLocationsForUser, locations, setLocations} = useLocations();
-    const {postNewLocation, initialValues} = useAddLocation();
+    const {postNewLocation} = useAddLocation();
     const {newLocationCoordinates, setNewLocationCoordinates, locationOnClickActive, setLocationOnClickActive} = useGetPositionOnClick();
 
     return (
@@ -41,7 +41,6 @@ function App() {
                                                            setUserDetails={setUserDetails} emptyUser={emptyUser}
                                                            setLocations={setLocations}
                                                            postNewLocation={postNewLocation}
-                                                           initialValues={initialValues}
                                                            newLocationCoordinates={newLocationCoordinates}
                                                            setNewLocationCoordinates={setNewLocationCoordinates}
                                                            locationOnClickActive={locationOnClickActive}

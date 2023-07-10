@@ -18,7 +18,6 @@ type Props = {
     setUserDetails: Dispatch<SetStateAction<User>>;
     emptyUser: User;
     postNewLocation: (newLocation: LocationInfo, setLocations: Dispatch<SetStateAction<LocationInfo[]>>) => Promise<void>;
-    initialValues: LocationInfo;
     newLocationCoordinates: { lat: number; lng: number; };
     setNewLocationCoordinates: Dispatch<SetStateAction<{ lat: number; lng: number; }>>;
     locationOnClickActive: boolean;
@@ -46,9 +45,9 @@ function Mainpage(props:Props) {
             />
              <Footer
                 onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
-                initialValues={props.initialValues}
                 setLocations={props.setLocations}
                 setLocationOnClickActive={props.setLocationOnClickActive}
+                newLocationCoordinates={props.newLocationCoordinates}
             />
         </div>
     );
