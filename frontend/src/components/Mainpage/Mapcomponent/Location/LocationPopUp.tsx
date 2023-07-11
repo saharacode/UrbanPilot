@@ -13,9 +13,9 @@ import {LocationtypeIcon} from "../../../../icons/locationtype-icon";
 type Props = {
     locationDetails:LocationInfo;
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
-    openEditLocationInput: boolean;
-    setOpenEditLocationInput: Dispatch<SetStateAction<boolean>>;
-    setOpenAddLocationInput: Dispatch<SetStateAction<boolean>>;
+    editLocation: boolean;
+    setEditLocation: Dispatch<SetStateAction<boolean>>;
+    setConfirmNewLocation: Dispatch<SetStateAction<boolean>>;
 }
 
 function LocationPopUp(props:Props) {
@@ -54,8 +54,8 @@ function LocationPopUp(props:Props) {
     }
 
     function editButtonHandler() {
-        props.setOpenEditLocationInput((prevState:boolean) => !prevState);
-        props.setOpenAddLocationInput(false);
+        props.setEditLocation((prevState:boolean) => !prevState);
+        props.setConfirmNewLocation(false);
     }
 
     return (
@@ -94,11 +94,11 @@ function LocationPopUp(props:Props) {
                     </button>
                 </div>
             </Popup>
-            {props.openEditLocationInput?
+            {props.editLocation?
                 <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
                                    initialValues={initialValues}
                                    submitButtonName={"Edit Location"}
-                                   setBooleanToClosePopup={props.setOpenEditLocationInput}
+                                   setBooleanToClosePopup={props.setEditLocation}
                 />:
                 <></>
             }

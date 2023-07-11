@@ -23,10 +23,10 @@ type Props = {
 
 function Mainpage(props:Props) {
     const [newLocationCoordinates, setNewLocationCoordinates] = useState({ lat: 0.0, lng: 0.0 });
-    const [locationOnClickActive, setLocationOnClickActive] = useState(false);
-    const [openAddLocationPopup, setOpenAddLocationPopup] = useState(false);
-    const [openLocationInput, setOpenLocationInput] = useState(false);
-    const [openEditLocationInput, setOpenEditLocationInput] = useState(false);
+    const [clickNewLocation, setClickNewLocation] = useState(false);
+    const [confirmNewLocation, setConfirmNewLocation] = useState(false);
+    const [addLocation, setAddLocation] = useState(false);
+    const [editLocation, setEditLocation] = useState(false);
 
     const initialValues:LocationInfo = {
         locationId: "",
@@ -53,34 +53,34 @@ function Mainpage(props:Props) {
             <Mapcomponent locations={props.locations}
                           setLocations={props.setLocations}
                           setNewLocationCoordinates={setNewLocationCoordinates}
-                          locationOnClickActive={locationOnClickActive}
-                          setOpenAddLocationPopup={setOpenAddLocationPopup}
-                          setLocationOnClickActive={setLocationOnClickActive}
-                          setOpenEditLocationInput={setOpenEditLocationInput}
-                          openEditLocationInput={openEditLocationInput}
+                          clickNewLocation={clickNewLocation}
+                          setClickNewLocation={setClickNewLocation}
+                          setConfirmNewLocation={setConfirmNewLocation}
+                          setEditLocation={setEditLocation}
+                          editLocation={editLocation}
             />
-            {openAddLocationPopup ?
+            {confirmNewLocation ?
                 <LocationConfirmationWindow
                     newLocationCoordinates={newLocationCoordinates}
-                    setLocationOnClickActive={setLocationOnClickActive}
-                    setOpenAddLocationPopup={setOpenAddLocationPopup}
-                    setOpenLocationInput={setOpenLocationInput}
+                    setLocationOnClickActive={setClickNewLocation}
+                    setConfirmNewLocation={setConfirmNewLocation}
+                    setAddLocation={setAddLocation}
                 />
                 : <></>}
-            {openLocationInput ?
+            {addLocation ?
                 <EditLocationPopUp
                     onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                     initialValues={initialValues}
                     submitButtonName={"Add location"}
-                    setBooleanToClosePopup={setOpenLocationInput}
+                    setBooleanToClosePopup={setAddLocation}
                 />
                 : <></>
             }
-            {openAddLocationPopup || openLocationInput || openEditLocationInput?
+            {confirmNewLocation || addLocation || editLocation?
                 <></>
                 : <Footer
-                    setLocationOnClickActive={setLocationOnClickActive}
-                    locationOnClickActive={locationOnClickActive}
+                    clickNewLocation={clickNewLocation}
+                    setClickNewLocation={setClickNewLocation}
                 />
             }
 

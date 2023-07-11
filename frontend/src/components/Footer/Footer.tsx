@@ -4,18 +4,18 @@ import {AddLocationIcon} from "../../icons/addLocation-icon";
 import {CloseIcon} from "../../icons/close-icon";
 
 type Props ={
-    setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
-    locationOnClickActive: boolean;
+    clickNewLocation: boolean;
+    setClickNewLocation: Dispatch<SetStateAction<boolean>>;
 }
 
 function Footer(props:Props) {
     function getCoordinatesOnClick() {
-        props.setLocationOnClickActive((prevState) => !prevState);
+        props.setClickNewLocation((prevState) => !prevState);
     }
 
     return (
         <nav className="nav-footer">
-            {props.locationOnClickActive?
+            {props.clickNewLocation?
                 <div className={"instruction-container"}>
                     <button className={"icon-btn"} onClick={getCoordinatesOnClick}>
                         <CloseIcon width={30} height={30} color={"white"}/>

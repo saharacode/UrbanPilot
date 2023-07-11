@@ -10,11 +10,11 @@ type Props = {
     locations: LocationInfo[];
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
     setNewLocationCoordinates: Dispatch<SetStateAction<{ lat: number; lng: number; }>>;
-    locationOnClickActive: boolean;
-    setOpenAddLocationPopup: Dispatch<SetStateAction<boolean>>;
-    setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
-    openEditLocationInput: boolean;
-    setOpenEditLocationInput: Dispatch<SetStateAction<boolean>>;
+    clickNewLocation: boolean;
+    setClickNewLocation: Dispatch<SetStateAction<boolean>>;
+    setConfirmNewLocation: Dispatch<SetStateAction<boolean>>;
+    editLocation: boolean;
+    setEditLocation: Dispatch<SetStateAction<boolean>>;
 }
 
 function Mapcomponent(props:Props) {
@@ -24,8 +24,8 @@ function Mapcomponent(props:Props) {
         useMapEvents({
             click(event) {
                 props.setNewLocationCoordinates(event.latlng);
-                props.setOpenAddLocationPopup((prevState) => !prevState);
-                props.setLocationOnClickActive((prevState) => !prevState);
+                props.setConfirmNewLocation((prevState) => !prevState);
+                props.setClickNewLocation((prevState) => !prevState);
             }
         })
         return null;
@@ -49,13 +49,13 @@ function Mapcomponent(props:Props) {
                     icon={customIcon}>
                     <LocationPopUp locationDetails={location}
                                    setLocations={props.setLocations}
-                                   setOpenEditLocationInput={props.setOpenEditLocationInput}
-                                   openEditLocationInput={props.openEditLocationInput}
-                                   setOpenAddLocationInput={props.setOpenAddLocationPopup}
+                                   setEditLocation={props.setEditLocation}
+                                   editLocation={props.editLocation}
+                                   setConfirmNewLocation={props.setConfirmNewLocation}
                     />
                 </Marker>
             })}
-            {props.locationOnClickActive ? <HandleClickMap/> : <></>}
+            {props.clickNewLocation ? <HandleClickMap/> : <></>}
         </MapContainer>
     );
 }
