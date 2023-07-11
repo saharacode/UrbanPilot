@@ -15,6 +15,7 @@ type Props = {
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
     openEditLocationInput: boolean;
     setOpenEditLocationInput: Dispatch<SetStateAction<boolean>>;
+    setOpenAddLocationInput: Dispatch<SetStateAction<boolean>>;
 }
 
 function LocationPopUp(props:Props) {
@@ -53,7 +54,8 @@ function LocationPopUp(props:Props) {
     }
 
     function editButtonHandler() {
-        props.setOpenEditLocationInput((prevState:boolean) => !prevState)
+        props.setOpenEditLocationInput((prevState:boolean) => !prevState);
+        props.setOpenAddLocationInput(false);
     }
 
     return (

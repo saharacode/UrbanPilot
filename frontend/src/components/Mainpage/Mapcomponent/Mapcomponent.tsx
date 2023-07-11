@@ -52,6 +52,7 @@ function Mapcomponent(props:Props) {
                                    setLocations={props.setLocations}
                                    setOpenEditLocationInput={props.setOpenEditLocationInput}
                                    openEditLocationInput={props.openEditLocationInput}
+                                   setOpenAddLocationInput={props.setOpenAddLocationPopup}
                     />
                 </Marker>
             })}
