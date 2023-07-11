@@ -19,8 +19,6 @@ type Props = {
 }
 
 function LocationInformationPopUp(props:Props) {
-
-
     async function deleteButtonHandler() {
         const response = await axios.delete(`/locations/delete/${props.locationDetails.locationId}`);
         props.setLocations((locations)=>{
@@ -28,6 +26,11 @@ function LocationInformationPopUp(props:Props) {
                 return location.locationId !==(response.data);
             })]
         });
+    }
+
+    function editButtonHandler() {
+        props.setEditLocation((prevState:boolean) => !prevState);
+        props.setConfirmNewLocation(false);
     }
 
     async function saveButtonHandler(values:LocationInfo) {
@@ -51,11 +54,6 @@ function LocationInformationPopUp(props:Props) {
         locationCity: props.locationDetails.locationCity,
         locationLatCoordinate: props.locationDetails.locationLatCoordinate,
         locationLngCoordinate: props.locationDetails.locationLngCoordinate
-    }
-
-    function editButtonHandler() {
-        props.setEditLocation((prevState:boolean) => !prevState);
-        props.setConfirmNewLocation(false);
     }
 
     return (
