@@ -8,5 +8,11 @@
     position: fixed;
     left: 20px;
     bottom: 20px;
-    max-width: 100vw;
+    max-width: 90vw;
+}
+
+.instruction-container{
+    display: flex;
+    color: white;
+    align-items: center;
 }

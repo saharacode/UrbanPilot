@@ -34,10 +34,12 @@ function EditLocationPopUp(props:Props) {
 
     return (
         <div className="popupStyle">
-            <h3>{props.submitButtonName}</h3>
-            <button className={"icon-btn"} onClick={closeButtonHandler}>
-                <CloseIcon width={30} height={30} color={"red"}/>
-            </button>
+            <div className="editLocationPopup-head">
+                <h3>{props.submitButtonName}</h3>
+                <button className={"icon-btn"} onClick={closeButtonHandler}>
+                    <CloseIcon width={30} height={30} color={"white"}/>
+                </button>
+            </div>
             <div className="editLocation-container">
                 <Formik
                     initialValues={props.initialValues}
