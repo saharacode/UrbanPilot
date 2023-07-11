@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import {Popup} from "react-leaflet";
 import {LocationInfo} from "../../../../model/LocationInfo";
 import axios from "axios";
@@ -16,6 +16,8 @@ type Props = {
 }
 
 function LocationPopUp(props:Props) {
+    const [openEditLocationInput, setOpenEditLocationInput] = useState(false);
+
     async function deleteButtonHandler() {
         const response = await axios.delete(`/locations/delete/${props.locationDetails.locationId}`);
         props.setLocations((locations)=>{
@@ -48,46 +50,55 @@ function LocationPopUp(props:Props) {
         locationLngCoordinate: props.locationDetails.locationLngCoordinate
     }
 
+    function editButtonHandler() {
+        setOpenEditLocationInput((prevState:boolean) => !prevState)
+    }
+
     return (
-        <Popup>
-            <h3>{props.locationDetails.locationName}</h3>
-            <table>
-                <tbody>
-                <tr>
-                    <td>
-                        <LocationtypeIcon width={20} height={20} color={"black"}/>
-                    </td>
-                    <td> {props.locationDetails.locationType}</td>
-                </tr>
-                <tr>
-                    <td>
-                        <CityIcon width={20} height={20} color={"black"}/>
-                    </td>
-                    <td> {props.locationDetails.locationCity}</td>
-                </tr>
-                <tr>
-                    <td>
-                        <InformationIcon width={20} height={20} color={"black"}/>
-                    </td>
-                    <td> {props.locationDetails.locationDescription}</td>
-                </tr>
-                </tbody>
-            </table>
-            <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
-            <div className="locationPopup-buttons">
+        <div>
+            <Popup>
+                <h3>{props.locationDetails.locationName}</h3>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <LocationtypeIcon width={20} height={20} color={"black"}/>
+                        </td>
+                        <td> {props.locationDetails.locationType}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <CityIcon width={20} height={20} color={"black"}/>
+                        </td>
+                        <td> {props.locationDetails.locationCity}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <InformationIcon width={20} height={20} color={"black"}/>
+                        </td>
+                        <td> {props.locationDetails.locationDescription}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Lat: {props.locationDetails.locationLatCoordinate}, Lng: {props.locationDetails.locationLngCoordinate}</h5>
+                <div className="locationPopup-buttons">
+                    <button onClick={editButtonHandler} className="icon-btn">
+                        <EditLocationIcon width={30} height={30} color={"black"}/>
+                    </button>
+                    <button onClick={deleteButtonHandler} className="icon-btn">
+                        <DeleteLocationIcon width={30} height={30} color={"red"}/>
+                    </button>
+                </div>
+            </Popup>
+            {openEditLocationInput?
                 <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
                                    initialValues={initialValues}
                                    submitButtonName={"Edit Location"}
-                                   triggerButton={<button className={"icon-btn"}>
-                                       <EditLocationIcon width={30} height={30} color={"black"}/>
-                                   </button>}
-                                   openPopup={() => {}}
-                />
-                <button onClick={deleteButtonHandler} className="icon-btn">
-                    <DeleteLocationIcon width={30} height={30} color={"red"}/>
-                </button>
-            </div>
-        </Popup>
+                                   setBooleanToClosePopup={setOpenEditLocationInput}
+                />:
+                <></>
+            }
+        </div>
     );
 }
 

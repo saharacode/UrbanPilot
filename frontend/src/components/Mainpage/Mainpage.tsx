@@ -6,6 +6,7 @@ import Header from "../Header/Header";
 import './Mainpage.css';
 import Footer from "../Footer/Footer";
 import LocationConfirmationWindow from "./Mapcomponent/LocationConfirmationWindow/LocationConfirmationWindow";
+import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
 
 type Props = {
     userDetails: User;
@@ -27,6 +28,7 @@ type Props = {
 
 function Mainpage(props:Props) {
     const [openAddLocationPopup, setOpenAddLocationPopup] = useState(false);
+    const [openLocationInput, setOpenLocationInput] = useState(false);
 
     const initialValues:LocationInfo = {
         locationId: "",
@@ -66,8 +68,19 @@ function Mainpage(props:Props) {
                     newLocationCoordinates={props.newLocationCoordinates}
                     setLocationOnClickActive={props.setLocationOnClickActive}
                     setOpenAddLocationPopup={setOpenAddLocationPopup}
+                    setOpenLocationInput={setOpenLocationInput}
                 />
                 : <></>}
+            {openLocationInput ?
+                <EditLocationPopUp
+                    onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
+                    initialValues={initialValues}
+                    setLocations={props.setLocations}
+                    submitButtonName={"Add location"}
+                    setBooleanToClosePopup={setOpenLocationInput}
+                />
+                : <></>
+            }
              <Footer
                 onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                 setLocations={props.setLocations}

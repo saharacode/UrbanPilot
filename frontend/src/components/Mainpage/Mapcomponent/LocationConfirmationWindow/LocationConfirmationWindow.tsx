@@ -12,6 +12,7 @@ type Props={
     newLocationCoordinates: { lat: number; lng: number; };
     setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
     setOpenAddLocationPopup: Dispatch<SetStateAction<boolean>>;
+    setOpenLocationInput: Dispatch<SetStateAction<boolean>>;
 }
 
 function LocationConfirmationWindow(props:Props) {
@@ -21,23 +22,17 @@ function LocationConfirmationWindow(props:Props) {
     }
 
     function confirmButtonHandler() {
-        //props.setLocationOnClickActive(false);
-        //props.setOpenAddLocationPopup(false);
+        props.setLocationOnClickActive(false);
+        props.setOpenAddLocationPopup(false);
+        props.setOpenLocationInput((prevState) => !prevState);
     }
 
     return (
         <div className="locationConfirmationWindow-container">
             <h5>Would you like to create a new Location at Lat {props.newLocationCoordinates.lat}, Lng {props.newLocationCoordinates.lng}?</h5>
-            <EditLocationPopUp
-                onSubmitHandler={props.onSubmitHandler}
-                initialValues={props.initialValues}
-                setLocations={props.setLocations}
-                submitButtonName={"Add location"}
-                triggerButton={<button className={"icon-btn"}>
-                    <SaveIcon width={30} height={30} color={"green"}/>
-                </button>}
-                openPopup={confirmButtonHandler}
-            />
+            <button className={"icon-btn"} onClick={confirmButtonHandler}>
+                <SaveIcon width={30} height={30} color={"green"}/>
+            </button>
             <button className={"icon-btn"} onClick={closeButtonHandler}>
                 <CloseIcon width={30} height={30} color={"red"}/>
             </button>
