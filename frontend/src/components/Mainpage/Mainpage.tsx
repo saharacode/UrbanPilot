@@ -1,11 +1,11 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
-import Mapcomponent from "./Mapcomponent/Mapcomponent";
+import Mapcomponent from "../Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
 import Header from "../Header/Header";
 import './Mainpage.css';
 import Footer from "../Footer/Footer";
-import LocationConfirmationWindow from "./Mapcomponent/LocationConfirmationWindow/LocationConfirmationWindow";
+import LocationConfirmationWindow from "../LocationConfirmationWindow/LocationConfirmationWindow";
 import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
 
 type Props = {

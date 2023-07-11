@@ -1,14 +1,14 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {Popup} from "react-leaflet";
-import {LocationInfo} from "../../../../model/LocationInfo";
+import {LocationInfo} from "../../model/LocationInfo";
 import axios from "axios";
-import EditLocationPopUp from "../../../EditLocationPopUp/EditLocationPopUp";
-import './LocationPopUp.css';
-import {EditLocationIcon} from "../../../../icons/editLocation-icon";
-import {DeleteLocationIcon} from "../../../../icons/deleteLocation-icon";
-import {CityIcon} from "../../../../icons/city-icon";
-import {InformationIcon} from "../../../../icons/information-icon";
-import {LocationtypeIcon} from "../../../../icons/locationtype-icon";
+import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
+import './LocationInformationPopUp.css';
+import {EditLocationIcon} from "../../icons/editLocation-icon";
+import {DeleteLocationIcon} from "../../icons/deleteLocation-icon";
+import {CityIcon} from "../../icons/city-icon";
+import {InformationIcon} from "../../icons/information-icon";
+import {LocationtypeIcon} from "../../icons/locationtype-icon";
 
 type Props = {
     locationDetails:LocationInfo;
@@ -18,7 +18,7 @@ type Props = {
     setConfirmNewLocation: Dispatch<SetStateAction<boolean>>;
 }
 
-function LocationPopUp(props:Props) {
+function LocationInformationPopUp(props:Props) {
 
 
     async function deleteButtonHandler() {
@@ -106,4 +106,4 @@ function LocationPopUp(props:Props) {
     );
 }
 
-export default LocationPopUp;
+export default LocationInformationPopUp;

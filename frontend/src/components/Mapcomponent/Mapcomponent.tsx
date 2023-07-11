@@ -3,8 +3,8 @@ import "./Mapcomponent.css";
 import {MapContainer, TileLayer, Marker, useMapEvents} from "react-leaflet";
 import L, {Icon} from "leaflet";
 import "leaflet/dist/leaflet.css";
-import {LocationInfo} from "../../../model/LocationInfo";
-import LocationPopUp from "./Location/LocationPopUp";
+import {LocationInfo} from "../../model/LocationInfo";
+import LocationInformationPopUp from "../LocationInformationPopUp/LocationInformationPopUp";
 
 type Props = {
     locations: LocationInfo[];
@@ -32,7 +32,7 @@ function Mapcomponent(props:Props) {
     }
 
     const customIcon = new Icon({
-        iconUrl: require("../../../images/markers/marker_standard.png"),
+        iconUrl: require("../../images/markers/marker_standard.png"),
         iconSize: [38,38]
     })
 
@@ -47,11 +47,11 @@ function Mapcomponent(props:Props) {
                     key={location.locationId}
                     position={{ lat: location.locationLatCoordinate, lng: location.locationLngCoordinate }}
                     icon={customIcon}>
-                    <LocationPopUp locationDetails={location}
-                                   setLocations={props.setLocations}
-                                   setEditLocation={props.setEditLocation}
-                                   editLocation={props.editLocation}
-                                   setConfirmNewLocation={props.setConfirmNewLocation}
+                    <LocationInformationPopUp locationDetails={location}
+                                              setLocations={props.setLocations}
+                                              setEditLocation={props.setEditLocation}
+                                              editLocation={props.editLocation}
+                                              setConfirmNewLocation={props.setConfirmNewLocation}
                     />
                 </Marker>
             })}

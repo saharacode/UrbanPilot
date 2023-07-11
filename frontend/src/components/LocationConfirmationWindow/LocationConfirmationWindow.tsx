@@ -1,7 +1,7 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import "./LocationConfirmationWindow.css";
-import {SaveIcon} from "../../../../icons/save-icon";
-import {CloseIcon} from "../../../../icons/close-icon";
+import {SaveIcon} from "../../icons/save-icon";
+import {CloseIcon} from "../../icons/close-icon";
 
 type Props={
     newLocationCoordinates: { lat: number; lng: number; };
