@@ -16,3 +16,9 @@
     color: white;
     align-items: center;
 }
+
+.instruction-container h5{
+    border-radius: 12px;
+    padding: 10px;
+    background: #000000c2;
+}
