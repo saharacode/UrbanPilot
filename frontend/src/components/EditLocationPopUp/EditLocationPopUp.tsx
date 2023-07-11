@@ -2,7 +2,7 @@ import React, {Dispatch, SetStateAction} from 'react';
 import {Field, Form, Formik} from "formik";
 import {LocationInfo} from "../../model/LocationInfo";
 import * as Yup from "yup"
-import './Popup.css';
+import './EditLocationPopUp.css';
 import {SaveIcon} from "../../icons/save-icon";
 import {CloseIcon} from "../../icons/close-icon";
 

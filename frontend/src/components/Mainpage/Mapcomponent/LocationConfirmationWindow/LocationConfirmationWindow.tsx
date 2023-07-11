@@ -5,19 +5,19 @@ import {CloseIcon} from "../../../../icons/close-icon";
 
 type Props={
     newLocationCoordinates: { lat: number; lng: number; };
-    setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
+    setClickNewLocation: Dispatch<SetStateAction<boolean>>;
     setConfirmNewLocation: Dispatch<SetStateAction<boolean>>;
     setAddLocation: Dispatch<SetStateAction<boolean>>;
 }
 
 function LocationConfirmationWindow(props:Props) {
     function closeButtonHandler() {
-        props.setLocationOnClickActive((prevState) => !prevState);
+        props.setClickNewLocation((prevState) => !prevState);
         props.setConfirmNewLocation((prevState) => !prevState);
     }
 
     function confirmButtonHandler() {
-        props.setLocationOnClickActive(false);
+        props.setClickNewLocation(false);
         props.setConfirmNewLocation(false);
         props.setAddLocation((prevState) => !prevState);
     }

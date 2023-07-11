@@ -20,7 +20,7 @@ function Footer(props:Props) {
                     <button className={"icon-btn"} onClick={getCoordinatesOnClick}>
                         <CloseIcon width={30} height={30} color={"white"}/>
                     </button>
-                    <h5>Please click on the map, where you would like to create a new Location!</h5>
+                    <h5>Click on the map, where you would like to create a new Location!</h5>
                 </div>
                 :
                 <button className={"icon-btn"} onClick={getCoordinatesOnClick}>

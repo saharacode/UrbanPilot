@@ -62,7 +62,7 @@ function Mainpage(props:Props) {
             {confirmNewLocation ?
                 <LocationConfirmationWindow
                     newLocationCoordinates={newLocationCoordinates}
-                    setLocationOnClickActive={setClickNewLocation}
+                    setClickNewLocation={setClickNewLocation}
                     setConfirmNewLocation={setConfirmNewLocation}
                     setAddLocation={setAddLocation}
                 />
