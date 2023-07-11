@@ -2,6 +2,7 @@ import React, {Dispatch, SetStateAction} from 'react';
 import './Footer.css';
 import {LocationInfo} from "../../model/LocationInfo";
 import {AddLocationIcon} from "../../icons/addLocation-icon";
+import {CloseIcon} from "../../icons/close-icon";
 
 type Props ={
     onSubmitHandler: (values:LocationInfo) => Promise<void>;
@@ -18,11 +19,10 @@ function Footer(props:Props) {
 
     return (
         <nav className="nav-footer">
-
             {props.locationOnClickActive?
                 <div>
                     <button className={"icon-btn"} onClick={getCoordinatesOnClick}>
-                        <AddLocationIcon width={30} height={30} color={"white"}/>
+                        <CloseIcon width={30} height={30} color={"white"}/>
                     </button>
                     <h5>Please click on the map, where you would like to create a Location!</h5>
                 </div>
