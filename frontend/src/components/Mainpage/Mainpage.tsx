@@ -83,8 +83,6 @@ function Mainpage(props:Props) {
                     setClickNewLocation={setClickNewLocation}
                 />
             }
-
-
         </div>
     );
 }
