@@ -22,12 +22,19 @@
     background: #000000c2;
     border-radius: 12px;
     padding: 10px;
-    gap: 10px;
+    gap: 20px;
 }
 
 .locationConfirmation-buttons{
     display: flex;
     gap: 150px;
+    justify-content: center;
+    align-items: center;
+}
+
+.coordinates-container{
+    display: flex;
+    gap: 20px;
     justify-content: center;
     align-items: center;
 }
