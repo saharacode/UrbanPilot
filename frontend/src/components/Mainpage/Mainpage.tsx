@@ -12,7 +12,6 @@ type Props = {
     userDetails: User;
     postLogout: () => Promise<void>;
     getUserDetails: () => Promise<void>;
-    user?: string;
     setUser: Dispatch<SetStateAction<string | undefined>>;
     locations: LocationInfo[];
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;

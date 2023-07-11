@@ -32,7 +32,6 @@ function App() {
                 <Route path="/mainpage" element={<Mainpage userDetails={userDetails}
                                                            postLogout={postLogout}
                                                            getUserDetails={getUserDetails}
-                                                           user={user}
                                                            setUser={setUser}
                                                            locations={locations}
                                                            getAllLocationsForUser={getAllLocationsForUser}
