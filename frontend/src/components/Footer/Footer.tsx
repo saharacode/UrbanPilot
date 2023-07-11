@@ -10,6 +10,7 @@ type Props ={
     setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
     newLocationCoordinates: { lat: number; lng: number; };
     locationOnClickActive: boolean;
+    openAddLocationPopup: boolean;
 }
 
 function Footer(props:Props) {

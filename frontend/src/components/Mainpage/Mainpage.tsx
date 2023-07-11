@@ -56,13 +56,17 @@ function Mainpage(props:Props) {
                           setNewLocationCoordinates={props.setNewLocationCoordinates}
                           locationOnClickActive={props.locationOnClickActive}
                           setOpenAddLocationPopup={setOpenAddLocationPopup}
+                          setLocationOnClickActive={props.setLocationOnClickActive}
             />
             {openAddLocationPopup ?
                 <LocationConfirmationWindow
                     setLocations={props.setLocations}
                     onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                     initialValues={initialValues}
-                    newLocationCoordinates={props.newLocationCoordinates}/>
+                    newLocationCoordinates={props.newLocationCoordinates}
+                    setLocationOnClickActive={props.setLocationOnClickActive}
+                    setOpenAddLocationPopup={setOpenAddLocationPopup}
+                />
                 : <></>}
              <Footer
                 onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
@@ -70,6 +74,7 @@ function Mainpage(props:Props) {
                 setLocationOnClickActive={props.setLocationOnClickActive}
                 newLocationCoordinates={props.newLocationCoordinates}
                 locationOnClickActive={props.locationOnClickActive}
+                openAddLocationPopup={openAddLocationPopup}
             />
         </div>
     );

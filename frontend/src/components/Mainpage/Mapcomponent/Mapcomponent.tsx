@@ -13,6 +13,7 @@ type Props = {
     setNewLocationCoordinates: Dispatch<SetStateAction<{ lat: number; lng: number; }>>;
     locationOnClickActive: boolean;
     setOpenAddLocationPopup: Dispatch<SetStateAction<boolean>>;
+    setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
 }
 
 function Mapcomponent(props:Props) {
@@ -21,8 +22,9 @@ function Mapcomponent(props:Props) {
     const HandleClickMap = () => {
         useMapEvents({
             click(event) {
-                props.setNewLocationCoordinates(event.latlng)
-                props.setOpenAddLocationPopup((prevState) => !prevState)
+                props.setNewLocationCoordinates(event.latlng);
+                props.setOpenAddLocationPopup((prevState) => !prevState);
+                props.setLocationOnClickActive((prevState) => !prevState);
             }
         })
         return null;

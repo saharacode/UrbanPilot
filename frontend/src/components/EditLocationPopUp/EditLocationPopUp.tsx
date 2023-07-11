@@ -12,6 +12,7 @@ type Props = {
     setLocations?:Dispatch<SetStateAction<LocationInfo[]>>;
     submitButtonName:string;
     triggerButton:React.ReactElement;
+    openPopup: () => void;
 }
 
 function EditLocationPopUp(props:Props) {
@@ -29,7 +30,7 @@ function EditLocationPopUp(props:Props) {
     });
 
     return (
-        <Popup trigger={props.triggerButton} arrow={false}>
+        <Popup trigger={props.triggerButton} arrow={false} onOpen={props.openPopup}>
             <div className="popupStyle">
                 <h3>{props.submitButtonName}</h3>
                 <div className="editLocation-container">

@@ -81,6 +81,7 @@ function LocationPopUp(props:Props) {
                                    triggerButton={<button className={"icon-btn"}>
                                        <EditLocationIcon width={30} height={30} color={"black"}/>
                                    </button>}
+                                   openPopup={() => {}}
                 />
                 <button onClick={deleteButtonHandler} className="icon-btn">
                     <DeleteLocationIcon width={30} height={30} color={"red"}/>
