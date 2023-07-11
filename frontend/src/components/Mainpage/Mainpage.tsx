@@ -55,7 +55,6 @@ function Mainpage(props:Props) {
             />
             <Mapcomponent locations={props.locations}
                           setLocations={props.setLocations}
-                          newLocationCoordinates={props.newLocationCoordinates}
                           setNewLocationCoordinates={props.setNewLocationCoordinates}
                           locationOnClickActive={props.locationOnClickActive}
                           setOpenAddLocationPopup={setOpenAddLocationPopup}
@@ -65,9 +64,6 @@ function Mainpage(props:Props) {
             />
             {openAddLocationPopup ?
                 <LocationConfirmationWindow
-                    setLocations={props.setLocations}
-                    onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
-                    initialValues={initialValues}
                     newLocationCoordinates={props.newLocationCoordinates}
                     setLocationOnClickActive={props.setLocationOnClickActive}
                     setOpenAddLocationPopup={setOpenAddLocationPopup}
@@ -78,7 +74,6 @@ function Mainpage(props:Props) {
                 <EditLocationPopUp
                     onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                     initialValues={initialValues}
-                    setLocations={props.setLocations}
                     submitButtonName={"Add location"}
                     setBooleanToClosePopup={setOpenLocationInput}
                 />
@@ -87,12 +82,8 @@ function Mainpage(props:Props) {
             {openAddLocationPopup || openLocationInput || openEditLocationInput?
                 <></>
                 : <Footer
-                    onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
-                    setLocations={props.setLocations}
                     setLocationOnClickActive={props.setLocationOnClickActive}
-                    newLocationCoordinates={props.newLocationCoordinates}
                     locationOnClickActive={props.locationOnClickActive}
-                    openAddLocationPopup={openAddLocationPopup}
                 />
             }
 

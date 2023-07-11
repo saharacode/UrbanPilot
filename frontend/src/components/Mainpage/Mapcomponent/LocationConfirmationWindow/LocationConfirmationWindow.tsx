@@ -1,13 +1,9 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import "./LocationConfirmationWindow.css";
-import {LocationInfo} from "../../../../model/LocationInfo";
 import {SaveIcon} from "../../../../icons/save-icon";
 import {CloseIcon} from "../../../../icons/close-icon";
 
 type Props={
-    onSubmitHandler: (values:LocationInfo) => Promise<void>;
-    setLocations?:Dispatch<SetStateAction<LocationInfo[]>>;
-    initialValues: LocationInfo;
     newLocationCoordinates: { lat: number; lng: number; };
     setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
     setOpenAddLocationPopup: Dispatch<SetStateAction<boolean>>;

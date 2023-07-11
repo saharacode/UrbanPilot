@@ -9,7 +9,6 @@ import {CloseIcon} from "../../icons/close-icon";
 type Props = {
     onSubmitHandler: (values:LocationInfo) => Promise<void>;
     initialValues: LocationInfo;
-    setLocations?:Dispatch<SetStateAction<LocationInfo[]>>;
     submitButtonName:string;
     setBooleanToClosePopup: Dispatch<SetStateAction<boolean>>;
 }

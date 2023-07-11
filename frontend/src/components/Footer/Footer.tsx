@@ -1,16 +1,11 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import './Footer.css';
-import {LocationInfo} from "../../model/LocationInfo";
 import {AddLocationIcon} from "../../icons/addLocation-icon";
 import {CloseIcon} from "../../icons/close-icon";
 
 type Props ={
-    onSubmitHandler: (values:LocationInfo) => Promise<void>;
-    setLocations?:Dispatch<SetStateAction<LocationInfo[]>>;
     setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
-    newLocationCoordinates: { lat: number; lng: number; };
     locationOnClickActive: boolean;
-    openAddLocationPopup: boolean;
 }
 
 function Footer(props:Props) {

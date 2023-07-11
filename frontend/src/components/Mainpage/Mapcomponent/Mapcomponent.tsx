@@ -9,7 +9,6 @@ import LocationPopUp from "./Location/LocationPopUp";
 type Props = {
     locations: LocationInfo[];
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
-    newLocationCoordinates: { lat: number; lng: number; };
     setNewLocationCoordinates: Dispatch<SetStateAction<{ lat: number; lng: number; }>>;
     locationOnClickActive: boolean;
     setOpenAddLocationPopup: Dispatch<SetStateAction<boolean>>;
