@@ -20,13 +20,11 @@ type Props = {
     setUserDetails: Dispatch<SetStateAction<User>>;
     emptyUser: User;
     postNewLocation: (newLocation: LocationInfo, setLocations: Dispatch<SetStateAction<LocationInfo[]>>) => Promise<void>;
-    newLocationCoordinates: { lat: number; lng: number; };
-    setNewLocationCoordinates: Dispatch<SetStateAction<{ lat: number; lng: number; }>>;
-    locationOnClickActive: boolean;
-    setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
 }
 
 function Mainpage(props:Props) {
+    const [newLocationCoordinates, setNewLocationCoordinates] = useState({ lat: 0.0, lng: 0.0 });
+    const [locationOnClickActive, setLocationOnClickActive] = useState(false);
     const [openAddLocationPopup, setOpenAddLocationPopup] = useState(false);
     const [openLocationInput, setOpenLocationInput] = useState(false);
     const [openEditLocationInput, setOpenEditLocationInput] = useState(false);
@@ -37,8 +35,8 @@ function Mainpage(props:Props) {
         locationDescription: "",
         locationType: "",
         locationCity: "",
-        locationLatCoordinate: props.newLocationCoordinates.lat,
-        locationLngCoordinate: props.newLocationCoordinates.lng
+        locationLatCoordinate: newLocationCoordinates.lat,
+        locationLngCoordinate: newLocationCoordinates.lng
     }
 
     return (
@@ -55,17 +53,17 @@ function Mainpage(props:Props) {
             />
             <Mapcomponent locations={props.locations}
                           setLocations={props.setLocations}
-                          setNewLocationCoordinates={props.setNewLocationCoordinates}
-                          locationOnClickActive={props.locationOnClickActive}
+                          setNewLocationCoordinates={setNewLocationCoordinates}
+                          locationOnClickActive={locationOnClickActive}
                           setOpenAddLocationPopup={setOpenAddLocationPopup}
-                          setLocationOnClickActive={props.setLocationOnClickActive}
+                          setLocationOnClickActive={setLocationOnClickActive}
                           setOpenEditLocationInput={setOpenEditLocationInput}
                           openEditLocationInput={openEditLocationInput}
             />
             {openAddLocationPopup ?
                 <LocationConfirmationWindow
-                    newLocationCoordinates={props.newLocationCoordinates}
-                    setLocationOnClickActive={props.setLocationOnClickActive}
+                    newLocationCoordinates={newLocationCoordinates}
+                    setLocationOnClickActive={setLocationOnClickActive}
                     setOpenAddLocationPopup={setOpenAddLocationPopup}
                     setOpenLocationInput={setOpenLocationInput}
                 />
@@ -82,8 +80,8 @@ function Mainpage(props:Props) {
             {openAddLocationPopup || openLocationInput || openEditLocationInput?
                 <></>
                 : <Footer
-                    setLocationOnClickActive={props.setLocationOnClickActive}
-                    locationOnClickActive={props.locationOnClickActive}
+                    setLocationOnClickActive={setLocationOnClickActive}
+                    locationOnClickActive={locationOnClickActive}
                 />
             }
 
