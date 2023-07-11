@@ -13,10 +13,12 @@ import {LocationtypeIcon} from "../../../../icons/locationtype-icon";
 type Props = {
     locationDetails:LocationInfo;
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
+    openEditLocationInput: boolean;
+    setOpenEditLocationInput: Dispatch<SetStateAction<boolean>>;
 }
 
 function LocationPopUp(props:Props) {
-    const [openEditLocationInput, setOpenEditLocationInput] = useState(false);
+
 
     async function deleteButtonHandler() {
         const response = await axios.delete(`/locations/delete/${props.locationDetails.locationId}`);
@@ -51,7 +53,7 @@ function LocationPopUp(props:Props) {
     }
 
     function editButtonHandler() {
-        setOpenEditLocationInput((prevState:boolean) => !prevState)
+        props.setOpenEditLocationInput((prevState:boolean) => !prevState)
     }
 
     return (
@@ -90,11 +92,11 @@ function LocationPopUp(props:Props) {
                     </button>
                 </div>
             </Popup>
-            {openEditLocationInput?
+            {props.openEditLocationInput?
                 <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
                                    initialValues={initialValues}
                                    submitButtonName={"Edit Location"}
-                                   setBooleanToClosePopup={setOpenEditLocationInput}
+                                   setBooleanToClosePopup={props.setOpenEditLocationInput}
                 />:
                 <></>
             }

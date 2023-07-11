@@ -29,6 +29,7 @@ type Props = {
 function Mainpage(props:Props) {
     const [openAddLocationPopup, setOpenAddLocationPopup] = useState(false);
     const [openLocationInput, setOpenLocationInput] = useState(false);
+    const [openEditLocationInput, setOpenEditLocationInput] = useState(false);
 
     const initialValues:LocationInfo = {
         locationId: "",
@@ -59,6 +60,8 @@ function Mainpage(props:Props) {
                           locationOnClickActive={props.locationOnClickActive}
                           setOpenAddLocationPopup={setOpenAddLocationPopup}
                           setLocationOnClickActive={props.setLocationOnClickActive}
+                          setOpenEditLocationInput={setOpenEditLocationInput}
+                          openEditLocationInput={openEditLocationInput}
             />
             {openAddLocationPopup ?
                 <LocationConfirmationWindow
@@ -81,14 +84,19 @@ function Mainpage(props:Props) {
                 />
                 : <></>
             }
-             <Footer
-                onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
-                setLocations={props.setLocations}
-                setLocationOnClickActive={props.setLocationOnClickActive}
-                newLocationCoordinates={props.newLocationCoordinates}
-                locationOnClickActive={props.locationOnClickActive}
-                openAddLocationPopup={openAddLocationPopup}
-            />
+            {openAddLocationPopup || openLocationInput || openEditLocationInput?
+                <></>
+                : <Footer
+                    onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
+                    setLocations={props.setLocations}
+                    setLocationOnClickActive={props.setLocationOnClickActive}
+                    newLocationCoordinates={props.newLocationCoordinates}
+                    locationOnClickActive={props.locationOnClickActive}
+                    openAddLocationPopup={openAddLocationPopup}
+                />
+            }
+
+
         </div>
     );
 }

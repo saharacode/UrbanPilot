@@ -14,6 +14,8 @@ type Props = {
     locationOnClickActive: boolean;
     setOpenAddLocationPopup: Dispatch<SetStateAction<boolean>>;
     setLocationOnClickActive: Dispatch<SetStateAction<boolean>>;
+    openEditLocationInput: boolean;
+    setOpenEditLocationInput: Dispatch<SetStateAction<boolean>>;
 }
 
 function Mapcomponent(props:Props) {
@@ -48,6 +50,8 @@ function Mapcomponent(props:Props) {
                     icon={customIcon}>
                     <LocationPopUp locationDetails={location}
                                    setLocations={props.setLocations}
+                                   setOpenEditLocationInput={props.setOpenEditLocationInput}
+                                   openEditLocationInput={props.openEditLocationInput}
                     />
                 </Marker>
             })}
