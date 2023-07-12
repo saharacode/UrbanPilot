@@ -32,12 +32,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 5px;
+    gap: 10px;
 }
 
 .checkbox-label{
     display: flex;
     gap: 10px;
+    font-size: 10pt;
 }
 
 .checkbox{

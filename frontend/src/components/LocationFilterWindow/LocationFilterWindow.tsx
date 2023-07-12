@@ -1,4 +1,4 @@
-import React, {Dispatch, ReactComponentElement, ReactFragment, SetStateAction} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import "./LocationFilterWindow.css";
 import {SaveIcon} from "../../icons/save-icon";
 import {CloseIcon} from "../../icons/close-icon";
@@ -10,12 +10,22 @@ type Props={
 
 function LocationFilterWindow(props:Props) {
     const locationtypes:string[] = ['Food', 'Bar', 'Sight', 'Nature', 'Art', 'Education', 'Sports', 'Other'];
+    const [currentSelection, setCurrentSelection] = useState(locationtypes);
 
     function closeButtonHandler() {
         props.setFilter((prevState) => !prevState);
     }
 
     function confirmButtonHandler() {
+        props.setFilteredElements(currentSelection);
+    }
+
+    function clickCheckboxHandler(locationtype:string) {
+        if (currentSelection.includes(locationtype)){
+            setCurrentSelection(currentSelection.filter((element)=> (element !== locationtype)))
+        } else {
+            setCurrentSelection([...currentSelection, locationtype])
+        }
     }
 
     return (
@@ -27,12 +37,17 @@ function LocationFilterWindow(props:Props) {
                 </button>
             </div>
             <div className="locationFilterWindow-content">
-                <h5>Please select which locationtype you want to display.</h5>
+                <h5>Please select which locationtype you want to display:</h5>
                 <div className="checkboxes-container">
                     {
                         locationtypes.map((locationtype:string) =>(
                              <label key={locationtype} className="checkbox-label">
-                                <input type="checkbox" className="checkbox"/>
+                                <input
+                                    type="checkbox"
+                                    value={locationtype}
+                                    checked={currentSelection.includes(locationtype)}
+                                    onChange={() => clickCheckboxHandler(locationtype)}
+                                    className="checkbox"/>
                                 {locationtype}
                             </label>
                         ))
