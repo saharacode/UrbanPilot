@@ -9,6 +9,7 @@ import {LogoutIcon} from "../../icons/logout-icon";
 import {EmailIcon} from "../../icons/email-icon";
 import {CityIcon} from "../../icons/city-icon";
 import {NameIcon} from "../../icons/name-icon";
+import {CloseIcon} from "../../icons/close-icon";
 
 type Props ={
     userDetails: User;
@@ -51,9 +52,14 @@ function Header(props:Props) {
     return (
         <nav className="nav-header">
             <img className="logo" src={UrbanPilotLogo} alt={"UrbanPilotLogo"}/>
-            <button className="menu-btn" onClick={toggleProfileDropdown}>
-                <MenuIcon width={35} height={35} color={"white"}/>
-            </button>
+            {isProfileDropdownOpen?
+                <button className="menu-btn" onClick={toggleProfileDropdown}>
+                    <CloseIcon width={35} height={35} color={"white"}/>
+                </button> :
+                <button className="menu-btn" onClick={toggleProfileDropdown}>
+                    <MenuIcon width={35} height={35} color={"white"}/>
+                </button>
+            }
             <div className={`dropdown-wrap ${isProfileDropdownOpen ? "open-menu" : ""}`} id="profileDropdown">
                 <div className="dropdown">
                     <div className="userinfo">

@@ -1,16 +1,17 @@
-import React, {Dispatch, SetStateAction} from 'react';
-import Mapcomponent from "./Mapcomponent/Mapcomponent";
+import React, {Dispatch, SetStateAction, useState} from 'react';
+import Mapcomponent from "../Mapcomponent/Mapcomponent";
 import {LocationInfo} from "../../model/LocationInfo";
 import {User} from "../../model/User";
 import Header from "../Header/Header";
 import './Mainpage.css';
 import Footer from "../Footer/Footer";
+import LocationConfirmationWindow from "../LocationConfirmationWindow/LocationConfirmationWindow";
+import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
 
 type Props = {
     userDetails: User;
     postLogout: () => Promise<void>;
     getUserDetails: () => Promise<void>;
-    user?: string;
     setUser: Dispatch<SetStateAction<string | undefined>>;
     locations: LocationInfo[];
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
@@ -18,10 +19,25 @@ type Props = {
     setUserDetails: Dispatch<SetStateAction<User>>;
     emptyUser: User;
     postNewLocation: (newLocation: LocationInfo, setLocations: Dispatch<SetStateAction<LocationInfo[]>>) => Promise<void>;
-    initialValues: LocationInfo;
 }
 
 function Mainpage(props:Props) {
+    const [newLocationCoordinates, setNewLocationCoordinates] = useState({ lat: 0.0, lng: 0.0 });
+    const [clickNewLocation, setClickNewLocation] = useState(false);
+    const [confirmNewLocation, setConfirmNewLocation] = useState(false);
+    const [addLocation, setAddLocation] = useState(false);
+    const [editLocation, setEditLocation] = useState(false);
+
+    const initialValues:LocationInfo = {
+        locationId: "",
+        locationName: "",
+        locationDescription: "",
+        locationType: "",
+        locationCity: "",
+        locationLatCoordinate: newLocationCoordinates.lat,
+        locationLngCoordinate: newLocationCoordinates.lng
+    }
+
     return (
         <div className="general-page-frame">
             <Header
@@ -36,12 +52,37 @@ function Mainpage(props:Props) {
             />
             <Mapcomponent locations={props.locations}
                           setLocations={props.setLocations}
+                          setNewLocationCoordinates={setNewLocationCoordinates}
+                          clickNewLocation={clickNewLocation}
+                          setClickNewLocation={setClickNewLocation}
+                          setConfirmNewLocation={setConfirmNewLocation}
+                          setEditLocation={setEditLocation}
+                          editLocation={editLocation}
             />
-             <Footer
-                onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
-                initialValues={props.initialValues}
-                setLocations={props.setLocations}
-            />
+            {confirmNewLocation ?
+                <LocationConfirmationWindow
+                    newLocationCoordinates={newLocationCoordinates}
+                    setClickNewLocation={setClickNewLocation}
+                    setConfirmNewLocation={setConfirmNewLocation}
+                    setAddLocation={setAddLocation}
+                />
+                : <></>}
+            {addLocation ?
+                <EditLocationPopUp
+                    onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
+                    initialValues={initialValues}
+                    submitButtonName={"Add location"}
+                    setBooleanToClosePopup={setAddLocation}
+                />
+                : <></>
+            }
+            {confirmNewLocation || addLocation || editLocation?
+                <></>
+                : <Footer
+                    clickNewLocation={clickNewLocation}
+                    setClickNewLocation={setClickNewLocation}
+                />
+            }
         </div>
     );
 }

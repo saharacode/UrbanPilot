@@ -4,17 +4,24 @@
     align-items: center;
     justify-content: space-evenly;
     position: fixed;
-    top: 50%;
+    top: 54%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #2f3542c4;
-    width: 80vw;
-    height: 80vh;
-    max-width: 600px;
-    min-width: 300px;
-    max-height: 600px;
     color: white;
     border-radius: 12px;
+    z-index: 1001;
+    font-family: Quicksand, sans-serif;
+    font-size: 12pt;
+    line-height: 1.5;
+}
+
+.editLocationPopup-head{
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
 }
 
 .editLocation-container{
@@ -25,6 +32,10 @@
     color: white;
     background: #000000c2;
     border-radius: 12px;
+    margin: 15px;
+    max-width: 400px;
+    min-width: 260px;
+    width: 80vw;
 }
 
 .editLocationForm {
@@ -33,9 +44,6 @@
     align-items: center;
     gap: 25px;
     padding: 10px 5px 10px 5px;
-    width: 70vw;
-    max-width: 500px;
-    min-width: 150px;
 }
 
 .inputFieldLocation{
@@ -43,11 +51,8 @@
     border: 0;
     border-bottom: 2px #fff solid;
     display: block;
-    width: 60vw;
-    min-width: 140px;
-    max-width: 400px;
     padding: 8px;
-    font-size: 16px;
+    font-size: 13px;
     color: white;
 }
 

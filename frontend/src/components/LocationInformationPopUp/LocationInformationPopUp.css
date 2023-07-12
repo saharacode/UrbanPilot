@@ -56,5 +56,7 @@ td:nth-child(2){
 .locationPopup-buttons{
     display: flex;
     gap: 50px;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 }
+
