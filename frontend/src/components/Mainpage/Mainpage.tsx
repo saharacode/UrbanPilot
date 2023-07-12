@@ -7,6 +7,7 @@ import './Mainpage.css';
 import Footer from "../Footer/Footer";
 import LocationConfirmationWindow from "../LocationConfirmationWindow/LocationConfirmationWindow";
 import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
+import LocationFilterWindow from "../LocationFilterWindow/LocationFilterWindow";
 
 type Props = {
     userDetails: User;
@@ -27,6 +28,7 @@ function Mainpage(props:Props) {
     const [confirmNewLocation, setConfirmNewLocation] = useState(false);
     const [addLocation, setAddLocation] = useState(false);
     const [editLocation, setEditLocation] = useState(false);
+    const [filter,setFilter] = useState(false);
 
     const initialValues:LocationInfo = {
         locationId: "",
@@ -67,6 +69,11 @@ function Mainpage(props:Props) {
                     setAddLocation={setAddLocation}
                 />
                 : <></>}
+            {filter ?
+                <LocationFilterWindow
+                    setFilter={setFilter}
+                />
+                : <></>}
             {addLocation ?
                 <EditLocationPopUp
                     onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
@@ -76,11 +83,12 @@ function Mainpage(props:Props) {
                 />
                 : <></>
             }
-            {confirmNewLocation || addLocation || editLocation?
+            {confirmNewLocation || addLocation || editLocation || filter?
                 <></>
                 : <Footer
                     clickNewLocation={clickNewLocation}
                     setClickNewLocation={setClickNewLocation}
+                    setFilter={setFilter}
                 />
             }
         </div>
