@@ -1,14 +1,16 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {Dispatch, ReactComponentElement, ReactFragment, SetStateAction} from 'react';
 import "./LocationFilterWindow.css";
 import {SaveIcon} from "../../icons/save-icon";
 import {CloseIcon} from "../../icons/close-icon";
-import {CoordinatesIcon} from "../../icons/coordinates-icon";
 
 type Props={
     setFilter: Dispatch<SetStateAction<boolean>>;
+    setFilteredElements: Dispatch<SetStateAction<string[]>>;
 }
 
 function LocationFilterWindow(props:Props) {
+    const locationtypes:string[] = ['Food', 'Bar', 'Sight', 'Nature', 'Art', 'Education', 'Sports', 'Other'];
+
     function closeButtonHandler() {
         props.setFilter((prevState) => !prevState);
     }
@@ -26,8 +28,15 @@ function LocationFilterWindow(props:Props) {
             </div>
             <div className="locationFilterWindow-content">
                 <h5>Please select which locationtype you want to display.</h5>
-                <div>
-                    <h5>here comes the selection</h5>
+                <div className="checkboxes-container">
+                    {
+                        locationtypes.map((locationtype:string) =>(
+                             <label key={locationtype} className="checkbox-label">
+                                <input type="checkbox" className="checkbox"/>
+                                {locationtype}
+                            </label>
+                        ))
+                    }
                 </div>
                 <button className={"icon-btn"} onClick={confirmButtonHandler}>
                     <SaveIcon width={30} height={30} color={"green"}/>
