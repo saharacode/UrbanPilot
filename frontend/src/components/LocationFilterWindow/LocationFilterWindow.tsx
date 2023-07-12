@@ -6,11 +6,12 @@ import {CloseIcon} from "../../icons/close-icon";
 type Props={
     setFilter: Dispatch<SetStateAction<boolean>>;
     setFilteredElements: Dispatch<SetStateAction<string[]>>;
+    filteredElements: string[];
+    locationtypes: string[];
 }
 
 function LocationFilterWindow(props:Props) {
-    const locationtypes:string[] = ['Food', 'Bar', 'Sight', 'Nature', 'Art', 'Education', 'Sports', 'Other'];
-    const [currentSelection, setCurrentSelection] = useState(locationtypes);
+    const [currentSelection, setCurrentSelection] = useState<string[]>(props.filteredElements);
 
     function closeButtonHandler() {
         props.setFilter((prevState) => !prevState);
@@ -40,7 +41,7 @@ function LocationFilterWindow(props:Props) {
                 <h5>Please select which locationtype you want to display:</h5>
                 <div className="checkboxes-container">
                     {
-                        locationtypes.map((locationtype:string) =>(
+                        props.locationtypes.map((locationtype:string) =>(
                              <label key={locationtype} className="checkbox-label">
                                 <input
                                     type="checkbox"

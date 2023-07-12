@@ -29,7 +29,8 @@ function Mainpage(props:Props) {
     const [addLocation, setAddLocation] = useState(false);
     const [editLocation, setEditLocation] = useState(false);
     const [filter,setFilter] = useState(false);
-    const [filteredElements,setFilteredElements] = useState<string[]>([])
+    const locationtypes:string[] = ['Food', 'Bar', 'Sight', 'Nature', 'Art', 'Education', 'Sports', 'Other'];
+    const [filteredElements,setFilteredElements] = useState<string[]>(locationtypes)
 
     const initialValues:LocationInfo = {
         locationId: "",
@@ -75,6 +76,8 @@ function Mainpage(props:Props) {
                 <LocationFilterWindow
                     setFilter={setFilter}
                     setFilteredElements={setFilteredElements}
+                    filteredElements={filteredElements}
+                    locationtypes={locationtypes}
                 />
                 : <></>}
             {addLocation ?
