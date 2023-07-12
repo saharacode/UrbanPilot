@@ -43,7 +43,10 @@ function EditLocationPopUp(props:Props) {
                 <Formik
                     initialValues={props.initialValues}
                     validationSchema={locationSchema}
-                    onSubmit={(values:LocationInfo) => props.onSubmitHandler(values)}
+                    onSubmit={(values:LocationInfo) => {
+                        props.onSubmitHandler(values);
+                        closeButtonHandler();
+                    }}
                 >
                     {({ errors }) => (
                         <Form className="editLocationForm">
