@@ -18,7 +18,7 @@ function EditLocationPopUp(props:Props) {
         locationName: Yup.string()
             .required('Required'),
         locationType: Yup.string()
-            .oneOf(['restaurant', 'other'], 'Invalid location type')
+            .oneOf(['Food', 'Bar', 'Sight', 'Nature', 'Art', 'Education', 'Sports', 'Other'], 'Invalid location type')
             .required('Required'),
         locationCity: Yup.string()
             .required('Required'),
@@ -70,12 +70,14 @@ function EditLocationPopUp(props:Props) {
                                     {errors.locationType ? <h6>({errors.locationType})</h6> : <></>}
                                 </div>
                                 <Field name="locationType" as="select" className={"inputFieldLocation"}>
-                                    <option value="food">Food</option>
-                                    <option value="bar">Bar</option>
-                                    <option value="sight">Sight</option>
-                                    <option value="nature">Nature</option>
-                                    <option value="sports">Sports</option>
-                                    <option value="other">Other</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Bar">Bar</option>
+                                    <option value="Sight">Sight</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Art">Art</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Other">Other...</option>
                                 </Field>
                             </div>
                             <div>
