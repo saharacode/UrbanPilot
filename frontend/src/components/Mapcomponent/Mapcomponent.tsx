@@ -15,10 +15,15 @@ type Props = {
     setConfirmNewLocation: Dispatch<SetStateAction<boolean>>;
     editLocation: boolean;
     setEditLocation: Dispatch<SetStateAction<boolean>>;
+    filteredElements: string[];
 }
 
 function Mapcomponent(props:Props) {
     const defaultCoordinates: L.LatLngLiteral = { lat: 52.520008, lng: 13.404954 };
+
+    const filteredLocations: LocationInfo[] = (props.locations.filter((locationToFilter:LocationInfo)=>(
+        props.filteredElements.includes(locationToFilter.locationType)
+    )))
 
     const HandleClickMap = () => {
         useMapEvents({
@@ -42,7 +47,7 @@ function Mapcomponent(props:Props) {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {props.locations.map(location =>{
+            {filteredLocations.map(location =>{
                 return <Marker
                     key={location.locationId}
                     position={{ lat: location.locationLatCoordinate, lng: location.locationLngCoordinate }}

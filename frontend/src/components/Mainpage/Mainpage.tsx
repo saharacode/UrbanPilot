@@ -61,6 +61,7 @@ function Mainpage(props:Props) {
                           setConfirmNewLocation={setConfirmNewLocation}
                           setEditLocation={setEditLocation}
                           editLocation={editLocation}
+                          filteredElements={filteredElements}
             />
             {confirmNewLocation ?
                 <LocationConfirmationWindow
