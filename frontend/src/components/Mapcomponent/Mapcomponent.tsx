@@ -37,11 +37,16 @@ function Mapcomponent(props:Props) {
         return null;
     }
 
+
     const urlCollection = ["/location-icons/food.svg","/location-icons/bar.svg", "/location-icons/sight.svg","/location-icons/nature.svg","/location-icons/art.svg","/location-icons/education.svg","/location-icons/sports.svg","/location-icons/other.svg"];
     const iconCollection = urlCollection.map((url)=>{
         return new Icon({
+            shadowUrl: "location-icons/locationmarker.svg",
+            shadowAnchor: [25,50],
+            shadowSize: [50, 50],
             iconUrl: url,
-            iconSize: [38, 38]
+            iconSize: [26, 26],
+            iconAnchor: [13, 46],
         })
     })
 
