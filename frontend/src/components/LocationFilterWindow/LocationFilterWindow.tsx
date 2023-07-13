@@ -19,6 +19,7 @@ function LocationFilterWindow(props:Props) {
 
     function confirmButtonHandler() {
         props.setFilteredElements(currentSelection);
+        props.setFilter((prevState) => !prevState);
     }
 
     function clickCheckboxHandler(locationtype:string) {
