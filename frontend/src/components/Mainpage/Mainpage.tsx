@@ -63,6 +63,7 @@ function Mainpage(props:Props) {
                           setEditLocation={setEditLocation}
                           editLocation={editLocation}
                           filteredElements={filteredElements}
+                          locationTypes={locationtypes}
             />
             {confirmNewLocation ?
                 <LocationConfirmationWindow
