@@ -8,7 +8,7 @@ type Props={
     newLocationCoordinates: { lat: number; lng: number; };
     setClickNewLocation: Dispatch<SetStateAction<boolean>>;
     setConfirmNewLocation: Dispatch<SetStateAction<boolean>>;
-    setAddLocation: Dispatch<SetStateAction<boolean>>;
+    setAddLocation: Dispatch<SetStateAction<string>>;
 }
 
 function LocationConfirmationWindow(props:Props) {
@@ -20,7 +20,7 @@ function LocationConfirmationWindow(props:Props) {
     function confirmButtonHandler() {
         props.setClickNewLocation(false);
         props.setConfirmNewLocation(false);
-        props.setAddLocation((prevState) => !prevState);
+        props.setAddLocation(() => "addLocation");
     }
 
     return (

@@ -10,7 +10,7 @@ type Props = {
     onSubmitHandler: (values:LocationInfo) => Promise<void>;
     initialValues: LocationInfo;
     submitButtonName:string;
-    setBooleanToClosePopup: Dispatch<SetStateAction<boolean>>;
+    setBooleanToClosePopup: Dispatch<SetStateAction<string>>;
 }
 
 function EditLocationPopUp(props:Props) {
@@ -29,7 +29,7 @@ function EditLocationPopUp(props:Props) {
     });
 
     function closeButtonHandler() {
-        props.setBooleanToClosePopup(false);
+        props.setBooleanToClosePopup("");
     }
 
     return (

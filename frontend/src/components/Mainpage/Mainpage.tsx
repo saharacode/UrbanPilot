@@ -26,8 +26,8 @@ function Mainpage(props:Props) {
     const [newLocationCoordinates, setNewLocationCoordinates] = useState({ lat: 0.0, lng: 0.0 });
     const [clickNewLocation, setClickNewLocation] = useState(false);
     const [confirmNewLocation, setConfirmNewLocation] = useState(false);
-    const [addLocation, setAddLocation] = useState(false);
-    const [editLocation, setEditLocation] = useState(false);
+    const [addLocation, setAddLocation] = useState("");
+    const [editLocation, setEditLocation] = useState("");
     const [filter,setFilter] = useState(false);
     const locationtypes:string[] = ['Food', 'Bar', 'Sight', 'Nature', 'Art', 'Education', 'Sports', 'Other'];
     const [filteredElements,setFilteredElements] = useState<string[]>(locationtypes)
@@ -81,7 +81,7 @@ function Mainpage(props:Props) {
                     locationtypes={locationtypes}
                 />
                 : <></>}
-            {addLocation ?
+            {addLocation === "addLocation" ?
                 <EditLocationPopUp
                     onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                     initialValues={initialValues}

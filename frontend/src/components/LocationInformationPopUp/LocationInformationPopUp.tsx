@@ -13,8 +13,8 @@ import {LocationtypeIcon} from "../../icons/locationtype-icon";
 type Props = {
     locationDetails:LocationInfo;
     setLocations: Dispatch<SetStateAction<LocationInfo[]>>;
-    editLocation: boolean;
-    setEditLocation: Dispatch<SetStateAction<boolean>>;
+    editLocation: string;
+    setEditLocation: Dispatch<SetStateAction<string>>;
     setConfirmNewLocation: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -29,7 +29,7 @@ function LocationInformationPopUp(props:Props) {
     }
 
     function editButtonHandler() {
-        props.setEditLocation((prevState:boolean) => !prevState);
+        props.setEditLocation(() => props.locationDetails.locationId);
         props.setConfirmNewLocation(false);
     }
 
@@ -92,7 +92,7 @@ function LocationInformationPopUp(props:Props) {
                     </button>
                 </div>
             </Popup>
-            {props.editLocation?
+            {props.editLocation === props.locationDetails.locationId?
                 <EditLocationPopUp onSubmitHandler={(values: LocationInfo) => saveButtonHandler(values)}
                                    initialValues={initialValues}
                                    submitButtonName={"Edit Location"}

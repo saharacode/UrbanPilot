@@ -13,8 +13,8 @@ type Props = {
     clickNewLocation: boolean;
     setClickNewLocation: Dispatch<SetStateAction<boolean>>;
     setConfirmNewLocation: Dispatch<SetStateAction<boolean>>;
-    editLocation: boolean;
-    setEditLocation: Dispatch<SetStateAction<boolean>>;
+    editLocation: string;
+    setEditLocation: Dispatch<SetStateAction<string>>;
     filteredElements: string[];
     locationTypes: string[];
 }
@@ -44,7 +44,7 @@ function Mapcomponent(props:Props) {
             iconSize: [38, 38]
         })
     })
-    //const iconMap = Object.fromEntries(props.locationTypes.map((locationtype)=>[locationtype, iconCollection]));
+
     const iconMap = new Map<string,Icon>();
     props.locationTypes.forEach((locationType, i) => {
         iconMap.set(locationType, iconCollection[i]);
