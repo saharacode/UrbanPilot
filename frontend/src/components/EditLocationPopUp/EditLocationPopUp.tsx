@@ -70,6 +70,7 @@ function EditLocationPopUp(props:Props) {
                                     {errors.locationType ? <h6>({errors.locationType})</h6> : <></>}
                                 </div>
                                 <Field name="locationType" as="select" className={"inputFieldLocation"}>
+                                    <option disabled value={""}>Please choose...</option>
                                     <option value="Food">Food</option>
                                     <option value="Bar">Bar</option>
                                     <option value="Sight">Sight</option>
@@ -77,7 +78,7 @@ function EditLocationPopUp(props:Props) {
                                     <option value="Art">Art</option>
                                     <option value="Education">Education</option>
                                     <option value="Sports">Sports</option>
-                                    <option value="Other">Other...</option>
+                                    <option value="Other">Other</option>
                                 </Field>
                             </div>
                             <div>
