@@ -39,9 +39,10 @@ function Mapcomponent(props:Props) {
 
 
     const urlCollection = ["/location-icons/food.svg","/location-icons/bar.svg", "/location-icons/sight.svg","/location-icons/nature.svg","/location-icons/art.svg","/location-icons/education.svg","/location-icons/sports.svg","/location-icons/other.svg"];
-    const iconCollection = urlCollection.map((url)=>{
+    const urlShadowCollection =["location-icons/locationmarker-red.svg", "location-icons/locationmarker-yellow.svg", "location-icons/locationmarker-blue.svg", "location-icons/locationmarker-green.svg", "location-icons/locationmarker-watermelon.svg", "location-icons/locationmarker-aqua.svg", "location-icons/locationmarker-orange.svg", "location-icons/locationmarker-dark.svg"]
+    const iconCollection = urlCollection.map((url, i)=>{
         return new Icon({
-            shadowUrl: "location-icons/locationmarker.svg",
+            shadowUrl: urlShadowCollection[i],
             shadowAnchor: [25,50],
             shadowSize: [50, 50],
             iconUrl: url,
