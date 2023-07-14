@@ -10,7 +10,7 @@ type Props = {
     onSubmitHandler: (values:LocationInfo) => Promise<void>;
     initialValues: LocationInfo;
     submitButtonName:string;
-    setBooleanToClosePopup: Dispatch<SetStateAction<boolean>>;
+    setBooleanToClosePopup: Dispatch<SetStateAction<string>>;
 }
 
 function EditLocationPopUp(props:Props) {
@@ -18,6 +18,7 @@ function EditLocationPopUp(props:Props) {
         locationName: Yup.string()
             .required('Required'),
         locationType: Yup.string()
+            .oneOf(['Food', 'Bar', 'Sight', 'Nature', 'Art', 'Education', 'Sports', 'Other'], 'Invalid location type')
             .required('Required'),
         locationCity: Yup.string()
             .required('Required'),
@@ -28,7 +29,7 @@ function EditLocationPopUp(props:Props) {
     });
 
     function closeButtonHandler() {
-        props.setBooleanToClosePopup(false);
+        props.setBooleanToClosePopup("");
     }
 
     return (
@@ -68,7 +69,17 @@ function EditLocationPopUp(props:Props) {
                                     <label>Type</label>
                                     {errors.locationType ? <h6>({errors.locationType})</h6> : <></>}
                                 </div>
-                                <Field name="locationType" type="text" className={"inputFieldLocation"}/>
+                                <Field name="locationType" as="select" className={"inputFieldLocation"}>
+                                    <option disabled value={""}>Please choose...</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Bar">Bar</option>
+                                    <option value="Sight">Sight</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Art">Art</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Other">Other</option>
+                                </Field>
                             </div>
                             <div>
                                 <div className="error-container">

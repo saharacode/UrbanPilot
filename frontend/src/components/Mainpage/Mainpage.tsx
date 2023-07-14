@@ -7,6 +7,7 @@ import './Mainpage.css';
 import Footer from "../Footer/Footer";
 import LocationConfirmationWindow from "../LocationConfirmationWindow/LocationConfirmationWindow";
 import EditLocationPopUp from "../EditLocationPopUp/EditLocationPopUp";
+import LocationFilterWindow from "../LocationFilterWindow/LocationFilterWindow";
 
 type Props = {
     userDetails: User;
@@ -25,8 +26,11 @@ function Mainpage(props:Props) {
     const [newLocationCoordinates, setNewLocationCoordinates] = useState({ lat: 0.0, lng: 0.0 });
     const [clickNewLocation, setClickNewLocation] = useState(false);
     const [confirmNewLocation, setConfirmNewLocation] = useState(false);
-    const [addLocation, setAddLocation] = useState(false);
-    const [editLocation, setEditLocation] = useState(false);
+    const [addLocation, setAddLocation] = useState("");
+    const [editLocation, setEditLocation] = useState("");
+    const [filter,setFilter] = useState(false);
+    const locationtypes:string[] = ['Food', 'Bar', 'Sight', 'Nature', 'Art', 'Education', 'Sports', 'Other'];
+    const [filteredElements,setFilteredElements] = useState<string[]>(locationtypes)
 
     const initialValues:LocationInfo = {
         locationId: "",
@@ -58,6 +62,8 @@ function Mainpage(props:Props) {
                           setConfirmNewLocation={setConfirmNewLocation}
                           setEditLocation={setEditLocation}
                           editLocation={editLocation}
+                          filteredElements={filteredElements}
+                          locationTypes={locationtypes}
             />
             {confirmNewLocation ?
                 <LocationConfirmationWindow
@@ -67,7 +73,15 @@ function Mainpage(props:Props) {
                     setAddLocation={setAddLocation}
                 />
                 : <></>}
-            {addLocation ?
+            {filter ?
+                <LocationFilterWindow
+                    setFilter={setFilter}
+                    setFilteredElements={setFilteredElements}
+                    filteredElements={filteredElements}
+                    locationtypes={locationtypes}
+                />
+                : <></>}
+            {addLocation === "addLocation" ?
                 <EditLocationPopUp
                     onSubmitHandler={(values: LocationInfo) => props.postNewLocation(values, props.setLocations)}
                     initialValues={initialValues}
@@ -76,11 +90,12 @@ function Mainpage(props:Props) {
                 />
                 : <></>
             }
-            {confirmNewLocation || addLocation || editLocation?
+            {confirmNewLocation || addLocation || editLocation || filter?
                 <></>
                 : <Footer
                     clickNewLocation={clickNewLocation}
                     setClickNewLocation={setClickNewLocation}
+                    setFilter={setFilter}
                 />
             }
         </div>
